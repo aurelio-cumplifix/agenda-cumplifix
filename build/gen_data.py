@@ -112,6 +112,19 @@ SECTORES = [
 # ---------------------------------------------------------------------------
 TODOS   = ["banca","sofom_enr","sofom_er","seguros","eacp","uniones","ifpe","ifc","bolsa"]
 FR_III  = ["banca","sofom_enr","sofom_er","eacp","uniones","ifpe","ifc"]   # RECA y REDECO
+
+# CRITERIO CUMPLIFIX — REDECO no se le requiere a las IFPE.
+#
+# El art. 3 fr. III enumera genéricamente a las "Instituciones de Tecnología Financiera",
+# y el art. 4 fr. XVI de la Ley Fintech define ese género como comprensivo de IFC e IFPE.
+# Leído al pie de la letra, el REDECO alcanzaría también a las IFPE.
+#
+# Confirmado por CumpliFix el 30 de julio de 2026: la redacción de la Disposición es
+# defectuosa en este punto y, en los hechos, la obligación no se le requiere a las
+# Instituciones de Fondos de Pago Electrónico. Se excluyen del REDECO. Las IFC se
+# mantienen, porque su operación sí supone intermediación de financiamiento y, por
+# tanto, gestión de cobranza.
+REDECO_SEC = ["banca","sofom_enr","sofom_er","eacp","uniones","ifc"]
 FR_V    = ["sofom_enr","eacp","uniones"]                                    # RECO
 SOLO_EN = ["sofom_enr"]                                                     # SIPRES caps. V y VI
 SEGUROS = ["seguros"]                                                       # RESBA
@@ -131,13 +144,13 @@ CATALOGO = [
               "cobranza que la entidad conozca, capte, reciba o atienda por cualquier medio.",
          periodicidad="Mensual", periodo="anterior", hito="validacion",
          umas=200, umas_max=2000, sancionador="LTOSF art. 41",
-         verif="literal", sectores=FR_III,  aplic="fr. III"),
+         verif="literal", sectores=REDECO_SEC, aplic="fr. III · criterio CumpliFix"),
     dict(art="Art. 130", sistema="REDECO", obl="Registro y actualización de despachos de cobranza",
          desc="Mantener actualizada en el REDECO la información de los despachos de "
               "cobranza contratados, o señalar que no se cuenta con éstos.",
          periodicidad="Mensual", periodo="anterior", hito="validacion",
          umas=200, umas_max=2000, sancionador="LTOSF art. 41",
-         verif="art12", sectores=FR_III,  aplic="fr. III"),
+         verif="art12", sectores=REDECO_SEC, aplic="fr. III · criterio CumpliFix"),
     dict(art="Art. 160", sistema="REUS", obl="Aviso de publicidad dirigida",
          desc="Informar si la institución realizará publicidad dirigida a usuarios "
               "inscritos, conforme al registro de actividades publicitarias del REUS.",

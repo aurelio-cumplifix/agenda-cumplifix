@@ -60,27 +60,37 @@ pero ante Banxico.
 registros aplicables a todas las Instituciones Financieras. Por ahora aplica a todos los
 sectores, pero **es la asignación menos sólida del dataset**.
 
-### El punto donde la fuente parece contradecirte
+### REDECO para IFPE — RESUELTO por criterio CumpliFix
 
-Comentaste que **a las IFPE no les aplica el REDECO**. La norma dice lo contrario y vale la pena
-que lo revises antes de decidir:
+**Confirmado por Aurelio Castro el 30 de julio de 2026: el REDECO no se le requiere a las IFPE.
+Ya está aplicado en el dataset.**
 
-- El art. 3 **fr. III** lista expresamente a las **"Instituciones de Tecnología Financiera"**
-  entre los sujetos obligados de RECA y REDECO.
-- El art. 4 fr. XVI de la Ley Fintech define ITF como el género que comprende **tanto a las IFC
-  como a las IFPE**. Ninguna norma consultada las separa para efectos de registros.
-- Las Disposiciones de CONDUSEF en materia de transparencia y sanas prácticas aplicables a ITF
-  ([DOF 09-07-2019](https://sidof.segob.gob.mx/notas/docFuente/5565233)) reconocen en su
-  **art. 23** que las IFPE *"otorgarán créditos y préstamos por sobregiro"*, de modo que sí
-  pueden tener saldos por recuperar y, por tanto, gestión de cobranza.
+Conviene dejar asentado por qué el criterio se aparta del texto, porque es previsible que
+alguien lo cuestione:
 
-**Lo que quedó sin resolver, y es donde probablemente esté tu punto:** ninguna fuente aclara si
-una IFPE que **no contrata despachos de cobranza** debe presentar reporte en ceros o simplemente
-no tiene materia que reportar. Si tu experiencia de supervisión es que la CONDUSEF no se lo
-requiere, eso es criterio operativo que la norma escrita no recoge y que tú conoces mejor.
+- El art. 3 **fr. III** de la Disposición enumera genéricamente a las **"Instituciones de
+  Tecnología Financiera"** entre los sujetos obligados de RECA y REDECO.
+- El art. 4 fr. XVI de la Ley Fintech define ese género como comprensivo de **IFC e IFPE**, sin
+  distinguir.
+- Leído al pie de la letra, el REDECO alcanzaría también a las IFPE.
 
-**Cómo está hoy en el sitio:** REDECO aparece aplicable a IFPE e IFC. Si me confirmas que debe
-salir, se cambia en un minuto y queda documentado como criterio CumpliFix.
+**La Disposición está defectuosamente redactada en este punto.** Al agrupar a ambas figuras bajo
+un género único, extiende a las IFPE una obligación cuya materia —la gestión de despachos de
+cobranza sobre cartera crediticia— no corresponde a su operación. En los hechos la obligación no
+se les requiere.
+
+**Las IFC sí se mantienen** en el REDECO, porque su operación supone intermediación de
+financiamiento y, por tanto, sí puede haber gestión de cobranza.
+
+**Cómo quedó documentado:** el criterio está escrito en `build/gen_data.py`, en el bloque
+`REDECO_SEC`, con la explicación completa. En la matriz aparece marcado como
+*"fr. III · criterio CumpliFix"* para distinguirlo de las asignaciones que se sostienen en el
+texto literal.
+
+> **Nota de trazabilidad.** Éste es el único punto de la agenda donde el criterio CumpliFix se
+> aparta del texto expreso de la norma. Conviene conservar el sustento —oficio, criterio de
+> supervisión o precedente— que respalda que la CONDUSEF no lo requiere, por si llega a
+> cuestionarse la asignación.
 
 ### Matriz completa, obligación por obligación
 
