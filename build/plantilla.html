@@ -735,7 +735,7 @@ footer{margin-top:26px;background:linear-gradient(135deg,#081848,var(--navy) 55%
         <div class="f"><label for="c_tema">Tema</label><select id="c_tema" name="tema"></select></div>
       </div>
       <div class="f"><label for="c_msg">Mensaje</label><textarea id="c_msg" name="mensaje" required></textarea></div>
-      <label class="check"><input type="checkbox" required>
+      <label class="check"><input type="checkbox" name="aviso_privacidad" value="Aceptado" required>
         He leído y acepto el <a href="aviso-de-privacidad.html">Aviso de Privacidad</a> y autorizo el
         tratamiento de mis datos personales para ser contactado por CumpliFix S.C.</label>
       <button class="btn btn-primary" type="submit" style="width:100%">Enviar solicitud</button>
@@ -835,7 +835,7 @@ footer{margin-top:26px;background:linear-gradient(135deg,#081848,var(--navy) 55%
         <div class="f"><label for="s_cargo">Cargo</label><input id="s_cargo" name="cargo" placeholder="Titular de la UNE, Oficial de Cumplimiento…"></div>
       </div>
       <div class="f"><label for="s_sector">Sector</label><select id="s_sector" name="sector"></select></div>
-      <label class="check"><input type="checkbox" required>
+      <label class="check"><input type="checkbox" name="aviso_privacidad" value="Aceptado" required>
         Acepto el <a href="aviso-de-privacidad.html" target="_blank">Aviso de Privacidad</a> y que
         CumpliFix S.C. me contacte con información de cumplimiento.</label>
       <button class="btn btn-primary" type="submit" style="width:100%">Ver la agenda de mi sector</button>
@@ -852,8 +852,8 @@ const CONFIG = {
   pdf: "assets/agenda-cumplifix-condusef-2026.pdf",
   brochure: "assets/brochure-cumplifix.pdf",
   efemerides: "https://docs.google.com/forms/d/e/1FAIpQLScCgcjU_SuPwckUzqtYeDw71TXQvBY4b-7y8-2gVvBJ-ZXTwQ/viewform",
-  formEndpoint: "",      // p. ej. https://api.web3forms.com/submit
-  formKey: "",           // access_key del servicio
+  formEndpoint: "https://api.web3forms.com/submit",
+  formKey: "386f27b8-8a7b-47e9-a0c4-2b96e7cc329d",   // clave pública de Web3Forms
   correo: "info@cumplifix.com",
   whatsapp: "525571462367",
   sitio: "https://agenda.cumplifix.com",
@@ -1395,6 +1395,10 @@ function compartirWa(){
 /* ---------- formularios ---------- */
 function enviar(datos, box, okTxt, cb){
   box.className="msg";
+  // El correo debe leerse sin descifrar identificadores internos.
+  const nomSector=function(id){ const x=(DATA.sectores||[]).filter(function(s){return s.id===id;})[0];
+    return x ? x.nombre : id; };
+  if(datos.sector) datos.sector=nomSector(datos.sector);
   const asunto="[agenda.cumplifix.com] "+(datos.tema||datos.sector||"Contacto");
   if(!CONFIG.formEndpoint){
     const cuerpo=Object.keys(datos).map(k=>k+": "+datos[k]).join("\n");
@@ -1404,11 +1408,24 @@ function enviar(datos, box, okTxt, cb){
     box.textContent="Abrimos tu cliente de correo con el mensaje listo para enviar a "+CONFIG.correo+".";
     if(cb) cb(); return;
   }
-  const payload=Object.assign({access_key:CONFIG.formKey,subject:asunto,from_name:"Agenda CumpliFix"},datos);
-  fetch(CONFIG.formEndpoint,{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},
+  const payload=Object.assign({access_key:CONFIG.formKey,subject:asunto,
+    from_name:"Agenda CumpliFix"},datos);
+  if(datos.correo) payload.replyto=datos.correo;   // responder va directo al interesado
+  // Evidencia del consentimiento: qué aceptó, cuándo y desde dónde.
+  payload.aviso_privacidad = datos.aviso_privacidad
+    ? "Aceptado en agenda.cumplifix.com" : "NO REGISTRADO";
+  payload.sello_temporal = new Intl.DateTimeFormat("es-MX",{dateStyle:"full",
+    timeStyle:"long",timeZone:TZ}).format(new Date()) + " (hora de la Ciudad de México)";
+  box.textContent="Enviando…";
+  fetch(CONFIG.formEndpoint,{method:"POST",
+    headers:{"Content-Type":"application/json",Accept:"application/json"},
     body:JSON.stringify(payload)})
-    .then(r=>r.json()).then(()=>{box.className="msg ok";box.textContent=okTxt;if(cb)cb();})
-    .catch(()=>{box.className="msg err";
+    .then(function(r){ return r.json(); })
+    .then(function(d){
+      if(d && d.success){ box.className="msg ok"; box.textContent=okTxt; if(cb) cb(); }
+      else { throw new Error((d&&d.message)||"rechazado"); }
+    })
+    .catch(function(){ box.className="msg err";
       box.textContent="No pudimos enviar el mensaje. Escríbenos directamente a "+CONFIG.correo+".";});
 }
 document.getElementById("formContacto").addEventListener("submit",function(e){
