@@ -76,6 +76,11 @@ h1,h2,h3,h4{margin:0;line-height:1.2;letter-spacing:-.015em;font-family:var(--fd
 .rev-x:hover{opacity:1}
 @media print{.revbar{display:none}}
 
+/* ---------- Revelado ---------- */
+.rev{opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s cubic-bezier(.22,1,.36,1)}
+.rev.vis{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.rev{opacity:1;transform:none;transition:none}}
+
 /* ---------- Nav ---------- */
 .nav{position:sticky;top:0;z-index:60;background:rgba(11,31,91,.97);backdrop-filter:blur(8px);
   color:#fff;border-bottom:1px solid rgba(255,255,255,.12)}
@@ -332,6 +337,12 @@ input[type=checkbox]{width:17px;height:17px;accent-color:var(--blue);cursor:poin
 .servs{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .serv{padding:20px;display:flex;flex-direction:column;gap:8px}
 .serv .n{font-size:16px;font-weight:800;letter-spacing:-.01em}
+.serv .ic{width:42px;height:42px;min-width:42px;min-height:42px;border-radius:12px;display:grid;
+  place-items:center;margin-bottom:3px;background:linear-gradient(140deg,#EEF2FF,#DDE6FF);
+  color:var(--blue);transition:transform .28s cubic-bezier(.34,1.4,.64,1),background .28s,color .28s}
+.serv .ic svg.si{width:22px;height:22px;display:block}
+.serv:hover .ic{transform:translateY(-2px) scale(1.06);color:#fff;
+  background:linear-gradient(140deg,var(--blue),#3B6BF5)}
 .serv .cl{font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--blue)}
 .serv p{margin:0;font-size:13px;color:var(--muted);flex:1}
 
@@ -492,8 +503,12 @@ footer{margin-top:26px;background:linear-gradient(135deg,#081848,var(--navy) 55%
     </div>
     <div class="ring">
       <svg width="176" height="176" viewBox="0 0 176 176" role="img" aria-labelledby="ringDesc">
+        <defs><linearGradient id="gRing" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#1C46DC"/><stop offset="1" stop-color="#59B0FF"/></linearGradient></defs>
+        <circle id="ringSec" cx="88" cy="88" r="85" fill="none" stroke="#C9D8F5" stroke-width="2.5"
+                stroke-linecap="round" stroke-dasharray="534" stroke-dashoffset="534"></circle>
         <circle cx="88" cy="88" r="74" fill="none" stroke="#EDF1F7" stroke-width="15"></circle>
-        <circle id="ringArc" cx="88" cy="88" r="74" fill="none" stroke="#1C46DC" stroke-width="15"
+        <circle id="ringArc" cx="88" cy="88" r="74" fill="none" stroke="url(#gRing)" stroke-width="15"
                 stroke-linecap="round" stroke-dasharray="465" stroke-dashoffset="465"></circle>
         <text id="ringNum" x="88" y="84" text-anchor="middle" class="ringtxt" transform="rotate(90 88 88)">—</text>
         <text id="ringLbl" x="88" y="105" text-anchor="middle" class="ringsub" transform="rotate(90 88 88)">DÍAS</text>
@@ -1032,6 +1047,10 @@ function pintarCuenta(){
   const dd=Math.floor(seg/86400), hh=Math.floor(seg%86400/3600),
         mm=Math.floor(seg%3600/60), ss=seg%60;
   const dos=n=>String(n).padStart(2,"0");
+  const sec=document.getElementById("ringSec");
+  if(sec){ const L=2*Math.PI*85;
+    sec.setAttribute("stroke-dasharray",L.toFixed(1));
+    sec.setAttribute("stroke-dashoffset",(L*(1-ss/60)).toFixed(1)); }
   c.innerHTML='<div><b>'+dd+'</b><span>días</span></div><div><b>'+dos(hh)+'</b><span>hrs</span></div>'+
               '<div><b>'+dos(mm)+'</b><span>min</span></div>'+
               '<div class="sec"><b>'+dos(ss)+'</b><span>seg</span></div>';
@@ -1269,6 +1288,25 @@ const DOLORES=[
   {q:"Quieres que nadie más dependa de una sola persona",a:"Doble validación mensual: nosotros revisamos en paralelo que cada obligación quedó presentada y con acuse, todos los meses.",s:"CumpliFix 360",t:"Quiero doble validación mensual de mis obligaciones"},
   {q:"Tu equipo pelea con las APIs de REUNE y REDECO",a:"Capacitación práctica intensiva en las APIs oficiales para que la integración deje de depender de un proveedor externo.",s:"CumpliFix API Training",t:"Capacitación en APIs REUNE y REDECO"}
 ];
+
+/* Iconos del ecosistema CumpliFix. Trazo de 1.7 sobre lienzo de 24, para que
+   pesen lo mismo que los de registros y lean bien a 22px. */
+const ISERV={
+ "CumpliFix 360":'<path d="M12 3 4 6.2v5.4c0 4.6 3.3 8.4 8 9.4 4.7-1 8-4.8 8-9.4V6.2Z"/><path d="M12 8v4l2.6 1.6"/>',
+ "Checkup CumpliFix":'<path d="M3 17.5 7.5 10l3.2 4.6L14 7.5l3 5.6 4-3"/><path d="M3 21h18"/><circle cx="17" cy="13.1" r="1.5"/>',
+ "EvaluaFix":'<path d="M14.5 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7.5Z"/><path d="M14.5 3v4.5H19"/><path d="m8.5 13.5 2 2 4-4"/>',
+ "SimulaFix":'<circle cx="11" cy="11" r="6.5"/><path d="m16 16 5 5"/><path d="M11 8.2v5.6M8.2 11h5.6"/>',
+ "CumpliLex":'<path d="M12 3v18"/><path d="M5 7h14"/><path d="m5 7-2.5 6a3 3 0 0 0 5 0Z"/><path d="m19 7-2.5 6a3 3 0 0 0 5 0Z"/><path d="M8.5 21h7"/>',
+ "Compliance Docs":'<path d="M8 3h8l4 4v12a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z"/><path d="M16 3v4h4"/><path d="M9.5 12h5M9.5 16h3"/>',
+ "CumpliFix API Training":'<path d="m8 8-4 4 4 4"/><path d="m16 8 4 4-4 4"/><path d="m13.5 5-3 14"/>',
+ "CumpliFix Incuba":'<path d="M12 21c3.9 0 6.5-2.8 6.5-6.6C18.5 9.4 12 3 12 3S5.5 9.4 5.5 14.4C5.5 18.2 8.1 21 12 21Z"/><path d="M12 17.5v-4"/><path d="M12 13.5c0-1.3 1-2.2 2.2-2.2"/>',
+ "EduFix":'<path d="M12 4 2.5 8.7 12 13.4l9.5-4.7Z"/><path d="M6.5 11v4.6c0 1.5 2.5 2.7 5.5 2.7s5.5-1.2 5.5-2.7V11"/><path d="M21.5 8.7v5.1"/>',
+ "PLD/FT":'<path d="M12 3 4.5 6v5.5c0 4.4 3.1 8.1 7.5 9.2 4.4-1.1 7.5-4.8 7.5-9.2V6Z"/><circle cx="12" cy="11" r="2.4"/><path d="m13.8 12.8 2 2"/>',
+ "Talleres CumpliFix":'<path d="M4 20h16"/><path d="M7 20v-6.5a5 5 0 0 1 10 0V20"/><path d="M12 4v3"/><path d="M6.5 6.5 8 8M17.5 6.5 16 8"/>',
+ "Efemérides del Cumplimiento":'<path d="M12 12v-8"/><path d="M12 12 17 15"/><circle cx="12" cy="12" r="9"/><path d="M12 3v1.5M21 12h-1.5M12 21v-1.5M3 12h1.5"/>'};
+function svgServ(n){return '<svg class="si" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" '+
+ 'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+(ISERV[n]||ISERV["Compliance Docs"])+'</svg>';}
+
 const SERVICIOS=[
   {n:"CumpliFix 360",c:"Tu blindaje regulatorio 24/7",p:"Monitoreo, validación y actualización continua de tus reportes ante CONDUSEF. Más de 160 obligaciones anuales y verificación del portal PUR los 365 días del año."},
   {n:"Checkup CumpliFix",c:"Diagnóstico de 5 años",p:"Revisión exhaustiva de las obligaciones de los últimos cinco ejercicios. Identifica incumplimientos históricos y fortalece los controles preventivos."},
@@ -1288,7 +1326,8 @@ function pintarCatalogos(){
     '<div class="dolor"><div class="q">'+d.q+'</div><div class="a">'+d.a+'</div>'+
     '<div class="s">'+d.s+'</div><a class="go" href="#contacto" data-tema="'+d.t+'">Cuéntanos tu caso →</a></div>').join("");
   document.getElementById("servs").innerHTML=SERVICIOS.map(s=>
-    '<div class="card serv"><div class="cl">'+s.c+'</div><div class="n">'+s.n+'</div><p>'+s.p+'</p>'+
+    '<div class="card serv"><div class="ic">'+svgServ(s.n)+'</div><div class="cl">'+s.c+'</div>'+
+    '<div class="n">'+s.n+'</div><p>'+s.p+'</p>'+
     '<a class="btn btn-ghost btn-sm" href="#contacto" data-tema="'+s.n+'" style="align-self:flex-start">Solicitar información</a></div>').join("");
   const temas=["Validación mensual ante CONDUSEF"].concat(SERVICIOS.map(s=>s.n))
     .concat(DOLORES.map(d=>d.t)).concat(["Otro"]);
@@ -1400,6 +1439,20 @@ if(CONFIG.modoRevision){
     document.getElementById("revbar").hidden=true;
   };
 }
+
+/* ---------- aparición progresiva de secciones ---------- */
+(function(){
+  if(!("IntersectionObserver" in window)) return;
+  if(window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const io=new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add("vis"); io.unobserve(e.target); } });
+  },{rootMargin:"0px 0px -8% 0px",threshold:.06});
+  window.addEventListener("load",function(){
+    Array.prototype.forEach.call(
+      document.querySelectorAll(".sec > .wrap > h2, .card, .dolor, .sysrow, .mescard"),
+      function(el,i){ el.classList.add("rev"); el.style.transitionDelay=Math.min(i%6*45,220)+"ms"; io.observe(el); });
+  });
+})();
 
 /* ---------- arranque ---------- */
 function refrescarMes(){ pintarCal(); pintarObl(); pintarTimeline(); pintarAnual(); }

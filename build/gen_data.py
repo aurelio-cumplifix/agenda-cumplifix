@@ -68,23 +68,53 @@ MESES = ["enero", "febrero", "marzo", "abril", "mayo", "junio",
          "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"]
 
 SECTORES = [
-    {"id": "sofom",   "nombre": "SOFOM E.N.R. y E.R.",        "corto": "SOFOM",
-     "desc": "Sociedades Financieras de Objeto Múltiple, reguladas y no reguladas"},
-    {"id": "banca",   "nombre": "Instituciones de Banca Múltiple", "corto": "Banca",
+    {"id": "banca",     "nombre": "Instituciones de Banca Múltiple", "corto": "Banca",
      "desc": "Bancos y sus unidades especializadas de atención a usuarios"},
-    {"id": "seguros", "nombre": "Instituciones de Seguros y Fianzas", "corto": "Seguros",
-     "desc": "Aseguradoras, afianzadoras y agentes con obligaciones ante CONDUSEF"},
-    {"id": "eacp",    "nombre": "SOFIPO y SOCAP",              "corto": "SOFIPO / SOCAP",
+    {"id": "sofom_enr", "nombre": "SOFOM E.N.R.",                    "corto": "SOFOM E.N.R.",
+     "desc": "Sociedades Financieras de Objeto Múltiple no reguladas"},
+    {"id": "sofom_er",  "nombre": "SOFOM E.R.",                      "corto": "SOFOM E.R.",
+     "desc": "Sociedades Financieras de Objeto Múltiple reguladas"},
+    {"id": "seguros",   "nombre": "Instituciones de Seguros y Fianzas", "corto": "Seguros",
+     "desc": "Aseguradoras y afianzadoras con obligaciones ante CONDUSEF"},
+    {"id": "eacp",      "nombre": "SOFIPO, SOFINCO y SOCAP",         "corto": "SOFIPO / SOCAP",
      "desc": "Sector de ahorro y crédito popular"},
-    {"id": "uniones", "nombre": "Uniones de Crédito",          "corto": "Uniones",
+    {"id": "uniones",   "nombre": "Uniones de Crédito",              "corto": "Uniones",
      "desc": "Uniones de crédito con cartera registrada"},
-    {"id": "fintech", "nombre": "IFPE e IFC (Ley Fintech)",    "corto": "Fintech",
-     "desc": "Instituciones de fondos de pago electrónico y de financiamiento colectivo"},
-    {"id": "bolsa",   "nombre": "Casas de Bolsa y otras",      "corto": "Casas de Bolsa",
+    {"id": "ifpe",      "nombre": "IFPE — Fondos de Pago Electrónico", "corto": "IFPE",
+     "desc": "Instituciones de fondos de pago electrónico (Ley Fintech)"},
+    {"id": "ifc",       "nombre": "IFC — Financiamiento Colectivo",  "corto": "IFC",
+     "desc": "Instituciones de financiamiento colectivo (Ley Fintech)"},
+    {"id": "bolsa",     "nombre": "Casas de Bolsa y otras",          "corto": "Casas de Bolsa",
      "desc": "Intermediarios bursátiles y demás entidades registradas en SIPRES"},
 ]
-TODOS = ["sofom", "banca", "seguros", "eacp", "uniones", "fintech", "bolsa"]
-CON_CREDITO = ["sofom", "banca", "eacp", "uniones", "fintech"]
+
+# ---------------------------------------------------------------------------
+# Aplicabilidad por sector.
+#
+# Fuente: DISPOSICIÓN en Materia de Registros ante la CONDUSEF, DOF 14-10-2022,
+# artículo 3 (Ámbito de aplicación). Esa norma consolidó en un solo instrumento
+# los registros antes dispersos y define, fracción por fracción, qué tipo de
+# entidad queda sujeta a cada uno.
+#
+#   fr. I    Disposiciones generales, PUR, SINE, SIPRES (caps. I a IV), REUNE,
+#            BURÓ, REUS y SIGE  →  todas las Instituciones Financieras
+#   fr. II   SIPRES caps. V y VI                        →  SOFOM E.N.R.
+#   fr. III  RECA y REDECO                              →  instituciones de crédito,
+#            SOFOM, SOFIPO, SOFINCO, SOCAP, fiduciarias de fideicomisos de crédito,
+#            uniones de crédito e Instituciones de Tecnología Financiera
+#   fr. IV   RECAS y RESBA                              →  instituciones de seguros
+#   fr. V    RECO                                       →  SOFOM E.N.R., SOFIPO,
+#            SOFINCO, SOCAP y uniones de crédito
+#
+# "Instituciones de Tecnología Financiera" está definido en el art. 4 fr. XVI de
+# la Ley Fintech como el género que comprende TANTO a las IFC COMO a las IFPE, de
+# modo que la fr. III alcanza a ambas. Ver la nota sobre REDECO en OBSERVACIONES.md.
+# ---------------------------------------------------------------------------
+TODOS   = ["banca","sofom_enr","sofom_er","seguros","eacp","uniones","ifpe","ifc","bolsa"]
+FR_III  = ["banca","sofom_enr","sofom_er","eacp","uniones","ifpe","ifc"]   # RECA y REDECO
+FR_V    = ["sofom_enr","eacp","uniones"]                                    # RECO
+SOLO_EN = ["sofom_enr"]                                                     # SIPRES caps. V y VI
+SEGUROS = ["seguros"]                                                       # RESBA
 
 # Rangos de sanción en UMAs. El piso proviene de la Agenda CumpliFix; el techo,
 # de los rangos de la LPDUSF art. 94 / LTOSF art. 41. PENDIENTE DE VALIDACIÓN
@@ -95,72 +125,72 @@ CATALOGO = [
               "dados de alta en la segunda quincena del mes anterior.",
          periodicidad="Quincenal", periodo="q2_anterior", hito="reus1",
          umas=250, umas_max=2000, sancionador="LPDUSF art. 94",
-         verif="inferido", sectores=TODOS),
+         verif="inferido", sectores=TODOS,   aplic="fr. I"),
     dict(art="Art. 124", sistema="REDECO", obl="Informe de quejas por gestión de cobranza",
          desc="Informe de las quejas relacionadas con la gestión de los despachos de "
               "cobranza que la entidad conozca, capte, reciba o atienda por cualquier medio.",
          periodicidad="Mensual", periodo="anterior", hito="validacion",
          umas=200, umas_max=2000, sancionador="LTOSF art. 41",
-         verif="literal", sectores=CON_CREDITO),
+         verif="literal", sectores=FR_III,  aplic="fr. III"),
     dict(art="Art. 130", sistema="REDECO", obl="Registro y actualización de despachos de cobranza",
          desc="Mantener actualizada en el REDECO la información de los despachos de "
               "cobranza contratados, o señalar que no se cuenta con éstos.",
          periodicidad="Mensual", periodo="anterior", hito="validacion",
          umas=200, umas_max=2000, sancionador="LTOSF art. 41",
-         verif="art12", sectores=CON_CREDITO),
+         verif="art12", sectores=FR_III,  aplic="fr. III"),
     dict(art="Art. 160", sistema="REUS", obl="Aviso de publicidad dirigida",
          desc="Informar si la institución realizará publicidad dirigida a usuarios "
               "inscritos, conforme al registro de actividades publicitarias del REUS.",
          periodicidad="Mensual", periodo="anterior", hito="validacion",
          umas=250, umas_max=2000, sancionador="LPDUSF art. 94",
-         verif="art12", sectores=TODOS),
+         verif="art12", sectores=TODOS,   aplic="fr. I"),
     dict(art="Art. 161", sistema="REUS", obl="Información de la publicidad realizada",
          desc="Registrar y actualizar la información relativa a las actividades "
               "publicitarias o mercadotécnicas efectivamente realizadas.",
          periodicidad="Mensual", periodo="anterior", hito="validacion",
          umas=250, umas_max=2000, sancionador="LPDUSF art. 94",
-         verif="art12", sectores=TODOS),
+         verif="art12", sectores=TODOS,   aplic="fr. I"),
     dict(art="Art. 66", sistema="REUNE", obl="Validación de la información de la UNE",
          desc="Validar datos de la Unidad Especializada, medios de recepción o canal y "
               "niveles de atención o contacto registrados en el REUNE.",
          periodicidad="Mensual", periodo="anterior", hito="validacion",
          umas=500, umas_max=2000, sancionador="LPDUSF art. 94, fr. VIII",
-         verif="art12", sectores=TODOS),
+         verif="art12", sectores=TODOS,   aplic="fr. I"),
     dict(art="Art. 50", sistema="SIPRES", obl="Validación de información corporativa y datos generales",
          desc="Validar que la información del SIPRES está vigente y actualizada. Durante "
               "el periodo de validación no se puede sustituir al responsable de la CICI.",
          periodicidad="Mensual", periodo="anterior", hito="validacion",
          umas=200, umas_max=1000, sancionador="LPDUSF art. 94",
-         verif="literal", sectores=TODOS),
+         verif="literal", sectores=TODOS,   aplic="fr. I"),
     dict(art="Art. 52", sistema="SIPRES", obl="Reporte de calidad de datos (SOFOM)",
          desc="Ingresar el reporte de calidad de información o el documento emitido por "
               "la Sociedad de Información Crediticia respecto de los créditos otorgados.",
          periodicidad="Mensual", periodo="anterior", hito="validacion",
          umas=200, umas_max=1000, sancionador="LPDUSF art. 94",
-         verif="literal", sectores=["sofom"]),
+         verif="literal", sectores=SOLO_EN, aplic="fr. II"),
     dict(art="Art. 143", sistema="IFIT", obl="Validación de fichas técnicas de productos y servicios",
          desc="Validar las fichas técnicas del IFIT que alimentan el Catálogo Nacional de "
               "Productos y Servicios Financieros.",
          periodicidad="Mensual", periodo="anterior", hito="validacion",
          umas=200, umas_max=1000, sancionador="LPDUSF art. 94",
-         verif="art12", sectores=TODOS),
+         verif="art12", sectores=TODOS,   aplic="sin verificar"),
     dict(art="Art. 134, Fr. XIII", sistema="IFIT", obl="Programas de Educación Financiera",
          desc="Validar o registrar los programas de educación financiera de la institución.",
          periodicidad="Mensual", periodo="anterior", hito="validacion",
          umas=200, umas_max=1000, sancionador="LPDUSF art. 94",
-         verif="inferido", sectores=TODOS),
+         verif="inferido", sectores=TODOS,   aplic="sin verificar"),
     dict(art="Art. 115", sistema="RECO", obl="Registro de cartera de crédito",
          desc="Registrar cartera total, vigente y vencida al mes, así como el número de "
               "contratos, en la sección RECO.",
          periodicidad="Mensual", periodo="anterior", hito="validacion",
          umas=200, umas_max=1000, sancionador="LPDUSF art. 94",
-         verif="art12", sectores=CON_CREDITO),
+         verif="art12", sectores=FR_V,    aplic="fr. V"),
     dict(art="Art. 12, Fr. IV", sistema="RESBA", obl="Actualización de primas de seguros básicos estandarizados",
          desc="Actualizar las primas de tarifas de los seguros básicos estandarizados en "
               "la sección RESBA.",
          periodicidad="Mensual", periodo="anterior", hito="validacion",
          umas=200, umas_max=1000, sancionador="LPDUSF art. 94",
-         verif="art12", sectores=["seguros"]),
+         verif="art12", sectores=SEGUROS, aplic="fr. IV"),
     dict(art="Art. 158", sistema="REUS", obl="Reporte de no Consentimiento",
          desc="Reportar a los usuarios dados de alta en la primera quincena del mes en curso.",
          periodicidad="Quincenal", periodo="q1_curso", hito="reus2",
@@ -171,7 +201,7 @@ CATALOGO = [
               "inmediato anterior, dentro de los primeros 10 días hábiles.",
          periodicidad="Trimestral", periodo="trimestre", hito="reune",
          umas=500, umas_max=2000, sancionador="LPDUSF art. 94, fr. VIII",
-         verif="art12", sectores=TODOS),
+         verif="art12", sectores=TODOS,   aplic="fr. I"),
 ]
 
 SISTEMAS = [
@@ -290,6 +320,7 @@ for mes in range(1, 13):
             "umas": c["umas"], "umasMax": c["umas_max"],
             "sancion": round(c["umas"] * u, 2), "sancionMax": round(c["umas_max"] * u, 2),
             "sancionador": c["sancionador"], "verif": c["verif"], "sectores": c["sectores"],
+            "aplic": c.get("aplic",""),
         })
 
     data["meses"].append({
