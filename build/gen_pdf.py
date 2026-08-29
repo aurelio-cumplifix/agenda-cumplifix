@@ -127,7 +127,7 @@ p.sub{font-size:7.6pt;color:#5B6B84;margin:0 0 8px}
 
 
 def encabezado(titulo, derecha_top, derecha):
-    return ('<div class="hd"><img src="%s"><div class="t"><b>CumpliFix · Agenda de Cumplimiento CONDUSEF %d</b>'
+    return ('<div class="hd"><img src="%s"><div class="t"><b>CumpliFix S.C. · Agenda de Cumplimiento CONDUSEF %d</b>'
             '<span>%s</span></div><div class="r">%s<b>%s</b></div></div>'
             % (LOGO, ANIO, titulo, derecha_top, derecha))
 
@@ -151,7 +151,7 @@ P.append('<div class="page"><div class="cover"><div><img src="%s">'
          '<div class="stats"><div><b>%d</b><span>obligaciones en el año</span></div>'
          '<div><b>%d</b><span>registros CONDUSEF</span></div>'
          '<div><b>%s</b><span>UMAs de exposición mínima</span></div></div></div>'
-         '<div><div class="lema">CumpliFix<span>Cumple tus metas, nosotros tu cumplimiento</span></div>'
+         '<div><div class="lema">CumpliFix S.C.<span>Cumple tus metas, nosotros tu cumplimiento</span></div>'
          '<div style="font-size:7.4pt;opacity:.75;margin-top:10px">info@cumplifix.com · 55-7146-2367 · '
          'www.cumplifix.com · Actualizada al %s</div></div></div></div>'
          % (LOGO, ANIO, tot_obl, len(D["sistemas"]), format(tot_umas, ","), HOYTXT))
