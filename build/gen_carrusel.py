@@ -58,8 +58,11 @@ p{font-size:%(TX)spx;line-height:1.5;color:#475569;margin-top:%(G1)spx}
 .marca img{width:%(LG)spx;height:%(LG)spx;border-radius:50%%;background:#fff;
   padding:2px;box-shadow:0 0 0 2px rgba(255,255,255,.9)}
 .l:not(.oscura) .marca img{box-shadow:0 0 0 1px #DCE3F2}
-.marca .t{font-family:'Raleway',sans-serif;font-weight:800;font-size:%(MC)spx;letter-spacing:.02em}
-.marca .t i{color:#4FA8FF;font-style:normal}
+.marca .t{font-family:'Raleway',sans-serif;font-weight:800;font-size:%(MC)spx;
+  letter-spacing:.02em;color:#38B6FF}
+.marca .t i{color:#38B6FF;font-style:normal;font-weight:700}
+.l:not(.oscura) .marca .t{color:#1C46DC}
+.l:not(.oscura) .marca .t i{color:#38B6FF}
 .pie{display:flex;align-items:flex-end;justify-content:space-between;gap:16px}
 .url{font-family:'Raleway',sans-serif;font-weight:800;font-size:%(UR)spx;color:#1C46DC}
 .l.oscura .url{color:#8FC2FF}
@@ -213,7 +216,7 @@ ESC = {
 def html(lam, esc, i, total):
     v = dict(esc)
     marca = ('<div class="marca"><img src="%s">'
-             '<div class="t">CUMPLI<i>FIX</i></div></div>' % LOGO)
+             '<div class="t">CUMPLIFIX <i>S.C.</i></div></div>' % LOGO)
     pie = ('<div class="pie"><div><div class="url">agenda.cumplifix.com</div>'
            '<div class="lema">Cumple tus metas, nosotros tu cumplimiento</div></div>'
            '<div class="num">%d / %d</div></div>' % (i, total))
