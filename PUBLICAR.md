@@ -128,7 +128,7 @@ En `aviso-de-privacidad.html`:
 | Días inhábiles | ¿Coinciden con el acuerdo publicado por la CONDUSEF? |
 | Sanciones | ¿Presentamos el piso del rango, como está, o cambiamos el criterio? |
 | Tono comercial | ¿Los nueve bloques de "¿te suena?" dicen lo que queremos decir? |
-| Nombre del servicio | ¿Checkup CumpliFix o CumpliCheck? |
+| Nombres de servicio | Ya llevan la denominación completa (*Checkup CumpliFix S.C.*, etc.). ¿Se quedan así o se busca un nombre propio sin la marca? |
 
 El fundamento y el riesgo de cada punto están en `OBSERVACIONES.md`.
 

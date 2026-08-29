@@ -52,6 +52,19 @@ y cuándo. Sirve como evidencia de cumplimiento en plazo.
 > REUNE y al REDECO: qué información se reporta, en qué periodo, con qué fundamento y cómo se
 > acredita. Capacitación normativa; no comprende desarrollo ni implementación de sistemas.
 
+### Dos señales de tecnología que quedaban en el sitio
+
+Detectadas en la depuración del 29 de agosto y corregidas:
+
+| Dónde | Antes | Ahora |
+|---|---|---|
+| Icono de la tarjeta *Master UNE* | Corchetes de código `</>` — heredado de cuando el servicio se llamaba *API Training* | Icono de pizarra de capacitación |
+| Bloque "Quiénes somos" | *"Integramos experiencia, análisis jurídico **y tecnología**…"* | *"…y **control documental**…"* |
+
+El icono importaba porque contradecía visualmente, en la misma pantalla, la declaración de objeto
+social que se acababa de incorporar. La palabra "tecnología" importaba por la misma razón: es la
+frase que una contraparte citaría para sostener que la limitación no se cumplió.
+
 ### Declaración incorporada al sitio
 
 > **CumpliFix S.C. es una firma de consultoría en cumplimiento normativo y regulatorio.**
@@ -105,16 +118,26 @@ cualquier otro soporte físico o digital, sin excepción"*. Quedan por auditar:
 - El sitio principal **www.cumplifix.com**, que el convenio menciona por nombre y cuya
   continuidad de uso queda condicionada al cumplimiento de las cláusulas segunda y tercera
 
-### 4. Nombres de servicio que incorporan la denominación
+### 4. Nombres de servicio que incorporan la denominación — RESUELTO
 
-La cláusula segunda exige usar **CUMPLIFIX S.C.** *"siempre de manera completa"*. Varios
-servicios usan hoy la denominación de forma parcial: *CumpliFix 360*, *Checkup CumpliFix*,
-*CumpliFix Incuba*, *Talleres CumpliFix*.
+La cláusula segunda exige usar **CUMPLIFIX S.C.** *"siempre de manera completa"*. Cuatro
+servicios la usaban de forma parcial. Se optó por completarlos, que es la lectura conservadora
+del convenio: donde aparece la denominación, aparece completa.
 
-No se modificaron porque son nombres comerciales de servicio y su cambio es una decisión de
-marca, no de redacción. **Conviene preguntar al abogado** si el convenio los alcanza. Si la
-respuesta es que sí, las opciones son completarlos —*CumpliFix S.C. 360*— o renombrarlos sin la
-denominación —*Cumplimiento 360*, *Checkup Regulatorio*—.
+| Antes | Ahora |
+|---|---|
+| CumpliFix 360 | **CumpliFix S.C. 360** |
+| Checkup CumpliFix | **Checkup CumpliFix S.C.** |
+| CumpliFix Incuba | **CumpliFix S.C. Incuba** |
+| Talleres CumpliFix | **Talleres CumpliFix S.C.** |
+
+Los servicios que **no** incorporan la denominación se dejaron intactos, porque el convenio
+regula el uso de la marca CUMPLIFIX y no alcanza a nombres distintos: *EvaluaFix*, *SimulaFix*,
+*CumpliLex*, *EduFix* y *Master UNE*.
+
+**Punto que conviene confirmar con el abogado:** si CELERI considera que *EvaluaFix*,
+*SimulaFix*, *CumpliLex* y *EduFix* son variaciones confundibles de CUMPLIFIX. El convenio no
+los menciona, pero conviene dejar el criterio documentado antes de que alguien lo pregunte.
 
 ---
 
@@ -124,9 +147,18 @@ Sobre la versión publicada se comprobó:
 
 - Cero ocurrencias de "API" en el texto visible del sitio y del PDF de la agenda
 - Cero enlaces al brochure
-- Denominación completa en las cuatro páginas del sitio y en las 15 del PDF
+- Denominación completa en las tres páginas del sitio y en las 15 del PDF. Barrido
+  automatizado: tras descontar las menciones ya completas, no queda ninguna ocurrencia
+  parcial de la denominación —salvo el nombre del archivo PDF y la dirección de correo,
+  que no son uso de marca
+- Denominación completa también en las 15 láminas del carrusel de lanzamiento y en los
+  textos para redes sociales; el hashtag va como `#CumpliFixSC`
+- Alcanzados también los usos no visibles que sí viajan fuera del sitio: metadatos
+  `og:site_name` y `og:title`, título del documento, `PRODID` y `X-WR-CALNAME` del archivo
+  `.ics` que el usuario descarga a su calendario, texto de compartir por WhatsApp y
+  remitente de los formularios
 - Color único del wordmark, con contraste 6.83:1 sobre el azul de la barra (cumple WCAG AA)
-- Sin errores de consola en 390, 768 y 1360 píxeles de ancho
+- Sin errores de consola ni desbordamiento horizontal en 390, 768 y 1360 píxeles de ancho
 
 ---
 

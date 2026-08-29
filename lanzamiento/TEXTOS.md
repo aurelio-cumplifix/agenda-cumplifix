@@ -1,7 +1,7 @@
 ﻿# Lanzamiento · Agenda Regulatoria CONDUSEF 2026 v1.0
 
 Textos listos para copiar y pegar. El ángulo es **herramienta gratuita y útil**: atrae por
-utilidad y posiciona a CumpliFix como quien conoce el terreno, en lugar de vender por miedo.
+utilidad y posiciona a CumpliFix S.C. como quien conoce el terreno, en lugar de vender por miedo.
 
 **Archivos:**
 
@@ -46,7 +46,7 @@ lanzamiento/
 > agreguemos tu sector con más detalle, escríbeme. Se construye mejor con retroalimentación de
 > quien la usa todos los días.
 >
-> **CumpliFix | Cumple tus metas, nosotros tu cumplimiento**
+> **CumpliFix S.C. | Cumple tus metas, nosotros tu cumplimiento**
 >
 > \#Cumplimiento #CONDUSEF #RegulaciónFinanciera #SOFOM #Fintech #PLD #ComplianceMéxico
 
@@ -70,9 +70,9 @@ lanzamiento/
 >
 > Versión 1.0 — esto apenas empieza.
 >
-> **CumpliFix | Cumple tus metas, nosotros tu cumplimiento**
+> **CumpliFix S.C. | Cumple tus metas, nosotros tu cumplimiento**
 >
-> \#CumpliFix #CONDUSEF #Cumplimiento #SOFOM #Fintech #FinanzasMéxico #Compliance
+> \#CumpliFixSC #CONDUSEF #Cumplimiento #SOFOM #Fintech #FinanzasMéxico #Compliance
 
 ---
 
@@ -92,7 +92,7 @@ Mensaje breve, para acompañar `whatsapp-difusion.png`:
 > Gratis y sin registro 👇
 > agenda.cumplifix.com
 >
-> *CumpliFix | Cumple tus metas, nosotros tu cumplimiento*
+> *CumpliFix S.C. | Cumple tus metas, nosotros tu cumplimiento*
 
 ### Variante corta, para reenvío rápido
 
@@ -141,6 +141,12 @@ que ya está discutiendo criterio técnico contigo.
 
 **Lo que conviene tener listo antes de publicar:**
 
-- Que el modo revisión esté desactivado (`modoRevision: false`), o el sitio no se indexa.
-- Los formularios conectados, o los registros sectoriales no se guardan en ningún lado.
-- El aviso de privacidad completo, sin los campos `[COMPLETAR]`.
+- Modo revisión desactivado (`modoRevision: false`) — **hecho**, el sitio ya es indexable.
+- Formularios conectados a Web3Forms — **hecho**; falta confirmar `info@cumplifix.com` en
+  *Linked Emails* o los envíos no llegan a la bandeja.
+- Aviso de privacidad sin campos `[COMPLETAR]` — **pendiente el apartado XI**.
+- **Denominación.** Por el convenio de transacción, en toda pieza pública debe leerse
+  **CUMPLIFIX, S.C.** completa. Los textos de arriba ya lo incorporan; el hashtag va como
+  `#CumpliFixSC` porque las etiquetas no admiten puntuación.
+- **No adjuntes el brochure institucional.** La versión que circula todavía contiene la
+  referencia a *API Training* y el isologo anterior. Está retirado hasta que se rehaga.
