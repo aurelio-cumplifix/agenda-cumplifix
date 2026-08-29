@@ -168,7 +168,7 @@ P.append('<div class="page">' + encabezado("Calendario anual", "Ejercicio", str(
          '<span><i style="background:#DCF4FA;border:1px solid #AEE4F0"></i>Informe trimestral REUNE</span>'
          '<span><i style="background:#EDF1F7"></i>Día inhábil (sábados, domingos y acuerdo CONDUSEF)</span></div>'
          '<div class="warn"><b>Pendiente de validación:</b> los días inhábiles marcados provienen de la agenda '
-         'CumpliFix y deben contrastarse con el acuerdo anual publicado por la Comisión Nacional.</div></div>'
+         'CumpliFix S.C. y deben contrastarse con el acuerdo anual publicado por la Comisión Nacional.</div></div>'
          + pie("Página 2") + '</div>')
 
 # --- Páginas mensuales
@@ -237,7 +237,7 @@ P.append('<div class="page">' + encabezado("Fuentes, supuestos y trazabilidad", 
          '<h3>Pendientes de validación</h3><p>Acuerdo anual de días inhábiles 2026; texto literal de los artículos '
          '66, 71, 115, 130, 134 fracción XIII, 143, 158, 160 y 161; y la fracción sancionadora concreta que '
          'corresponde a cada obligación. La asignación de obligaciones por tipo de institución es un criterio '
-         'orientativo de CumpliFix y debe validarse caso por caso conforme al objeto social, la autorización y '
+         'orientativo de CumpliFix S.C. y debe validarse caso por caso conforme al objeto social, la autorización y '
          'los productos de cada entidad.</p>'
          '<h3>Aviso</h3><p>Este documento es información de carácter general con fines preventivos. No sustituye '
          'la consulta directa de las disposiciones vigentes ni la asesoría profesional sobre el caso concreto. '
