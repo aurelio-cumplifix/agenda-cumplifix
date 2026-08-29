@@ -64,6 +64,24 @@ h1,h2,h3,h4{margin:0;line-height:1.2;letter-spacing:-.015em;font-family:var(--fd
 .sec-h h2{font-size:24px}
 .sec-h p{margin:6px 0 0;color:var(--muted);font-size:14px;max-width:70ch}
 
+/* ---------- Acento de temporada ---------- */
+.temporada{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:14px 0 2px;
+  padding:11px 16px 11px 14px;border-radius:12px;font-size:13.5px;line-height:1.45;
+  background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.18);
+  border-left-width:4px;color:#E6EDFF;max-width:660px;
+  animation:entraT .5s cubic-bezier(.22,1,.36,1) both}
+.temporada .ey{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;
+  white-space:nowrap;color:#fff}
+.temporada .tx b{color:#fff;font-weight:700}
+.temporada.patria{border-left-color:#0F7B3F;
+  background:linear-gradient(90deg,rgba(15,123,63,.30),rgba(255,255,255,.08) 42%,rgba(190,18,60,.26))}
+.temporada.trim{border-left-color:var(--sky)}
+.temporada.muertos{border-left-color:#B45309}
+.temporada.cierre{border-left-color:#8FC2FF}
+@keyframes entraT{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.temporada{animation:none}}
+@media print{.temporada{display:none}}
+
 /* ---------- Barra de revisión ---------- */
 [hidden]{display:none!important}
 .revbar{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;
@@ -336,6 +354,9 @@ input[type=checkbox]{width:17px;height:17px;accent-color:var(--blue);cursor:poin
 
 /* ---------- Servicios ---------- */
 .servs{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.objeto{border-left:3px solid var(--blue);background:#EEF2FF;border-radius:0 12px 12px 0;
+  padding:14px 18px;margin-bottom:18px;font-size:13.5px;line-height:1.55;color:#243244}
+.objeto b{display:block;margin-bottom:3px;color:var(--navy)}
 .serv{padding:20px;display:flex;flex-direction:column;gap:8px}
 .serv .n{font-size:16px;font-weight:800;letter-spacing:-.01em}
 .serv .ic{width:42px;height:42px;min-width:42px;min-height:42px;border-radius:12px;display:grid;
@@ -467,6 +488,7 @@ footer{margin-top:26px;background:linear-gradient(135deg,#081848,var(--navy) 55%
   <div class="wrap heroin">
     <div>
       <span class="pill">Control Center · Gratuito</span>
+      <div class="temporada" id="temporada" hidden></div>
       <h1>Agenda regulatoria CONDUSEF 2026</h1>
       <p class="lead">Cada día que entres te dice exactamente cuánto falta para la próxima ventana,
         qué obligaciones vencen y cuánto cuesta no cumplirlas. Sin registro, sin costo.</p>
@@ -634,7 +656,6 @@ footer{margin-top:26px;background:linear-gradient(135deg,#081848,var(--navy) 55%
          y la sanción aplicable. Formato imprimible para el expediente de la UNE.</p>
       <div class="dlbtns">
         <a class="btn btn-light" id="btnPdf" href="#" download>Descargar la agenda (PDF)</a>
-        <a class="btn btn-onblue" id="btnBrochure" href="#" target="_blank" rel="noopener">Ver el brochure CumpliFix</a>
       </div>
     </div>
     <div class="subs">
@@ -643,7 +664,7 @@ footer{margin-top:26px;background:linear-gradient(135deg,#081848,var(--navy) 55%
       <p>Inteligencia regulatoria diaria: cambios normativos, plazos y criterios de supervisión,
          directo a tu correo. Te avisamos antes de que abra cada ventana.</p>
       <a class="btn btn-light" id="btnEfem" href="#" target="_blank" rel="noopener"
-         style="width:100%">Unirme a la red CumpliFix</a>
+         style="width:100%">Unirme a la red CumpliFix S.C.</a>
       <div class="priv">Al registrarte aceptas el tratamiento de tus datos conforme al
         <a href="aviso-de-privacidad.html">Aviso de Privacidad</a>.</div>
     </div>
@@ -659,9 +680,14 @@ footer{margin-top:26px;background:linear-gradient(135deg,#081848,var(--navy) 55%
 
   <!-- SERVICIOS -->
   <div class="sec-h" id="servicios">
-    <h2>El ecosistema CumpliFix</h2>
+    <h2>El ecosistema CumpliFix S.C.</h2>
     <p>Desde prevención hasta defensa legal. Cada servicio ataca una etapa distinta del ciclo
        de cumplimiento ante CONDUSEF, CNBV y Banco de México.</p>
+  </div>
+  <div class="objeto">
+    <b>CumpliFix S.C. es una firma de consultoría en cumplimiento normativo y regulatorio.</b>
+    No desarrolla software ni presta servicios de tecnología. Los servicios que se describen son
+    de asesoría, auditoría preventiva, capacitación y representación jurídica.
   </div>
   <section class="servs" id="servs"></section>
 
@@ -683,7 +709,6 @@ footer{margin-top:26px;background:linear-gradient(135deg,#081848,var(--navy) 55%
       <div class="eyebrow" style="margin-top:6px">Alianzas estratégicas</div>
       <div class="ali"><span>ASOFOM</span><span>ANIFE</span><span>PROMEFIN México A.C.</span><span>AFICO</span></div>
       <div style="margin-top:18px">
-        <a class="btn btn-ghost" id="btnBrochure2" href="#" target="_blank" rel="noopener">Descargar el brochure completo</a>
       </div>
     </div>
     <div>
@@ -781,7 +806,7 @@ footer{margin-top:26px;background:linear-gradient(135deg,#081848,var(--navy) 55%
     <div style="margin-top:16px;padding-top:14px;border-top:1px solid var(--line)">
       <b>Aviso.</b> Este micrositio es información de carácter general con fines preventivos. No
       sustituye la consulta directa de las disposiciones vigentes ni la asesoría profesional sobre el
-      caso concreto de cada institución. CumpliFix S.C. no asume responsabilidad por decisiones
+      caso concreto de cada institución. CumpliFix S.C. presta servicios de consultoría en cumplimiento normativo; no desarrolla software ni presta servicios de tecnología. No asume responsabilidad por decisiones
       tomadas exclusivamente con base en este contenido.
     </div>
   </section>
@@ -851,7 +876,6 @@ footer{margin-top:26px;background:linear-gradient(135deg,#081848,var(--navy) 55%
    ========================================================================== */
 const CONFIG = {
   pdf: "assets/agenda-cumplifix-condusef-2026.pdf",
-  brochure: "assets/brochure-cumplifix.pdf",
   efemerides: "https://docs.google.com/forms/d/e/1FAIpQLScCgcjU_SuPwckUzqtYeDw71TXQvBY4b-7y8-2gVvBJ-ZXTwQ/viewform",
   formEndpoint: "https://api.web3forms.com/submit",
   formKey: "386f27b8-8a7b-47e9-a0c4-2b96e7cc329d",   // clave pública de Web3Forms
@@ -860,7 +884,7 @@ const CONFIG = {
   sitio: "https://agenda.cumplifix.com",
   // Ponlo en false cuando el sitio esté listo para el público.
   // En true muestra una barra de "versión en revisión" y bloquea la indexación en buscadores.
-  modoRevision: true
+  modoRevision: false
 };
 
 const DATA = __DATA__;
@@ -1287,7 +1311,7 @@ const DOLORES=[
   {q:"Temes una visita de verificación",a:"Simulación completa de visita CONDUSEF, in situ o extra situ. Detecta y corrige los riesgos operativos antes de que lo haga la autoridad.",s:"SimulaFix",t:"Quiero una simulación de visita de verificación"},
   {q:"Dudas si tu publicidad y contratos resisten una revisión",a:"Evaluación integral de contratos, anexos, estados de cuenta, comprobantes, publicidad y sitio web contra la normativa de transparencia y sanas prácticas.",s:"EvaluaFix",t:"Quiero una evaluación de mis contratos y publicidad"},
   {q:"Quieres que nadie más dependa de una sola persona",a:"Doble validación mensual: nosotros revisamos en paralelo que cada obligación quedó presentada y con acuse, todos los meses.",s:"CumpliFix 360",t:"Quiero doble validación mensual de mis obligaciones"},
-  {q:"Tu equipo pelea con las APIs de REUNE y REDECO",a:"Capacitación práctica intensiva en las APIs oficiales para que la integración deje de depender de un proveedor externo.",s:"CumpliFix API Training",t:"Capacitación en APIs REUNE y REDECO"}
+  {q:"Tu equipo no tiene claro qué se reporta al REUNE y al REDECO",a:"Formación normativa para el personal de la UNE: qué información corresponde a cada reporte, en qué periodo, con qué fundamento y cómo se documenta el acuse.",s:"Master UNE",t:"Capacitación normativa REUNE y REDECO"}
 ];
 
 /* Iconos del ecosistema CumpliFix. Trazo de 1.7 sobre lienzo de 24, para que
@@ -1299,7 +1323,7 @@ const ISERV={
  "SimulaFix":'<circle cx="11" cy="11" r="6.5"/><path d="m16 16 5 5"/><path d="M11 8.2v5.6M8.2 11h5.6"/>',
  "CumpliLex":'<path d="M12 3v18"/><path d="M5 7h14"/><path d="m5 7-2.5 6a3 3 0 0 0 5 0Z"/><path d="m19 7-2.5 6a3 3 0 0 0 5 0Z"/><path d="M8.5 21h7"/>',
  "Compliance Docs":'<path d="M8 3h8l4 4v12a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z"/><path d="M16 3v4h4"/><path d="M9.5 12h5M9.5 16h3"/>',
- "CumpliFix API Training":'<path d="m8 8-4 4 4 4"/><path d="m16 8 4 4-4 4"/><path d="m13.5 5-3 14"/>',
+ "Master UNE":'<path d="m8 8-4 4 4 4"/><path d="m16 8 4 4-4 4"/><path d="m13.5 5-3 14"/>',
  "CumpliFix Incuba":'<path d="M12 21c3.9 0 6.5-2.8 6.5-6.6C18.5 9.4 12 3 12 3S5.5 9.4 5.5 14.4C5.5 18.2 8.1 21 12 21Z"/><path d="M12 17.5v-4"/><path d="M12 13.5c0-1.3 1-2.2 2.2-2.2"/>',
  "EduFix":'<path d="M12 4 2.5 8.7 12 13.4l9.5-4.7Z"/><path d="M6.5 11v4.6c0 1.5 2.5 2.7 5.5 2.7s5.5-1.2 5.5-2.7V11"/><path d="M21.5 8.7v5.1"/>',
  "PLD/FT":'<path d="M12 3 4.5 6v5.5c0 4.4 3.1 8.1 7.5 9.2 4.4-1.1 7.5-4.8 7.5-9.2V6Z"/><circle cx="12" cy="11" r="2.4"/><path d="m13.8 12.8 2 2"/>',
@@ -1315,12 +1339,12 @@ const SERVICIOS=[
   {n:"SimulaFix",c:"Anticípate a la autoridad",p:"Simulación completa de una visita de verificación CONDUSEF. Detecta y corrige riesgos operativos antes de una revisión real, in situ o extra situ."},
   {n:"CumpliLex",c:"Defensa legal estratégica",p:"Representación jurídica ante CONDUSEF, CNBV o Banco de México. Desvirtuamos sanciones y protegemos la reputación institucional."},
   {n:"Compliance Docs",c:"Documentación que resiste auditorías",p:"Manuales, políticas y contratos que cumplen la norma y soportan auditorías o procesos judiciales."},
-  {n:"CumpliFix API Training",c:"Domina REUNE y REDECO",p:"Capacitación práctica intensiva en las APIs oficiales para tu equipo técnico. Elimina dependencias externas y asegura la bitácora de la UNE."},
+  {n:"Master UNE",c:"Capacitación normativa",p:"Formación para el personal de la Unidad Especializada sobre las obligaciones de reporte al REUNE y al REDECO: qué información se reporta, en qué periodo, con qué fundamento y cómo se acredita. Capacitación normativa; no comprende desarrollo ni implementación de sistemas."},
   {n:"CumpliFix Incuba",c:"Nace fuerte, con bases sólidas",p:"Acompañamiento desde cero en la creación de nuevas instituciones financieras con fundamentos regulatorios impecables."},
   {n:"EduFix",c:"Educación financiera certificada",p:"Programas alineados con CONDUSEF y OCDE, con impacto social medible y validación institucional."},
   {n:"PLD/FT",c:"Auditoría y back office",p:"Auditoría externa anual, dictaminación de operaciones, actas del Comité de Comunicación y Control, y certificación de Oficiales de Cumplimiento ante CNBV."},
   {n:"Talleres CumpliFix",c:"Capacitación especializada",p:"IFIT y Catálogo Nacional, contratos de adhesión, transparencia digital obligatoria, IDATU, sanciones y multas, y supervisión en publicidad."},
-  {n:"Efemérides del Cumplimiento",c:"Inteligencia regulatoria diaria",p:"Radar de cambios normativos, plazos y criterios de supervisión, en formato breve y accionable. Sin costo para la red CumpliFix."}
+  {n:"Efemérides del Cumplimiento",c:"Inteligencia regulatoria diaria",p:"Radar de cambios normativos, plazos y criterios de supervisión, en formato breve y accionable. Sin costo para la red CumpliFix S.C."}
 ];
 function pintarCatalogos(){
   document.getElementById("dolores").innerHTML=DOLORES.map(d=>
@@ -1448,6 +1472,30 @@ document.getElementById("modalX").onclick=()=>document.getElementById("modalSect
 document.getElementById("modalSector").addEventListener("click",e=>{
   if(e.target.id==="modalSector") e.currentTarget.classList.remove("on"); });
 
+
+/* ---------- Temporada ----------
+   Un acento por mes que no decora por decorar: cada uno señala el hecho
+   regulatorio propio del periodo. Se elige por el mes de la Ciudad de México. */
+const TEMPORADAS = {
+  9:  {clase:"patria", eyebrow:"Mes patrio",
+       texto:"El <b>16 de septiembre</b> es inhábil para la CONDUSEF. Ténlo presente al contar los plazos de este mes."},
+  10: {clase:"trim", eyebrow:"Cierra el tercer trimestre",
+       texto:"Además de la validación mensual, en octubre vence el <b>informe trimestral del REUNE</b>."},
+  11: {clase:"muertos", eyebrow:"Dos inhábiles este mes",
+       texto:"El <b>2</b> y el <b>16 de noviembre</b> son inhábiles. Por eso la ventana abre hasta el día 3."},
+  12: {clase:"cierre", eyebrow:"Cierre de ejercicio",
+       texto:"La CONDUSEF tiene <b>periodo inhábil del 17 al 31 de diciembre</b>. Todo se adelanta."}
+};
+function pintarTemporada(){
+  const t = TEMPORADAS[MACT.mes];
+  const c = document.getElementById("temporada");
+  if(!c) return;
+  if(!t){ c.hidden = true; return; }
+  c.hidden = false;
+  c.className = "temporada " + t.clase;
+  c.innerHTML = '<span class="ey">'+t.eyebrow+'</span><span class="tx">'+t.texto+'</span>';
+}
+
 /* ---------- modo revisión ---------- */
 if(CONFIG.modoRevision){
   document.getElementById("revbar").hidden=false;
@@ -1474,12 +1522,10 @@ if(CONFIG.modoRevision){
 
 /* ---------- arranque ---------- */
 function refrescarMes(){ pintarCal(); pintarObl(); pintarTimeline(); pintarAnual(); }
-function pintarTodo(){ pintarEstado(); pintarRadar(); refrescarMes(); }
+function pintarTodo(){ pintarEstado(); pintarRadar(); refrescarMes(); pintarTemporada(); }
 document.getElementById("calPrev").onclick=()=>{if(calMes>1){calMes--;refrescarMes();}};
 document.getElementById("calNext").onclick=()=>{if(calMes<12){calMes++;refrescarMes();}};
 document.getElementById("btnPdf").href=CONFIG.pdf;
-document.getElementById("btnBrochure").href=CONFIG.brochure;
-document.getElementById("btnBrochure2").href=CONFIG.brochure;
 document.getElementById("btnEfem").href=CONFIG.efemerides;
 document.getElementById("btnIcs").onclick=generarIcs;
 document.getElementById("btnCsv").onclick=generarCsv;

@@ -281,7 +281,6 @@ data = {
         "regla_plazo": "Art. 12: primeros 5 días hábiles de cada mes, información del mes inmediato anterior. Informe trimestral REUNE: primeros 10 días hábiles de enero, abril, julio y octubre.",
         "zona_horaria": "America/Mexico_City",
         "pdf": "assets/agenda-cumplifix-condusef-2026.pdf",
-        "brochure": "assets/brochure-cumplifix.pdf",
     },
     "sectores": SECTORES,
     "sistemas": SISTEMAS,
