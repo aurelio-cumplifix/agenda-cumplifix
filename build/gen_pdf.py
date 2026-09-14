@@ -41,12 +41,22 @@ def calendario(m, compacto=False):
     for _ in range(off):
         out.append("<td></td>"); c += 1
     for n in range(1, ndias + 1):
-        d = dt.date(ANIO, mes, n); s = d.isoformat(); cls = []
-        if inhabil(d): cls.append("inh")
-        elif s in m["reus"]: cls.append("reus")
-        elif m["validacion"]["inicio"] <= s <= m["validacion"]["fin"]: cls.append("val")
-        elif m["reune"] and m["reune"]["inicio"] <= s <= m["reune"]["fin"]: cls.append("reune")
-        out.append('<td class="%s">%d</td>' % (" ".join(cls), n)); c += 1
+        d = dt.date(ANIO, mes, n); s = d.isoformat()
+        # Un día concentra varios hitos: el REUS quincenal cae en el primer día
+        # de la ventana de validación y el REUNE la abarca completa. El fondo
+        # lleva la banda dominante; los hitos tapados se marcan con un punto.
+        ev = []
+        if m["validacion"]["inicio"] <= s <= m["validacion"]["fin"]: ev.append("val")
+        if s in m["reus"]: ev.append("reus")
+        if m["reune"] and m["reune"]["inicio"] <= s <= m["reune"]["fin"]: ev.append("reune")
+        bg = ("inh" if inhabil(d)
+              else "val" if "val" in ev
+              else "reune" if "reune" in ev
+              else "reus" if "reus" in ev else "")
+        pts = [e for e in ev if e != bg and e != "val"]
+        mk = ('<span class="mk">%s</span>'
+              % "".join('<i class="k-%s"></i>' % p for p in pts)) if pts else ""
+        out.append('<td class="%s">%d%s</td>' % (bg, n, mk)); c += 1
         if c % 7 == 0: out.append("</tr><tr>")
     while c % 7 != 0:
         out.append("<td></td>"); c += 1
@@ -91,8 +101,12 @@ table.ob .c{text-align:center}.ob .r{text-align:right;white-space:nowrap}
 table.cal{border-collapse:separate;border-spacing:1.6px;font-size:7.2pt;table-layout:fixed;width:100%}
 table.cal caption{font-size:7pt;font-weight:800;letter-spacing:.08em;color:#0B1F5B;text-align:left;padding-bottom:2px}
 table.cal th{font-size:6.2pt;color:#8494AC;font-weight:700;padding:0}
-table.cal td{height:14px;text-align:center;border-radius:2.5px;background:#fff;
-  border:.5px solid #EDF1F7;color:#334155;font-weight:600}
+table.cal td{position:relative;height:14px;text-align:center;border-radius:2.5px;background:#fff;
+  border:.5px solid #EDF1F7;color:#334155;font-weight:600;padding-bottom:3px}
+table.cal td .mk{position:absolute;left:0;right:0;bottom:1.5px;text-align:center;line-height:0}
+table.cal td .mk i{display:inline-block;width:2.2px;height:2.2px;border-radius:50%;margin:0 .6px}
+table.cal td .mk .k-reus{background:#C98A00}
+table.cal td .mk .k-reune{background:#0E93B0}
 table.cal td.inh{background:#EDF1F7;color:#94A3B8;border-color:#EDF1F7}
 table.cal td.val{background:#FDE7F2;color:#9D1B5F;border-color:#F9C2DD}
 table.cal td.reus{background:#FDF0DC;color:#8A5A00;border-color:#F3D9AC}
@@ -166,7 +180,10 @@ P.append('<div class="page">' + encabezado("Calendario anual", "Ejercicio", str(
          '<div class="leg"><span><i style="background:#FDE7F2;border:1px solid #F9C2DD"></i>Periodo de validación</span>'
          '<span><i style="background:#FDF0DC;border:1px solid #F3D9AC"></i>Reporte quincenal REUS</span>'
          '<span><i style="background:#DCF4FA;border:1px solid #AEE4F0"></i>Informe trimestral REUNE</span>'
-         '<span><i style="background:#EDF1F7"></i>Día inhábil (sábados, domingos y acuerdo CONDUSEF)</span></div>'
+         '<span><i style="background:#EDF1F7"></i>Día inhábil (sábados, domingos y acuerdo CONDUSEF)</span>'
+         '<span style="color:#8494AC"><i style="background:#C98A00;width:3px;height:3px;border-radius:50%"></i>'
+         '<i style="background:#0E93B0;width:3px;height:3px;border-radius:50%"></i>'
+         'El punto marca un hito que coincide con otro el mismo día</span></div>'
          '<div class="warn"><b>Pendiente de validación:</b> los días inhábiles marcados provienen de la agenda '
          'CumpliFix S.C. y deben contrastarse con el acuerdo anual publicado por la Comisión Nacional.</div></div>'
          + pie("Página 2") + '</div>')
