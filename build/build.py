@@ -29,8 +29,24 @@ fecha = "{} de {} de {}".format(hoy.day, MESES[hoy.month - 1], hoy.year)
 
 n1 = escribir("index.html", leer("plantilla.html")
               .replace("__DATA__", datos).replace("__LOGO__", logo).replace("__FAVICON__", favicon))
+# El aviso de privacidad debe describir lo que el sitio realmente hace. El texto del
+# apartado de medición se genera a partir del token configurado en la plantilla, para
+# que nunca pueda afirmar algo distinto de lo que está publicado.
+import re as _re
+_tok = _re.search(r'analyticsToken:\s*"([^"]*)"', leer("plantilla.html"))
+_tok = _tok.group(1) if _tok else ""
+MEDICION = ("" if not _tok else
+    " Para conocer el volumen de visitas se utiliza <b>Cloudflare Web Analytics</b>, una "
+    "herramienta de medición que <b>no emplea cookies ni identificadores almacenados en su "
+    "equipo</b> y que no permite seguirlo entre sitios ni construir un perfil suyo. Recaba "
+    "únicamente información técnica agregada —página consultada, sitio de procedencia, tipo "
+    "de navegador y dispositivo, y país—, sin recabar su dirección IP de forma que quede "
+    "asociada a usted. Por no requerir el almacenamiento de información en su equipo, esta "
+    "medición no está sujeta a consentimiento previo.")
+
 n2 = escribir("aviso-de-privacidad.html", leer("aviso.html")
-              .replace("__LOGO__", logo).replace("__FAVICON__", favicon).replace("__FECHA__", fecha))
+              .replace("__LOGO__", logo).replace("__FAVICON__", favicon)
+              .replace("__FECHA__", fecha).replace("__MEDICION__", MEDICION))
 
 escribir("404.html", leer("404.src.html").replace("__LOGO__", logo).replace("__FAVICON__", favicon))
 

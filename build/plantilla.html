@@ -900,7 +900,11 @@ const CONFIG = {
   sitio: "https://agenda.cumplifix.com",
   // Ponlo en false cuando el sitio esté listo para el público.
   // En true muestra una barra de "versión en revisión" y bloquea la indexación en buscadores.
-  modoRevision: false
+  modoRevision: false,
+  // Cloudflare Web Analytics: medición sin cookies y sin datos personales.
+  // Pega aquí el token que te da Cloudflare (Analytics & Logs → Web Analytics).
+  // Mientras esté vacío no se carga ningún script y no se mide nada.
+  analyticsToken: ""
 };
 
 const DATA = __DATA__;
@@ -1573,6 +1577,17 @@ function pintarTemporada(){
   c.hidden = false;
   c.className = "temporada " + t.clase;
   c.innerHTML = '<span class="ey">'+t.eyebrow+'</span><span class="tx">'+t.texto+'</span>';
+}
+
+/* ---------- medición sin cookies ----------
+   Cloudflare Web Analytics no usa cookies, no almacena identificadores en el
+   navegador ni recaba datos personales, por lo que no requiere consentimiento
+   previo. Si el token está vacío no se inyecta nada. */
+if(CONFIG.analyticsToken){
+  const cf=document.createElement("script");
+  cf.defer=true; cf.src="https://static.cloudflareinsights.com/beacon.min.js";
+  cf.setAttribute("data-cf-beacon",JSON.stringify({token:CONFIG.analyticsToken}));
+  document.head.appendChild(cf);
 }
 
 /* ---------- modo revisión ---------- */
