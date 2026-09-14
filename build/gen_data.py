@@ -138,7 +138,7 @@ CATALOGO = [
               "dados de alta en la segunda quincena del mes anterior.",
          periodicidad="Quincenal", periodo="q2_anterior", hito="reus1",
          umas=250, umas_max=2000, sancionador="LPDUSF art. 94",
-         verif="inferido", sectores=TODOS,   aplic="fr. I"),
+         verif="literal", sectores=TODOS,   aplic="fr. I"),
     dict(art="Art. 124", sistema="REDECO", obl="Informe de quejas por gestión de cobranza",
          desc="Informe de las quejas relacionadas con la gestión de los despachos de "
               "cobranza que la entidad conozca, capte, reciba o atienda por cualquier medio.",
@@ -152,17 +152,18 @@ CATALOGO = [
          umas=200, umas_max=2000, sancionador="LTOSF art. 41",
          verif="art12", sectores=REDECO_SEC, aplic="fr. III · criterio CumpliFix S.C."),
     dict(art="Art. 160", sistema="REUS", obl="Aviso de publicidad dirigida",
-         desc="Informar si la institución realizará publicidad dirigida a usuarios "
-              "inscritos, conforme al registro de actividades publicitarias del REUS.",
-         periodicidad="Mensual", periodo="anterior", hito="validacion",
+         desc="Informar o validar si la publicidad se realiza directamente o a traves de un "
+              "tercero, los medios de contacto que se utilizaran y la base de datos de los "
+              "numeros telefonicos empleados para el ofrecimiento de productos.",
+         periodicidad="Mensual", periodo="curso", hito="validacion",
          umas=250, umas_max=2000, sancionador="LPDUSF art. 94",
-         verif="art12", sectores=TODOS,   aplic="fr. I"),
+         verif="literal", sectores=TODOS,   aplic="fr. I"),
     dict(art="Art. 161", sistema="REUS", obl="Información de la publicidad realizada",
          desc="Registrar y actualizar la información relativa a las actividades "
               "publicitarias o mercadotécnicas efectivamente realizadas.",
          periodicidad="Mensual", periodo="anterior", hito="validacion",
          umas=250, umas_max=2000, sancionador="LPDUSF art. 94",
-         verif="art12", sectores=TODOS,   aplic="fr. I"),
+         verif="literal", sectores=TODOS,   aplic="fr. I"),
     dict(art="Art. 66", sistema="REUNE", obl="Validación de la información de la UNE",
          desc="Validar datos de la Unidad Especializada, medios de recepción o canal y "
               "niveles de atención o contacto registrados en el REUNE.",
@@ -187,11 +188,14 @@ CATALOGO = [
          periodicidad="Mensual", periodo="anterior", hito="validacion",
          umas=200, umas_max=1000, sancionador="LPDUSF art. 94",
          verif="art12", sectores=TODOS,   aplic="sin verificar"),
-    dict(art="Art. 134, Fr. XIII", sistema="IFIT", obl="Programas de Educación Financiera",
-         desc="Validar o registrar los programas de educación financiera de la institución.",
-         periodicidad="Mensual", periodo="anterior", hito="validacion",
+    dict(art="Art. 136, Fr. IX · 143", sistema="IFIT", obl="Programas de Educación Financiera",
+         desc="Mantener vigente en la ficha técnica el nombre, descripción, alcances y dirección "
+              "electrónica de los programas de educación financiera. El art. 134 fr. XIII describe "
+              "el contenido del Buró; la obligación de la institución nace del art. 136 fr. IX y se "
+              "valida en cada periodo conforme al art. 143.",
+         periodicidad="Mensual", periodo="curso", hito="validacion",
          umas=200, umas_max=1000, sancionador="LPDUSF art. 94",
-         verif="inferido", sectores=TODOS,   aplic="sin verificar"),
+         verif="literal", sectores=TODOS,   aplic="fr. III"),
     dict(art="Art. 115", sistema="RECO", obl="Registro de cartera de crédito",
          desc="Registrar cartera total, vigente y vencida al mes, así como el número de "
               "contratos, en la sección RECO.",
@@ -208,7 +212,7 @@ CATALOGO = [
          desc="Reportar a los usuarios dados de alta en la primera quincena del mes en curso.",
          periodicidad="Quincenal", periodo="q1_curso", hito="reus2",
          umas=250, umas_max=2000, sancionador="LPDUSF art. 94",
-         verif="inferido", sectores=TODOS),
+         verif="literal", sectores=TODOS),
     dict(art="Art. 71", sistema="REUNE", obl="Informe trimestral de consultas, aclaraciones y reclamaciones",
          desc="Presentar el informe trimestral del REUNE correspondiente al trimestre "
               "inmediato anterior, dentro de los primeros 10 días hábiles.",
