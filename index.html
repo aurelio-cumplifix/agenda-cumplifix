@@ -157,6 +157,7 @@ h1,h2,h3,h4{margin:0;line-height:1.2;letter-spacing:-.015em;font-family:var(--fd
 .st-prep{background:#EEF2FF;color:var(--blue)}
 .st-open{background:var(--ok-bg);color:var(--ok)}
 .st-urg{background:var(--warn-bg);color:#92400E}
+.st-pend{background:var(--ev-reus-bg);color:#8A5A00}
 .st-close{background:var(--bad-bg);color:var(--bad)}
 .st-inh{background:var(--neutral-bg);color:#475569}
 .estado h2{font-size:30px;margin:12px 0 8px}
@@ -206,8 +207,13 @@ h1,h2,h3,h4{margin:0;line-height:1.2;letter-spacing:-.015em;font-family:var(--fd
 .calnav .m{font-weight:800;font-size:15px;text-transform:capitalize}
 table.cal{width:100%;border-collapse:separate;border-spacing:3px;table-layout:fixed}
 table.cal th{font-size:10.5px;color:var(--muted);font-weight:700;padding:2px 0}
-table.cal td{height:34px;text-align:center;font-size:13px;font-weight:600;border-radius:8px;
-  color:#334155;background:#fff;border:1px solid transparent}
+table.cal td{position:relative;height:36px;text-align:center;font-size:13px;font-weight:600;
+  border-radius:8px;color:#334155;background:#fff;border:1px solid transparent;padding-bottom:7px}
+table.cal td .mk{position:absolute;left:0;right:0;bottom:5px;display:flex;justify-content:center;
+  gap:3px;line-height:0;pointer-events:none}
+table.cal td .mk i{width:4px;height:4px;border-radius:50%;display:block}
+table.cal td .mk .k-reus{background:#C98A00}
+table.cal td .mk .k-reune{background:#0E93B0}
 table.cal td.wk{color:#B6C0CE}
 table.cal td.inh{background:var(--ev-inh-bg);color:var(--ev-inh)}
 table.cal td.val{background:var(--ev-val-bg);color:#9D1B5F;border-color:var(--ev-val-bd)}
@@ -216,6 +222,9 @@ table.cal td.reune{background:var(--ev-reune-bg);color:#046C86;border-color:var(
 table.cal td.hoy{outline:2.5px solid var(--blue);outline-offset:-2px;font-weight:800}
 .leg{display:flex;flex-wrap:wrap;gap:7px 14px;margin-top:12px;font-size:11.5px;color:var(--muted)}
 .leg i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+.leg .legpt{flex-basis:100%;color:#8A93A3}
+.leg .legpt i{width:4px;height:4px;border-radius:50%;margin-right:2px;vertical-align:2px}
+.leg .legpt i.d1{background:#C98A00} .leg .legpt i.d2{background:#0E93B0;margin-right:6px}
 .calres{margin-top:14px;border-top:1px solid var(--line);padding-top:12px;font-size:12.5px;color:var(--muted)}
 .calres div{display:flex;justify-content:space-between;gap:12px;padding:4px 0}
 .calres b{color:var(--ink);font-weight:700;text-align:right}
@@ -567,6 +576,7 @@ footer{margin-top:26px;background:linear-gradient(135deg,#081848,var(--navy) 55%
         <span><i style="background:var(--ev-reus-bg);border:1px solid var(--ev-reus-bd)"></i>Reporte quincenal REUS</span>
         <span><i style="background:var(--ev-reune-bg);border:1px solid var(--ev-reune-bd)"></i>Informe trimestral REUNE</span>
         <span><i style="background:var(--ev-inh-bg)"></i>Día inhábil</span>
+        <span class="legpt"><i class="d1"></i><i class="d2"></i>El punto marca un hito que coincide con otro el mismo día</span>
       </div>
       <div id="calResumen" class="calres"></div>
     </div>
@@ -961,9 +971,24 @@ function obligacionesDe(m){
 }
 function idObl(mes,o){ return mes+"|"+o.art+"|"+o.cierre; }
 
-/* ---------- mes activo ---------- */
+/* ---------- mes activo ----------
+   Un mes NO termina cuando cierra su ventana de validación: los reportes
+   quincenales del REUS y el informe trimestral del REUNE corren por su propio
+   calendario y se sancionan por separado. El mes activo es el primero que
+   todavía conserva alguna fecha límite por delante. */
+function ultimoCierre(m){
+  let f = m.validacion.fin;
+  m.reus.forEach(r => { if(r > f) f = r; });
+  if(m.reune && m.reune.fin > f) f = m.reune.fin;
+  obligacionesDe(m).forEach(o => { if(o.cierre > f) f = o.cierre; });
+  return f;
+}
+function pendientesDe(m){
+  return obligacionesDe(m).filter(o => o.cierre >= HOY)
+                          .sort((a,b) => a.cierre < b.cierre ? -1 : 1);
+}
 function mesActivo(){
-  return DATA.meses.find(x => HOY <= x.validacion.fin) || DATA.meses[11];
+  return DATA.meses.find(x => HOY <= ultimoCierre(x)) || DATA.meses[11];
 }
 let MACT = mesActivo();
 
@@ -1007,6 +1032,18 @@ function calcularEstado(){
     r.num=Math.max(rest,0); r.lbl=rest===1?"DÍA HÁBIL":"DÍAS HÁBILES";
     r.desc="hábiles restantes para cerrar la validación";
     r.pct=(total-rest)/total; r.acc="Validar y guardar acuse"; r.accSub="Cierra el "+corta(v.fin); r.hasta=v.fin;
+  } else if(pendientesDe(m).length){
+    /* La ventana mensual cerró, pero el mes conserva vencimientos propios:
+       el REUS quincenal y, en su caso, el informe trimestral del REUNE. */
+    const s=pendientesDe(m)[0], d=diffDias(HOY,s.cierre);
+    const tot=Math.max(diffDias(v.fin,s.cierre),1);
+    r.cls="st-pend"; r.ic="◐"; r.sem="Ventana cerrada · quedan pendientes";
+    r.ti="Cerró la validación de "+MESES[m.mes-1]+", pero el mes no termina ahí";
+    r.tx="La ventana mensual ya cerró. Siguen vigentes obligaciones con fecha límite dentro del mes: el reporte quincenal del REUS y, cuando aplica, el informe trimestral del REUNE corren por su propio plazo y se sancionan de forma independiente.";
+    r.num=d; r.lbl=d===1?"DÍA":"DÍAS";
+    r.desc="para el próximo vencimiento de "+MESES[m.mes-1];
+    r.pct=Math.min(Math.max(diffDias(v.fin,HOY)/tot,.04),1);
+    r.acc=s.obligacion; r.accSub="Vence el "+corta(s.cierre); r.hasta=s.cierre;
   } else {
     const s=PROXIMOS[0];
     r.cls="st-close"; r.ic="■"; r.sem="Ciclo 2026 cerrado";
@@ -1084,13 +1121,22 @@ setInterval(pintarCuenta, 1000);
 
 /* ---------- calendario ---------- */
 let calMes = MACT.mes;
-function claseDia(s,m){
-  if(esInhabil(s)) return "inh";
-  if(m.reus.indexOf(s)>=0) return "reus";
-  if(s>=m.validacion.inicio && s<=m.validacion.fin) return "val";
-  if(m.reune && s>=m.reune.inicio && s<=m.reune.fin) return "reune";
-  return "";
+/* Un día puede concentrar varios hitos: el REUS quincenal cae siempre en el
+   primer día de la ventana de validación, y el REUNE trimestral la abarca
+   completa. Pintar un solo color escondía uno de los dos. El fondo lleva la
+   banda dominante y los hitos restantes se marcan con un punto. */
+function hitosDia(s,m){
+  const ev=[];
+  if(s>=m.validacion.inicio && s<=m.validacion.fin) ev.push("val");
+  if(m.reus.indexOf(s)>=0) ev.push("reus");
+  if(m.reune && s>=m.reune.inicio && s<=m.reune.fin) ev.push("reune");
+  const bg = esInhabil(s) ? "inh"
+           : ev.indexOf("val")>=0 ? "val"
+           : ev.indexOf("reune")>=0 ? "reune"
+           : ev.indexOf("reus")>=0 ? "reus" : "";
+  return {bg:bg, puntos:ev.filter(e=>e!==bg && e!=="val")};
 }
+const ETIQ={val:"Periodo de validación",reus:"Reporte quincenal REUS",reune:"Informe trimestral REUNE"};
 function pintarCal(){
   const m=DATA.meses[calMes-1];
   document.getElementById("calMes").textContent=MESES[calMes-1]+" "+anio;
@@ -1101,9 +1147,17 @@ function pintarCal(){
   let html="",c=0,fila="";
   for(let i=0;i<primero;i++){fila+="<td></td>";c++;}
   for(let d=1;d<=n;d++){
-    const s=iso(anio,calMes,d), cls=[claseDia(s,m)];
+    const s=iso(anio,calMes,d), h=hitosDia(s,m), cls=[h.bg];
     if(s===HOY)cls.push("hoy"); if(esFinde(s)&&!INHAB.has(s))cls.push("wk");
-    fila+='<td class="'+cls.filter(Boolean).join(" ")+'" title="'+fechaLarga(s)+'">'+d+"</td>";
+    const det=[];
+    if(s>=m.validacion.inicio&&s<=m.validacion.fin) det.push(ETIQ.val);
+    if(m.reus.indexOf(s)>=0) det.push(ETIQ.reus);
+    if(m.reune&&s>=m.reune.inicio&&s<=m.reune.fin) det.push(ETIQ.reune);
+    if(esInhabil(s)) det.push("Día inhábil");
+    const mk = h.puntos.length
+      ? '<span class="mk">'+h.puntos.map(p=>'<i class="k-'+p+'"></i>').join("")+'</span>' : "";
+    fila+='<td class="'+cls.filter(Boolean).join(" ")+'" title="'+fechaLarga(s)+
+          (det.length?" · "+det.join(" · "):"")+'">'+d+mk+"</td>";
     if(++c%7===0){html+="<tr>"+fila+"</tr>";fila="";}
   }
   if(fila){while(c%7!==0){fila+="<td></td>";c++;}html+="<tr>"+fila+"</tr>";}
@@ -1156,11 +1210,21 @@ function pintarRadar(){
     let pill='<span class="pill p-na">No aplica</span>', off=" off";
     if(os.length){
       off="";
-      const ab=os.some(o=>HOY>=o.inicio&&HOY<=o.cierre);
-      const pr=os.some(o=>o.inicio>HOY);
-      pill = ab?'<span class="pill p-open">● Ventana abierta</span>'
-           : pr?'<span class="pill p-soon">◔ Próximo</span>'
-               :'<span class="pill p-idle">■ Cerrado</span>';
+      /* Una etiqueta sin fecha no informa: cada registro dice cuándo cierra,
+         cuándo abre o cuándo cerró. */
+      const abiertas=os.filter(o=>HOY>=o.inicio&&HOY<=o.cierre)
+                       .sort((a,b)=>a.cierre<b.cierre?-1:1);
+      const futuras=os.filter(o=>o.inicio>HOY).sort((a,b)=>a.inicio<b.inicio?-1:1);
+      const pasadas=os.slice().sort((a,b)=>a.cierre>b.cierre?-1:1);
+      if(abiertas.length){
+        const d=diffDias(HOY,abiertas[0].cierre);
+        pill='<span class="pill p-open">● Abierto · cierra '+corta(abiertas[0].cierre)+
+             (d<=2?' <b>('+(d===0?"hoy":d===1?"mañana":"en "+d+" días")+')</b>':'')+'</span>';
+      } else if(futuras.length){
+        pill='<span class="pill p-soon">◔ Abre '+corta(futuras[0].inicio)+'</span>';
+      } else {
+        pill='<span class="pill p-idle">■ Cerró '+corta(pasadas[0].cierre)+'</span>';
+      }
     }
     return '<div class="sysrow'+off+'" '+estiloSis(s.id)+' title="'+s.detalle+'">'+
            '<span class="sysdot">'+svgSis(s.id)+'</span><div class="nm"><b>'+s.nombre+

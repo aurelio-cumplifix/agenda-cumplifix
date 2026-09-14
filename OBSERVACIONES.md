@@ -284,3 +284,46 @@ se lee como si fuera enero de 2027. Conviene moverla al inicio o rotularla expl�
 | 7 | Confirmar la UMA 2026 contra el DOF | Equipo | Media |
 | 8 | Unificar la denominación Checkup CumpliFix / CumpliCheck | Aurelio | Baja |
 | 9 | Precisar la fracción sancionadora por obligación | Equipo | Baja — mejora técnica |
+
+---
+
+## Corrección del criterio de "mes activo" — 9 de septiembre de 2026
+
+**Cómo se detectó.** El 9 de septiembre el micrositio mostraba el panorama de
+**octubre** y el contador principal marcaba **22 días**, cuando el reporte quincenal
+del REUS de septiembre vencía el **día 17, a 8 días**. La línea de tiempo, que sí
+lo listaba, contradecía al contador.
+
+**Causa.** El mes activo se determinaba únicamente por el cierre de la ventana de
+validación (`HOY <= validacion.fin`). Cerrada esa ventana el día 7, el sitio daba el
+mes por terminado y avanzaba al siguiente.
+
+**Por qué importa.** Es un error en la dirección más peligrosa para una herramienta
+preventiva: **subestima la urgencia**. La ventana de validación de los primeros días
+del mes no agota las obligaciones del periodo. El reporte quincenal del REUS (art. 158)
+y el informe trimestral del REUNE (art. 71) corren por su propio plazo y se sancionan
+de forma independiente.
+
+**Criterio adoptado.** El mes activo es el primero que conserva **alguna fecha límite
+por delante**, considerando ventana de validación, quincenales del REUS, informe del
+REUNE y el cierre de cada obligación del catálogo. Se incorporó un cuarto estado al
+semáforo —*ventana cerrada con pendientes*— que antes no existía: el sitio sólo
+contemplaba antes, durante y después de la ventana.
+
+**Alcance de la corrección.** La misma lógica alimenta el panorama del mes, el radar
+de sistemas, la tabla de obligaciones, el acento de temporada y el contador. Los cuatro
+mostraban octubre estando en septiembre.
+
+**Verificación.** Se simularon 20 fechas a lo largo de 2026 —dentro de la ventana, en
+el tramo entre el cierre y el quincenal, en días inhábiles y en el periodo inhábil de
+diciembre— comprobando que el contador nunca declare más días de los que faltan para
+el siguiente vencimiento real. Sin excepciones.
+
+### Colisión de color en el calendario
+
+En los **12 meses** el REUS quincenal cae en el primer día de la ventana de validación,
+y en enero, abril, julio y octubre el informe del REUNE abarca la ventana completa.
+Como cada día pintaba un solo color, la ventana aparentaba empezar un día tarde y la
+banda del REUNE aparentaba empezar el día 8. El calendario contradecía su propio pie
+de página. Ahora el fondo lleva la banda dominante y los hitos que coinciden se marcan
+con un punto. Corregido también en el PDF descargable, que arrastraba el mismo defecto.
