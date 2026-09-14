@@ -413,6 +413,7 @@ form textarea{min-height:96px;resize:vertical}
 .msg{display:none;padding:11px 14px;border-radius:10px;font-size:13px;margin-top:12px}
 .msg.ok{display:block;background:var(--ok-bg);color:var(--ok)}
 .msg.err{display:block;background:var(--bad-bg);color:var(--bad)}
+.msg a{color:inherit;font-weight:700;text-decoration:underline}
 
 /* ---------- Modal ---------- */
 .modal{position:fixed;inset:0;background:rgba(8,20,52,.62);display:none;align-items:center;
@@ -1519,8 +1520,17 @@ function enviar(datos, box, okTxt, cb){
       if(d && d.success){ box.className="msg ok"; box.textContent=okTxt; if(cb) cb(); }
       else { throw new Error((d&&d.message)||"rechazado"); }
     })
-    .catch(function(){ box.className="msg err";
-      box.textContent="No pudimos enviar el mensaje. Escríbenos directamente a "+CONFIG.correo+".";});
+    .catch(function(){
+      /* Si el envío falla, el prospecto no se pierde: se le ofrece un enlace que
+         abre su cliente de correo con todo lo que ya escribió, sin recapturar. */
+      const cuerpo=Object.keys(datos).map(function(k){return k+": "+datos[k];}).join("\n");
+      const liga="mailto:"+CONFIG.correo+"?subject="+encodeURIComponent(asunto)+
+                 "&body="+encodeURIComponent(cuerpo);
+      box.className="msg err";
+      box.innerHTML="No pudimos enviar el mensaje desde el sitio. "+
+        '<a href="'+liga+'">Envíalo por correo con un clic</a> — ya va con lo que escribiste. '+
+        "También puedes escribirnos a "+CONFIG.correo+".";
+    });
 }
 document.getElementById("formContacto").addEventListener("submit",function(e){
   e.preventDefault(); const d={}; new FormData(this).forEach((v,k)=>d[k]=v);
