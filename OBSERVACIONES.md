@@ -327,3 +327,76 @@ Como cada día pintaba un solo color, la ventana aparentaba empezar un día tard
 banda del REUNE aparentaba empezar el día 8. El calendario contradecía su propio pie
 de página. Ahora el fondo lleva la banda dominante y los hitos que coinciden se marcan
 con un punto. Corregido también en el PDF descargable, que arrastraba el mismo defecto.
+
+---
+
+## Validación contra fuente primaria — 14 de septiembre de 2026
+
+### 1. Días inhábiles 2026 — VALIDADO, sin discrepancias
+
+Se contrastó el calendario de la agenda contra el **Acuerdo publicado en el DOF el 23 de
+diciembre de 2025**, por el que la CONDUSEF da a conocer los días de 2026 en que cerrará sus
+puertas y suspenderá operaciones.
+
+| Acuerdo | En la agenda |
+|---|---|
+| 1 y 2 de enero | Sí |
+| 2 de febrero (conmemoración del 5) | Sí |
+| 16 de marzo (conmemoración del 21) | Sí |
+| 2 y 3 de abril | Sí |
+| 1 y 5 de mayo | Sí |
+| Del 20 al 31 de julio | Sí |
+| 16 de septiembre | Sí |
+| 2 y 16 de noviembre | Sí |
+| Del 17 al 31 de diciembre | Sí |
+
+**Coincidencia íntegra.** Las seis fechas que a primera vista faltaban del listado —25 y 26 de
+julio, 19, 20, 26 y 27 de diciembre— son sábados y domingos, que el sitio ya trata como
+inhábiles por regla separada. Se retiró en consecuencia la advertencia de "pendiente de
+validación" del micrositio y del PDF, sustituida por la cita de la fuente.
+
+### 2. Artículo 158 — texto literal obtenido
+
+> *"Artículo 158.- Las Instituciones Financieras deberán informar a la CONDUSEF, el nombre
+> completo, CURP cuando hayan obtenido dicho dato, teléfonos y Correos Electrónicos de los
+> clientes que no hayan aceptado, que su información sea utilizada para Fines mercadotécnicos
+> o publicitarios, con el fin de mantener actualizado el REUS"*, conforme a la tabla:
+> inscripciones **entre el día 1 y 15** se informan **el día 16 del mes que se reporta**, y las
+> inscripciones **entre el día 16 y último** se informan **el día 1 del mes siguiente**, en ambos
+> casos *"en caso de que sea hábil, o al día hábil siguiente"*.
+
+Se verificaron las 24 fechas del año contra esta regla: **las 24 coinciden**. La bandera pasó de
+*asignación razonada* a *texto verificado*.
+
+### 3. Artículo 160 vs. 161 — criterio corregido
+
+El contraste entre ambos artículos es textual y resuelve la duda que estaba abierta:
+
+| | Texto literal | Periodo que se reporta |
+|---|---|---|
+| **Art. 160** | *"informar o en su caso validar mensualmente… dentro de los primeros 5 días hábiles **del mes que corresponda**"* | **Mes en curso** |
+| **Art. 161** | *"informar de manera mensual… dentro de los primeros 5 días hábiles **del mes siguiente al que se reporta**"* | **Mes anterior** |
+
+Tiene lógica: el 160 es una declaración vigente —cómo haces publicidad, con qué medios de
+contacto, con qué base de números telefónicos—, mientras que el 161 reporta actividades ya
+realizadas. **Se corrigió el art. 160 en las 12 filas del año**, que venía marcado como mes
+anterior.
+
+### 4. Programas de Educación Financiera — fundamento re-citado
+
+El **artículo 134** dice *"El Buró contendrá lo siguiente"*: es una norma descriptiva del
+contenido del Buró, no una obligación de la institución. La obligación nace en otro lado:
+
+- **Art. 136 fr. IX** — la ficha técnica debe contener *"Nombre, descripción, alcances y
+  dirección electrónica específica de sus programas de educación financiera"*.
+- **Art. 143** — la institución *"deberá validar en cada Período de Cumplimiento… que la
+  información que se encuentra en la plataforma del IFIT está vigente y actualizada"*.
+
+Por decisión de la firma se conserva la fila —el PUR la pide por separado— pero con el
+fundamento corregido a **Art. 136 fr. IX · 143**. Los totales del año no cambian.
+
+### Resultado
+
+**Cero obligaciones quedan marcadas como asignación razonada.** De las trece, siete se sostienen
+en texto literal verificado y seis en el artículo 12. El único pendiente documental que subsiste
+es la fracción sancionadora concreta aplicable a cada obligación.

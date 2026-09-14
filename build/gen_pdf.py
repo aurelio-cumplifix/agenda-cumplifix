@@ -184,8 +184,9 @@ P.append('<div class="page">' + encabezado("Calendario anual", "Ejercicio", str(
          '<span style="color:#8494AC"><i style="background:#C98A00;width:3px;height:3px;border-radius:50%"></i>'
          '<i style="background:#0E93B0;width:3px;height:3px;border-radius:50%"></i>'
          'El punto marca un hito que coincide con otro el mismo día</span></div>'
-         '<div class="warn"><b>Pendiente de validación:</b> los días inhábiles marcados provienen de la agenda '
-         'CumpliFix S.C. y deben contrastarse con el acuerdo anual publicado por la Comisión Nacional.</div></div>'
+         '<div class="warn"><b>Fuente:</b> los días inhábiles marcados corresponden al Acuerdo publicado en el '
+         'DOF el 23 de diciembre de 2025, por el que la CONDUSEF da a conocer los días de 2026 en que cerrará sus '
+         'puertas y suspenderá operaciones, además de sábados y domingos.</div></div>'
          + pie("Página 2") + '</div>')
 
 # --- Páginas mensuales
@@ -251,8 +252,11 @@ P.append('<div class="page">' + encabezado("Fuentes, supuestos y trazabilidad", 
          'Transparencia y Ordenamiento de los Servicios Financieros (artículo 41) establecen rangos —de 200 a 2,000 '
          'UMAs o más, según la fracción aplicable— y la individualización de la sanción corresponde a la autoridad, '
          'que además puede duplicarla en caso de reincidencia.</p>'
-         '<h3>Pendientes de validación</h3><p>Acuerdo anual de días inhábiles 2026; texto literal de los artículos '
-         '66, 71, 115, 130, 134 fracción XIII, 143, 158, 160 y 161; y la fracción sancionadora concreta que '
+         '<h3>Validación practicada</h3><p>Los días inhábiles de esta agenda coinciden íntegramente con el Acuerdo '
+         'publicado en el Diario Oficial de la Federación el 23 de diciembre de 2025, por el que la CONDUSEF da a '
+         'conocer los días de 2026 en que cerrará sus puertas y suspenderá operaciones. Se contrastó además el texto '
+         'literal de los artículos 136, 143, 158, 160 y 161 de la Disposición.</p>'
+         '<h3>Pendiente de validación</h3><p>La fracción sancionadora concreta que '
          'corresponde a cada obligación. La asignación de obligaciones por tipo de institución es un criterio '
          'orientativo de CumpliFix S.C. y debe validarse caso por caso conforme al objeto social, la autorización y '
          'los productos de cada entidad.</p>'
