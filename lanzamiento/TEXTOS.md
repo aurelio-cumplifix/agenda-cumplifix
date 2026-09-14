@@ -36,8 +36,11 @@ lanzamiento/
 > → Vista por sector: no es lo mismo una SOFOM E.N.R. que una IFPE
 > → Agenda completa en PDF y exportación a tu calendario
 >
-> La aplicabilidad por sector está construida conforme al artículo 3 de la Disposición en
-> Materia de Registros ante la CONDUSEF (DOF 14-10-2022), no a criterio propio. El RECO, por
+> Lo digo con el detalle que a mí me gustaría que me dieran: los días inhábiles están
+> contrastados uno por uno contra el Acuerdo que la CONDUSEF publicó en el DOF el 23 de
+> diciembre de 2025, y la aplicabilidad por sector sale del artículo 3 de la Disposición en
+> Materia de Registros (DOF 14-10-2022). Ninguna de las obligaciones quedó apoyada en criterio
+> propio: cada una remite al texto del artículo o al plazo del artículo 12. El RECO, por
 > ejemplo, no le aplica a un banco: sus comisiones se registran ante Banco de México.
 >
 > Sin costo, sin cuenta y sin dejar datos: **agenda.cumplifix.com**
@@ -126,6 +129,18 @@ Para enviar uno a uno. Personaliza el nombre y el sector:
 ---
 
 ## 5. Sugerencias de publicación
+
+**Cuándo.** La última semana de septiembre es mejor momento que agosto, y por una razón
+concreta: **el 1 de octubre abre la ventana de validación y además vence el informe trimestral
+del REUNE**. Es el mes más cargado del semestre para un oficial de cumplimiento. Publicar tres
+o cuatro días antes te agarra a la audiencia justo cuando el problema le duele, no cuando es
+abstracto.
+
+Si quieres un gancho de apertura alternativo para esos días, sirve éste:
+
+> En octubre no sólo abre la ventana de validación mensual: también vence el informe trimestral
+> del REUNE. Es el mes donde más se atoran los equipos de cumplimiento. Por eso adelantamos
+> esto.
 
 **Orden.** LinkedIn primero, en martes o miércoles entre 8:00 y 10:00. Es donde está tu audiencia
 de oficiales de cumplimiento y directores jurídicos. Instagram el mismo día por la tarde.
