@@ -428,3 +428,37 @@ encabezado del pie ya no usan "Control Center" ni "Dashboard"; "Documento oficia
 **También en esta fecha:** se retiraron del repositorio tres archivos temporales
 (`_repo.zip`, `_repo2.tgz`, `zitW7GKM`) que quedaron incluidos en el commit "actualizacion".
 Eran copias del propio repositorio, sin contenido distinto del ya publicado.
+
+### Primera iteración de captación — 4 de octubre de 2026
+
+Decisiones del Director General: oferta principal del trimestre = **Diagnóstico exprés**;
+casos de clientes = **anonimizados**; promesa de respuesta = **un día hábil**.
+
+**Implementado**
+- **Diagnóstico exprés** justo después del estado del día: hasta 10 preguntas de sí / no / no sé,
+  omitiendo las que no aplican al sector (REDECO no se pregunta a IFPE, Seguros ni Casas de
+  Bolsa). Resultado en semáforo con las 3 brechas principales, cada una con su artículo y el
+  servicio que la atiende, **visible sin dejar datos**. Con el correo se descarga un informe
+  imprimible con todas las brechas, plan de 30 días y tabla de respuestas, y un especialista da
+  seguimiento en un día hábil. Leyenda: resultado orientativo, no dictamen.
+- **Hero**: botón principal "Haz el diagnóstico en 3 minutos"; el PDF pasa a secundario.
+- **Barra fija en celular** con el diagnóstico y WhatsApp (mensaje prellenado); se oculta
+  mientras la persona está en el diagnóstico, en el contacto o escribiendo.
+- **Origen del prospecto**: cada envío lleva `origen` (diagnóstico, sectorial, servicio,
+  contacto) y las UTM de la liga de llegada. Asunto: `[agenda][diagnostico][linkedin] …`.
+- **Contacto**: "Te respondemos en un día hábil"; el botón pasa de "Enviar solicitud" a
+  "Hablar con un especialista".
+- **Aviso de privacidad** (apartado XI): se incorporan el diagnóstico exprés y el origen de la
+  visita, en el mismo cambio.
+- Corregido un defecto previo: el texto de aceptación del aviso se partía en tres columnas.
+
+**Verificado**: flujo completo simulado (sector IFPE, 9 preguntas, 65 % → Rojo, brechas REUNE,
+acuses y requerimiento), envío con asunto, origen, UTM, sector, aviso y sello de tiempo,
+informe con 9 filas; sin errores ni desborde a 390, 768 y 1360 px; contraste AA.
+
+**Pendiente**
+- Envío real de prueba desde el sitio publicado y confirmación de que llega a la bandeja.
+- Fotos del equipo: el brochure entregado no trae fotos del equipo, sólo imágenes de banco.
+- Casos anonimizados: redactarlos con el Director General antes de publicarlos.
+- Segunda iteración: servicios agrupados por necesidad y "¿Qué te preocupa hoy?" en lugar de
+  los 21 botones repetidos.
