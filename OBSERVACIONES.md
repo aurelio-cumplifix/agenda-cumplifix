@@ -489,6 +489,11 @@ Validado por el Director General; ya no queda ninguna nota de "pendiente" visibl
   el REUNE, un punto por hito, la marca de HOY y el día elegido. Cada día es clicable y se
   sincroniza con el calendario. Las etiquetas se acomodan en tres niveles para no encimarse
   (verificado en los 12 meses a 390 y 1360 px).
-- **Radar de registros:** cada registro es un punto; entre más cerca del centro, más pronto hay
-  que atenderlo, y el círculo central son las ventanas abiertas hoy. La lista de al lado ya no
-  trae descripciones: estado, fecha, qué sigue y cuántas obligaciones, ordenada por urgencia.
+- **Radar de registros (rehecho el mismo día):** el radar polar se sustituyó porque era difícil
+  de leer —"más cerca del centro = más urgente" invierte la intuición— y, como la CONDUSEF
+  sincroniza los plazos, casi siempre ponía los siete puntos en el mismo anillo. Ahora es un
+  tablero: una frase arriba resume los siete ("7 de 7 registros tienen la ventana abierta hoy ·
+  todos cierran el miércoles 7 de octubre") y cada registro tiene una tarjeta con una cuenta
+  regresiva grande (días hábiles para cerrar si está abierto, días para que abra si no), un
+  anillo de avance del plazo y su estado con ícono y texto. Al tocar una tarjeta, la tabla de
+  obligaciones se filtra por ese registro.

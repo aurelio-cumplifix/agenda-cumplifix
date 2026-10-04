@@ -607,27 +607,44 @@ table.cal td.hoy.sel{outline:2.5px solid var(--blue);outline-offset:-2px}
 #tlSvg .tlhit{cursor:pointer}
 #tlSvg .tlhit:hover{fill:rgba(28,70,220,.05)}
 
-/* ---------- Radar de registros ---------- */
+/* ---------- Radar de registros: tablero de cuenta regresiva ---------- */
 .radarc{margin-top:20px}
-.radar-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;align-items:center}
-.radar-viz{max-width:420px;width:100%;margin:0 auto}
-#radarSvg{display:block;width:100%;height:auto;font-family:var(--fb);overflow:visible}
-#radarSvg .rblip{cursor:pointer;transition:r .15s}
-#radarSvg .rblip:hover,#radarSvg .rblip:focus{r:9;outline:none}
-#radarSvg .rsweep{transform-origin:0 0;animation:barrido 7s linear infinite}
-#radarSvg .rpulse{transform-box:fill-box;transform-origin:center;animation:pulso 1.8s ease-out infinite}
-@keyframes barrido{to{transform:rotate(360deg)}}
-@keyframes pulso{from{transform:scale(1);opacity:.4}to{transform:scale(2.1);opacity:0}}
-.rlist{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:6px}
-.rlist li{display:grid;grid-template-columns:12px 64px 1fr auto;align-items:center;gap:8px;padding:8px 10px;
-  border:1px solid var(--line);border-radius:10px;font-size:13px}
-.rlist li.off{opacity:.5}
-.rlist .rdot{width:10px;height:10px;border-radius:50%;background:var(--sys)}
-.rlist .rdot.ab{box-shadow:0 0 0 3px color-mix(in srgb,var(--sys) 25%,#fff)}
-.rlist b{font-weight:800;letter-spacing:.02em}
-.rlist .rtxt{color:var(--ink)}
-.rlist .rsub{font-size:11.5px;color:var(--muted);white-space:nowrap}
-.rlist .rsub.urg{color:var(--bad);font-weight:700}
+.radar-hd{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.radar-hd .eyebrow{margin-bottom:4px}
+.radar-hd h3{font-family:var(--fd);font-weight:800;font-size:19px;letter-spacing:-.01em;margin:0}
+.radar-hd .hint{margin-top:4px}
+.radar-hd .rclave{font-size:11.5px;color:var(--muted);display:flex;gap:12px;flex-wrap:wrap}
+.radar-hd .rclave i{font-style:normal;margin-right:4px}
+.rgrid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:10px}
+.rt{border:1px solid var(--line);border-radius:14px;background:#fff;position:relative;overflow:hidden}
+.rt::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:var(--sys)}
+.rt-btn{all:unset;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;gap:6px;width:100%;
+  padding:12px 8px 12px;cursor:pointer;text-align:center;font-family:var(--fb);transition:background .15s}
+.rt-btn:hover{background:#F8FAFF}
+.rt-btn:focus-visible{outline:3px solid var(--sky);outline-offset:-3px;border-radius:14px}
+.rt-hd{display:flex;align-items:center;gap:6px;align-self:stretch;justify-content:center}
+.rt-hd .sysdot{width:24px;height:24px;border-radius:7px}
+.rt-hd .sysdot svg{width:13px;height:13px}
+.rt-hd b{font-size:12.5px;font-weight:800;letter-spacing:.03em;color:var(--ink)}
+.rt-ring{position:relative;width:84px;height:84px}
+.rt-ring .rring{width:84px;height:84px;display:block}
+.rt-num{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1}
+.rt-num b{font-family:var(--fd);font-weight:800;font-size:26px;color:var(--ink);font-variant-numeric:tabular-nums}
+.rt-num span{font-size:10px;font-weight:600;color:var(--muted);margin-top:3px}
+.rt-est{display:inline-flex;align-items:center;gap:4px;font-size:10.5px;font-weight:800;letter-spacing:.05em;
+  text-transform:uppercase;padding:3px 8px;border-radius:999px}
+.rt-est i{font-style:normal}
+.e-ab .rt-est{background:var(--ok-bg);color:var(--ok)}
+.e-urg .rt-est{background:var(--bad-bg);color:var(--bad)}
+.e-prox .rt-est{background:#EEF2FF;color:var(--blue)}
+.e-fin .rt-est{background:var(--neutral-bg);color:var(--neutral)}
+.rt-fecha{font-size:11.5px;color:var(--muted);line-height:1.35}
+.rt.off{opacity:.55}
+.rt.off .rt-hd{padding:12px 8px 4px}
+.rt-na{font-size:11.5px;color:var(--muted);text-align:center;padding:24px 8px 18px}
+@media(max-width:1100px){.rgrid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(max-width:560px){.rgrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(prefers-reduced-motion:reduce){.rt-btn{transition:none}}
 
 /* ---------- Tooltip de las gráficas ---------- */
 .vtip{position:fixed;z-index:80;max-width:260px;background:#0F172A;color:#fff;border-radius:10px;padding:8px 10px;
@@ -637,9 +654,9 @@ table.cal td.hoy.sel{outline:2.5px solid var(--blue);outline-offset:-2px}
 .vtip i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px}
 .vtip .vt-m{color:#B6C3D9}
 
-@media(max-width:980px){.calzona{grid-template-columns:1fr}.radar-grid{grid-template-columns:1fr}}
+@media(max-width:980px){.calzona{grid-template-columns:1fr}}
 @media(max-width:560px){.calcard table.cal td{height:42px;font-size:13.5px}.rlist li{grid-template-columns:12px 56px 1fr}.rlist .rsub{grid-column:3}}
-@media(prefers-reduced-motion:reduce){#radarSvg .rsweep,#radarSvg .rpulse{animation:none}#radarSvg .rpulse{display:none}table.cal td.dia{transition:none}}
+@media(prefers-reduced-motion:reduce){table.cal td.dia{transition:none}}
 @media print{.tlh,.radarc{break-inside:avoid}.vtip{display:none}}
 </style>
 </head>
@@ -797,16 +814,18 @@ table.cal td.hoy.sel{outline:2.5px solid var(--blue);outline-offset:-2px}
 
   <!-- RADAR DE REGISTROS -->
   <section class="card panel radarc">
-    <div class="radar-grid">
-      <div class="radar-viz">
-        <svg id="radarSvg" viewBox="-182 -168 364 336" role="img" aria-label="Radar de registros: entre más cerca del centro, más urgente"></svg>
-      </div>
+    <div class="radar-hd">
       <div>
-        <h3>Radar de registros</h3>
+        <div class="eyebrow">Radar de registros</div>
+        <h3 id="radarTit">—</h3>
         <div class="hint" id="radarHint"></div>
-        <ul class="rlist" id="radar"></ul>
+      </div>
+      <div class="rclave" aria-hidden="true">
+        <span><i style="color:var(--ok)">●</i>Abierto: días hábiles para cerrar</span>
+        <span><i style="color:var(--blue)">○</i>Por abrir: días para que abra</span>
       </div>
     </div>
+    <ul class="rgrid" id="radar"></ul>
   </section>
 
   <!-- OBLIGACIONES -->
@@ -1567,77 +1586,85 @@ function pintarTimeline(){
 let tlResize; window.addEventListener("resize",function(){ clearTimeout(tlResize); tlResize=setTimeout(pintarTimeline,150); });
 
 /* ---------- radar de registros ----------
-   Cada registro es un punto: entre más cerca del centro, más pronto tienes que
-   atenderlo. El círculo central son las ventanas abiertas hoy. */
+   Una tarjeta por registro con una sola pregunta respondida en grande:
+   ¿cuánto tiempo me queda? Si la ventana está abierta, días hábiles para
+   cerrarla; si no, días para que abra. El anillo muestra cuánto del plazo
+   ya se consumió. Arriba, una frase que resume los siete. */
 function estadoRegistro(id){
   const os=[]; DATA.meses.forEach(m=>obligacionesDe(m).forEach(o=>{ if(o.sistema===id) os.push(o); }));
   if(!os.length) return {aplica:false};
   const ab=os.filter(o=>HOY>=o.inicio&&HOY<=o.cierre).sort((a,b)=>a.cierre<b.cierre?-1:1);
   const fu=os.filter(o=>o.inicio>HOY).sort((a,b)=>a.inicio<b.inicio?-1:1);
   const pa=os.filter(o=>o.cierre<HOY).sort((a,b)=>a.cierre>b.cierre?-1:1);
-  if(ab.length){ const d=diffDias(HOY,ab[0].cierre), k=ab.length;
-    // Lo que sigue después de esta ventana: otra ventana abierta que cierra más tarde o la próxima que abre.
-    const tarde=ab.filter(o=>o.cierre>ab[0].cierre)[0];
-    const luego=tarde?tarde.cierre:(fu[0]&&diffDias(HOY,fu[0].inicio)<=31?fu[0].inicio:null);
-    return {aplica:true,abierto:true,dias:d,fecha:ab[0].cierre,
-      txt:"Abierto hasta "+corta(ab[0].cierre)+(luego?" · luego "+corta(luego):""),
-      sub:(k>1?k+" obligaciones · ":"")+(d===0?"cierra hoy":d===1?"cierra mañana":"en "+d+" días"),
-      ult:null}; }
-  if(fu.length){ const d=diffDias(HOY,fu[0].inicio), k=fu.filter(o=>o.inicio===fu[0].inicio).length;
-    return {aplica:true,abierto:false,dias:d,fecha:fu[0].inicio,
-      txt:"Abre "+corta(fu[0].inicio)+(pa[0]?" · cerró "+corta(pa[0].cierre):""),
-      sub:(k>1?k+" obligaciones · ":"")+(d===1?"mañana":"en "+d+" días"), ult:pa[0]?pa[0].cierre:null}; }
-  return {aplica:true,abierto:false,dias:999,txt:"Sin vencimientos pendientes en "+anio,sub:""};
+  if(ab.length){
+    const o=ab[0], hab=habilesEntre(HOY,o.cierre)+(esInhabil(HOY)?0:1);
+    const tot=Math.max(diffDias(o.inicio,o.cierre),1), frac=Math.min(Math.max(diffDias(o.inicio,HOY)/tot,0),1);
+    const tarde=ab.filter(x=>x.cierre>o.cierre)[0];
+    return {aplica:true,abierto:true,num:hab,lbl:hab===1?"hábil":"hábiles",largo:hab===1?"día hábil para cerrar":"días hábiles para cerrar",frac:frac,fecha:o.cierre,
+      urg:hab<=2, n:ab.filter(x=>x.cierre===o.cierre).length,
+      linea:"Cierra "+corta(o.cierre),
+      despues:tarde?("Después: "+tarde.obligacion+" hasta "+corta(tarde.cierre))
+                   :(fu[0]?"Vuelve a abrir el "+corta(fu[0].inicio):"")};
+  }
+  if(fu.length){
+    const o=fu[0], d=diffDias(HOY,o.inicio), desde=pa[0]?pa[0].cierre:null;
+    const tot=desde?Math.max(diffDias(desde,o.inicio),1):30, frac=Math.min(Math.max(1-d/tot,0),1);
+    return {aplica:true,abierto:false,num:d,lbl:d===1?"día":"días",largo:d===1?"día para que abra":"días para que abra",frac:frac,fecha:o.inicio,urg:false,
+      n:fu.filter(x=>x.inicio===o.inicio).length, linea:"Abre "+corta(o.inicio),
+      despues:desde?("Cerró el "+corta(desde)):""};
+  }
+  return {aplica:true,abierto:false,num:null,lbl:"",frac:1,fecha:null,urg:false,n:0,linea:"Sin más plazos en "+anio,despues:""};
+}
+function anilloSVG(frac,color){
+  const r=34, c=2*Math.PI*r, off=c*(1-frac);
+  return '<svg class="rring" viewBox="0 0 84 84" aria-hidden="true">'+
+    '<circle cx="42" cy="42" r="'+r+'" fill="none" stroke="#EEF2F7" stroke-width="7"/>'+
+    '<circle cx="42" cy="42" r="'+r+'" fill="none" stroke="'+color+'" stroke-width="7" stroke-linecap="round" '+
+    'stroke-dasharray="'+c.toFixed(1)+'" stroke-dashoffset="'+off.toFixed(1)+'" transform="rotate(-90 42 42)"/></svg>';
 }
 function pintarRadar(){
-  document.getElementById("radarHint").textContent = SECTOR
-    ? "Registros que aplican a "+(DATA.sectores.find(s=>s.id===SECTOR)||{}).corto+". Al centro, lo más urgente."
-    : "Entre más cerca del centro, más pronto lo tienes que atender.";
-  const svg=document.getElementById("radarSvg"); if(!svg) return;
-  const R0=48, RMAX=128, ring=[[7,"7 días"],[15,"15"],[30,"30"]];
-  const rad=d=> d<=0 ? 14 : R0+Math.min(d,45)/45*(RMAX-R0);
   const sis=DATA.sistemas.map(s=>Object.assign({id:s.id,nombre:s.nombre,desc:s.desc},estadoRegistro(s.id)));
-  let g='<defs><radialGradient id="rgAb" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#DCFCE7"/><stop offset="1" stop-color="#ECFDF3"/></radialGradient>'+
-        '<linearGradient id="rgSw" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#1C46DC" stop-opacity="0"/><stop offset="1" stop-color="#1C46DC" stop-opacity=".16"/></linearGradient></defs>';
-  g+='<circle r="'+(RMAX+6)+'" fill="#F8FAFF" stroke="#E2E8F0"/>';
-  // Las etiquetas de los anillos van entre dos ejes para no tapar ningún punto.
-  const aL=-Math.PI/2+Math.PI/DATA.sistemas.length;
-  ring.slice().reverse().forEach(r=>{ const rr=rad(r[0]);
-    g+='<circle r="'+rr+'" fill="none" stroke="#E2E8F0" stroke-dasharray="3 4"/>'+
-    '<text x="'+(Math.cos(aL)*rr+3).toFixed(1)+'" y="'+(Math.sin(aL)*rr-3).toFixed(1)+'" font-size="9" fill="#7C8AA0">'+r[1]+'</text>'; });
-  g+='<circle r="'+R0+'" fill="url(#rgAb)" stroke="#BBE5CB"/>'+
-     '<text y="'+(R0+0)+'" dy="-5" text-anchor="middle" font-size="8.5" font-weight="700" letter-spacing=".08em" fill="#047857">ABIERTOS</text>';
-  g+='<g class="rsweep"><path d="M0 0 L'+(RMAX+6)+' 0 A'+(RMAX+6)+' '+(RMAX+6)+' 0 0 0 '+((RMAX+6)*Math.cos(-0.7)).toFixed(1)+' '+((RMAX+6)*Math.sin(-0.7)).toFixed(1)+' Z" fill="url(#rgSw)"/></g>';
-  const n=sis.length;
-  sis.forEach((s,i)=>{
-    const a=-Math.PI/2+i*2*Math.PI/n, ca=Math.cos(a), sa=Math.sin(a), c=(COL[s.id]||["#1C46DC"])[0];
-    g+='<line x1="0" y1="0" x2="'+(ca*(RMAX+6)).toFixed(1)+'" y2="'+(sa*(RMAX+6)).toFixed(1)+'" stroke="#E2E8F0"/>';
-    const lx=ca*(RMAX+22), ly=sa*(RMAX+22)+4, anc=Math.abs(ca)<.3?"middle":ca>0?"start":"end";
-    g+='<text x="'+lx.toFixed(1)+'" y="'+ly.toFixed(1)+'" text-anchor="'+anc+'" font-size="11.5" font-weight="800" letter-spacing=".03em" fill="'+
-       (s.aplica?"#0F172A":"#B6C0CE")+'">'+s.id+'</text>';
-    if(!s.aplica) return;
-    const r= s.dias>=999 ? RMAX+6 : s.abierto ? 24+Math.min(s.dias,10)*1.8 : rad(s.dias);
-    const bx=(ca*r).toFixed(1), by=(sa*r).toFixed(1);
-    if(s.abierto) g+='<circle class="rpulse" cx="'+bx+'" cy="'+by+'" r="6" fill="'+c+'" opacity=".3"/>';
-    g+='<circle class="rblip" data-i="'+i+'" tabindex="0" role="img" aria-label="'+s.id+': '+s.txt+(s.sub?", "+s.sub:"")+'" cx="'+bx+'" cy="'+by+
-       '" r="7" fill="'+(s.dias>=999?"#fff":c)+'" stroke="'+(s.dias>=999?c:"#fff")+'" stroke-width="2"/>';
+  const ap=sis.filter(s=>s.aplica), ab=ap.filter(s=>s.abierto);
+  // Frase de resumen: lo que una persona querría saber antes de ver las tarjetas
+  let titular, sub;
+  if(ab.length){
+    const pri=ab.slice().sort((a,b)=>a.fecha<b.fecha?-1:1)[0];
+    const mismos=ab.filter(s=>s.fecha===pri.fecha).length;
+    titular=ab.length+" de "+ap.length+" registros tienen la ventana abierta hoy";
+    sub=(mismos===ab.length?"Todos cierran":"El primero cierra")+" el "+fechaLarga(pri.fecha).replace(/ de \d{4}$/,"")+
+        " · quedan "+pri.num+" "+(pri.num===1?"día hábil":"días hábiles")+".";
+  } else {
+    const fut=ap.filter(s=>s.fecha).sort((a,b)=>a.fecha<b.fecha?-1:1)[0];
+    titular="Ningún registro tiene la ventana abierta hoy";
+    sub=fut?("La siguiente ventana abre el "+fechaLarga(fut.fecha).replace(/ de \d{4}$/,"")+", en "+fut.num+" "+(fut.num===1?"día":"días")+"."):"No quedan plazos en "+anio+".";
+  }
+  document.getElementById("radarTit").textContent=titular;
+  document.getElementById("radarHint").textContent=sub+(SECTOR?" Vista para "+(DATA.sectores.find(x=>x.id===SECTOR)||{}).corto+".":"");
+  const orden=sis.slice().sort((a,b)=>(a.aplica?0:1)-(b.aplica?0:1)||(a.abierto?0:1)-(b.abierto?0:1)||
+    ((a.fecha||"9")<(b.fecha||"9")?-1:(a.fecha||"9")>(b.fecha||"9")?1:0));
+  document.getElementById("radar").innerHTML=orden.map(function(s){
+    if(!s.aplica) return '<li class="rt off" '+estiloSis(s.id)+'><div class="rt-hd"><span class="sysdot">'+svgSis(s.id)+'</span><b>'+s.id+'</b></div>'+
+      '<div class="rt-na">No aplica a tu sector</div></li>';
+    const est = s.abierto ? (s.urg?["urg","⚠","Cierra pronto","#BE123C"]:["ab","●","Abierto","#047857"])
+                          : (s.num===null?["fin","■","Sin plazos","#94A3B8"]:["prox","○","Por abrir","#1C46DC"]);
+    return '<li class="rt e-'+est[0]+'" '+estiloSis(s.id)+'>'+
+      '<button type="button" class="rt-btn" data-s="'+s.id+'" data-f="'+(s.fecha||"")+'" title="'+escHtml(s.nombre+(s.despues?" · "+s.despues:""))+'" '+
+        'aria-label="'+escHtml(s.id+", "+s.nombre+": "+est[2]+", "+s.linea+(s.num!==null?", "+s.num+" "+s.largo:"")+". Ver sus obligaciones")+'">'+
+      '<div class="rt-hd"><span class="sysdot">'+svgSis(s.id)+'</span><b>'+s.id+'</b></div>'+
+      '<div class="rt-ring">'+anilloSVG(s.frac,est[3])+'<div class="rt-num"><b>'+(s.num===null?"—":s.num)+'</b><span>'+s.lbl+'</span></div></div>'+
+      '<span class="rt-est"><i>'+est[1]+'</i>'+est[2]+'</span>'+
+      '<span class="rt-fecha">'+s.linea+(s.n>1?" · "+s.n+" obligaciones":"")+'</span>'+
+      '</button></li>';
+  }).join("");
+  Array.prototype.forEach.call(document.querySelectorAll("#radar .rt-btn"),function(b){
+    b.onclick=function(){
+      const f=b.dataset.f, mm=f?Number(f.slice(5,7)):calMes;
+      filtro=b.dataset.s;
+      if(mm!==calMes){ calMes=mm; DIA_SEL=null; refrescarMes(); } else pintarObl();
+      const t=document.getElementById("obligaciones");
+      if(t) t.scrollIntoView({block:"start",behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"});
+    };
   });
-  svg.innerHTML=g;
-  Array.prototype.forEach.call(svg.querySelectorAll(".rblip"),function(b){
-    const s=sis[Number(b.dataset.i)];
-    const html='<b>'+s.id+' · '+s.nombre+'</b><span>'+s.txt+(s.sub?' ('+s.sub+')':'')+'</span>'+
-               (s.ult?'<span class="vt-m">Último cierre: '+corta(s.ult)+'</span>':'');
-    b.addEventListener("mouseenter",function(){ tipEn(b,html); });
-    b.addEventListener("focus",function(){ tipEn(b,html); });
-    b.addEventListener("mouseleave",VTIP.hide); b.addEventListener("blur",VTIP.hide);
-  });
-  // lista compacta, ordenada por urgencia: es también la vista en texto del radar
-  const orden=sis.slice().sort((a,b)=>(a.aplica?0:1)-(b.aplica?0:1) || (a.abierto?0:1)-(b.abierto?0:1) || a.dias-b.dias);
-  document.getElementById("radar").innerHTML=orden.map(s=>
-    '<li class="'+(s.aplica?'':'off')+'" '+estiloSis(s.id)+' title="'+escHtml(s.nombre)+'">'+
-      '<i class="rdot'+(s.abierto?' ab':'')+'"></i><b>'+s.id+'</b>'+
-      '<span class="rtxt">'+(s.aplica?s.txt:'No aplica a tu sector')+'</span>'+
-      (s.aplica&&s.sub?'<span class="rsub'+(s.abierto&&s.dias<=2?' urg':'')+'">'+s.sub+'</span>':'')+'</li>').join("");
 }
 
 /* ---------- tabla ---------- */
