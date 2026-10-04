@@ -462,3 +462,19 @@ informe con 9 filas; sin errores ni desborde a 390, 768 y 1360 px; contraste AA.
 - Casos anonimizados: redactarlos con el Director General antes de publicarlos.
 - Segunda iteración: servicios agrupados por necesidad y "¿Qué te preocupa hoy?" en lugar de
   los 21 botones repetidos.
+
+### Cierre de notas pendientes — 4 de octubre de 2026
+
+Validado por el Director General; ya no queda ninguna nota de "pendiente" visible:
+
+- **Aviso de privacidad:** se retiró el recuadro "Nota para revisión interna". Antes se
+  corrigieron las citas del apartado XI, que remitían a la ley abrogada de 2010 (art. 3 fr. IX y
+  art. 36): ahora citan el art. 2, fr. XII (persona encargada) y fr. XX (transferencia, que excluye
+  la comunicación a la persona encargada) de la LFPDPPP publicada en el DOF el 20-03-2025.
+- **Sanciones:** se retiró "pendiente de validación de la fracción sancionadora". El texto ya
+  explica que las cifras son el piso del rango del art. 94 LPDUSF y del art. 41 LTOSF, y que la
+  individualización corresponde a la autoridad.
+- **Aplicabilidad por sector:** "criterio orientativo… debe validar" pasa a "sigue el artículo 3
+  de la Disposición y el criterio técnico de CumpliFix S.C.; su alcance depende de la autorización
+  y los productos de la institución". Igual en el PDF.
+- **Logotipo:** el sitio ya usa el sello vigente (CUMPLIFIX S.C. / CUMPLIMIENTO FINANCIERO).

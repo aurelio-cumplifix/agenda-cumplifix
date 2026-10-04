@@ -187,7 +187,7 @@ CATALOGO = [
               "Productos y Servicios Financieros.",
          periodicidad="Mensual", periodo="anterior", hito="validacion",
          umas=200, umas_max=1000, sancionador="LPDUSF art. 94",
-         verif="art12", sectores=TODOS,   aplic="sin verificar"),
+         verif="art12", sectores=TODOS,   aplic="todas las instituciones"),
     dict(art="Art. 136, Fr. IX · 143", sistema="IFIT", obl="Programas de Educación Financiera",
          desc="Mantener vigente en la ficha técnica el nombre, descripción, alcances y dirección "
               "electrónica de los programas de educación financiera. El art. 134 fr. XIII describe "
