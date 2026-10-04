@@ -400,3 +400,31 @@ fundamento corregido a **Art. 136 fr. IX · 143**. Los totales del año no cambi
 **Cero obligaciones quedan marcadas como asignación razonada.** De las trece, siete se sostienen
 en texto literal verificado y seis en el artículo 12. El único pendiente documental que subsiste
 es la fracción sancionadora concreta aplicable a cada obligación.
+
+---
+
+## Auditoría de captación — 4 de octubre de 2026
+
+Calificación con la skill `cumplifix-web-captacion`: **7 de 20**.
+
+| # | Criterio | Pts | Hallazgo |
+|---|---|---|---|
+| 1 | Oferta principal | 1 | La propuesta de valor es clara, pero el único CTA arriba del pliegue es "Descargar agenda PDF"; no hay segundo escalón |
+| 2 | Jerarquía de CTAs | 0 | 49 acciones distintas; "Solicitar información" ×12 y "Cuéntanos tu caso" ×9 |
+| 3 | Rostros | 0 | Una sola imagen en todo el sitio (el logo); la dirección aparece sólo en texto |
+| 4 | Prueba social | 1 | Alianzas en texto y cifras institucionales; sin casos ni testimonios |
+| 5 | Ritmo visual | 1 | Rejillas de tarjetas del mismo peso en servicios y en "¿Te suena?" |
+| 6 | Intercambio de valor | 1 | Registro por sector y descarga; no hay diagnóstico ni trivia |
+| 7 | Móvil | 0 | 21 pantallas de alto; formulario de contacto en la pantalla 18 y WhatsApp en la 18; sin barra fija |
+| 8 | Medición | 0 | Token de Cloudflare vacío, sin campo de origen ni UTM, con difusión ya iniciada vía ANIFE (30-sep) |
+| 9 | Desempeño | 2 | Sin errores de consola ni desborde a 390, 768 y 1360 px |
+| 10 | Cumplimiento | 1 | Título y descripción decían "Control Center" y "Dashboard"; tarjeta de descarga decía "Documento oficial" |
+
+**Corregido en esta fecha (punto 10):** el título del sitio, la meta descripción —que es lo que
+muestran Google, WhatsApp y LinkedIn al compartir la liga—, la insignia del hero y el
+encabezado del pie ya no usan "Control Center" ni "Dashboard"; "Documento oficial" pasó a
+"Documento de consulta", para que no pueda leerse como documento de la autoridad.
+
+**También en esta fecha:** se retiraron del repositorio tres archivos temporales
+(`_repo.zip`, `_repo2.tgz`, `zitW7GKM`) que quedaron incluidos en el commit "actualizacion".
+Eran copias del propio repositorio, sin contenido distinto del ya publicado.
