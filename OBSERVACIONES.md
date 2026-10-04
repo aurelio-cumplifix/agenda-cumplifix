@@ -478,3 +478,17 @@ Validado por el Director General; ya no queda ninguna nota de "pendiente" visibl
   de la Disposición y el criterio técnico de CumpliFix S.C.; su alcance depende de la autorización
   y los productos de la institución". Igual en el PDF.
 - **Logotipo:** el sitio ya usa el sello vigente (CUMPLIFIX S.C. / CUMPLIMIENTO FINANCIERO).
+
+### Calendario, línea de tiempo y radar — 4 de octubre de 2026
+
+- **Calendario clicable:** cada día se puede tocar (o recorrer con el teclado) y abre el
+  **detalle del día**: qué vence ese día, qué ventanas siguen abiertas, si es inhábil, y cada
+  obligación con su registro, artículo y sanción mínima. Si no hay nada, ofrece ir al siguiente
+  hito. El resumen del mes pasa a esa misma tarjeta.
+- **Línea de tiempo horizontal:** el mes en una regla con bandas para la ventana de validación y
+  el REUNE, un punto por hito, la marca de HOY y el día elegido. Cada día es clicable y se
+  sincroniza con el calendario. Las etiquetas se acomodan en tres niveles para no encimarse
+  (verificado en los 12 meses a 390 y 1360 px).
+- **Radar de registros:** cada registro es un punto; entre más cerca del centro, más pronto hay
+  que atenderlo, y el círculo central son las ventanas abiertas hoy. La lista de al lado ya no
+  trae descripciones: estado, fecha, qué sigue y cuántas obligaciones, ordenada por urgencia.

@@ -571,6 +571,76 @@ footer{margin-top:26px;background:linear-gradient(135deg,#081848,var(--navy) 55%
   #informe .ileg{margin-top:16px;font-size:9pt;color:#475569}
   #informe .ipie{margin-top:10px;font-size:9pt;color:#1C46DC;font-weight:700}
 }
+/* ---------- Calendario clicable + detalle del día ---------- */
+.calzona{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:20px;margin-top:20px}
+.calcard table.cal td{height:46px;font-size:14.5px}
+table.cal td.dia{cursor:pointer;transition:transform .12s ease,box-shadow .12s ease}
+table.cal td.dia:hover{box-shadow:0 0 0 2px #C7D2FE inset}
+table.cal td.dia:focus-visible{outline:3px solid var(--sky);outline-offset:1px}
+table.cal td.sel{box-shadow:0 0 0 2px var(--ink) inset,0 6px 14px rgba(15,23,42,.14);transform:translateY(-1px)}
+table.cal td.hoy.sel{outline:2.5px solid var(--blue);outline-offset:-2px}
+.diacard{display:flex;flex-direction:column}
+.diacard .dtit{font-family:var(--fd);font-weight:800;font-size:20px;letter-spacing:-.01em;margin:6px 0 10px}
+.dchips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.dchip{font-size:11.5px;font-weight:700;padding:4px 9px;border-radius:999px;border:1px solid transparent}
+.dchip.c-val{background:var(--ev-val-bg);color:#9D1B5F;border-color:var(--ev-val-bd)}
+.dchip.c-reus{background:var(--ev-reus-bg);color:#8A5A00;border-color:var(--ev-reus-bd)}
+.dchip.c-reune{background:var(--ev-reune-bg);color:#046C86;border-color:var(--ev-reune-bd)}
+.dchip.c-inh{background:var(--ev-inh-bg);color:#475569}
+.dgrupo{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:10px 0 6px}
+.dlist{list-style:none;margin:0;padding:0;display:grid;gap:6px;max-height:300px;overflow:auto}
+.dlist li{display:flex;gap:10px;align-items:flex-start;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:#fff}
+.dlist li .sysbadge{flex:none}
+.dlist li b{display:block;font-size:13px;line-height:1.35}
+.dlist li span{font-size:11.5px;color:var(--muted)}
+.dvacio{font-size:13.5px;color:var(--muted);margin:4px 0 12px}
+.diacard .calres{margin-top:auto;padding-top:14px}
+
+/* ---------- Línea de tiempo horizontal ---------- */
+.tlh{margin-top:20px}
+.tlh-hd{display:flex;justify-content:space-between;align-items:flex-end;gap:14px;flex-wrap:wrap;margin-bottom:6px}
+.tlh-hd h3{margin:0}
+.tlh-ley{display:flex;gap:14px;font-size:11.5px;color:var(--muted)}
+.tlh-ley i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px;vertical-align:0}
+.tlh-scroll{overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
+#tlSvg{display:block;font-family:var(--fb)}
+#tlSvg .tlhit{cursor:pointer}
+#tlSvg .tlhit:hover{fill:rgba(28,70,220,.05)}
+
+/* ---------- Radar de registros ---------- */
+.radarc{margin-top:20px}
+.radar-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;align-items:center}
+.radar-viz{max-width:420px;width:100%;margin:0 auto}
+#radarSvg{display:block;width:100%;height:auto;font-family:var(--fb);overflow:visible}
+#radarSvg .rblip{cursor:pointer;transition:r .15s}
+#radarSvg .rblip:hover,#radarSvg .rblip:focus{r:9;outline:none}
+#radarSvg .rsweep{transform-origin:0 0;animation:barrido 7s linear infinite}
+#radarSvg .rpulse{transform-box:fill-box;transform-origin:center;animation:pulso 1.8s ease-out infinite}
+@keyframes barrido{to{transform:rotate(360deg)}}
+@keyframes pulso{from{transform:scale(1);opacity:.4}to{transform:scale(2.1);opacity:0}}
+.rlist{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:6px}
+.rlist li{display:grid;grid-template-columns:12px 64px 1fr auto;align-items:center;gap:8px;padding:8px 10px;
+  border:1px solid var(--line);border-radius:10px;font-size:13px}
+.rlist li.off{opacity:.5}
+.rlist .rdot{width:10px;height:10px;border-radius:50%;background:var(--sys)}
+.rlist .rdot.ab{box-shadow:0 0 0 3px color-mix(in srgb,var(--sys) 25%,#fff)}
+.rlist b{font-weight:800;letter-spacing:.02em}
+.rlist .rtxt{color:var(--ink)}
+.rlist .rsub{font-size:11.5px;color:var(--muted);white-space:nowrap}
+.rlist .rsub.urg{color:var(--bad);font-weight:700}
+
+/* ---------- Tooltip de las gráficas ---------- */
+.vtip{position:fixed;z-index:80;max-width:260px;background:#0F172A;color:#fff;border-radius:10px;padding:8px 10px;
+  font-size:12px;line-height:1.45;box-shadow:0 10px 30px rgba(15,23,42,.3);pointer-events:none}
+.vtip b{display:block;font-size:12.5px;margin-bottom:2px}
+.vtip span{display:block}
+.vtip i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px}
+.vtip .vt-m{color:#B6C3D9}
+
+@media(max-width:980px){.calzona{grid-template-columns:1fr}.radar-grid{grid-template-columns:1fr}}
+@media(max-width:560px){.calcard table.cal td{height:42px;font-size:13.5px}.rlist li{grid-template-columns:12px 56px 1fr}.rlist .rsub{grid-column:3}}
+@media(prefers-reduced-motion:reduce){#radarSvg .rsweep,#radarSvg .rpulse{animation:none}#radarSvg .rpulse{display:none}table.cal td.dia{transition:none}}
+@media print{.tlh,.radarc{break-inside:avoid}.vtip{display:none}}
 </style>
 </head>
 <body>
@@ -687,9 +757,9 @@ footer{margin-top:26px;background:linear-gradient(135deg,#081848,var(--navy) 55%
     <span class="hint" id="sectorHint">Elige tu sector para ver solo lo que te aplica y cuánto cambia tu exposición.</span>
   </section>
 
-  <!-- CALENDARIO / TIMELINE / RADAR -->
-  <section class="grid3">
-    <div class="card panel">
+  <!-- CALENDARIO + DETALLE DEL DÍA -->
+  <section class="calzona">
+    <div class="card panel calcard">
       <div class="calnav">
         <button id="calPrev" aria-label="Mes anterior">‹</button>
         <div class="m" id="calMes">—</div>
@@ -703,21 +773,39 @@ footer{margin-top:26px;background:linear-gradient(135deg,#081848,var(--navy) 55%
         <span><i style="background:var(--ev-reus-bg);border:1px solid var(--ev-reus-bd)"></i>Reporte quincenal REUS</span>
         <span><i style="background:var(--ev-reune-bg);border:1px solid var(--ev-reune-bd)"></i>Informe trimestral REUNE</span>
         <span><i style="background:var(--ev-inh-bg)"></i>Día inhábil</span>
-        <span class="legpt"><i class="d1"></i><i class="d2"></i>El punto marca un hito que coincide con otro el mismo día</span>
+        <span class="legpt"><i class="d1"></i><i class="d2"></i>El punto marca un hito que coincide con otro el mismo día. Toca cualquier día para ver su detalle.</span>
       </div>
+    </div>
+    <div class="card panel diacard">
+      <div id="diaDet" aria-live="polite"></div>
       <div id="calResumen" class="calres"></div>
     </div>
+  </section>
 
-    <div class="card panel">
-      <h3 id="tlTitulo">Línea de tiempo</h3>
-      <div class="hint" id="tlHint">Próximos hitos con la CONDUSEF.</div>
-      <ul class="tl" id="timeline"></ul>
+  <!-- LÍNEA DE TIEMPO HORIZONTAL -->
+  <section class="card panel tlh">
+    <div class="tlh-hd">
+      <div><h3 id="tlTitulo">Línea de tiempo</h3><div class="hint" id="tlHint"></div></div>
+      <div class="tlh-ley" aria-hidden="true">
+        <span><i style="background:#D9558E"></i>Validación</span>
+        <span><i style="background:#B45309"></i>REUS</span>
+        <span><i style="background:#0891B2"></i>REUNE</span>
+      </div>
     </div>
+    <div class="tlh-scroll" id="tlScroll"><svg id="tlSvg" role="img" aria-label="Línea de tiempo del mes"></svg></div>
+  </section>
 
-    <div class="card panel">
-      <h3>Radar de sistemas</h3>
-      <div class="hint" id="radarHint">Estado de cada registro en el periodo en curso.</div>
-      <div class="sys" id="radar"></div>
+  <!-- RADAR DE REGISTROS -->
+  <section class="card panel radarc">
+    <div class="radar-grid">
+      <div class="radar-viz">
+        <svg id="radarSvg" viewBox="-182 -168 364 336" role="img" aria-label="Radar de registros: entre más cerca del centro, más urgente"></svg>
+      </div>
+      <div>
+        <h3>Radar de registros</h3>
+        <div class="hint" id="radarHint"></div>
+        <ul class="rlist" id="radar"></ul>
+      </div>
     </div>
   </section>
 
@@ -1257,6 +1345,7 @@ setInterval(pintarCuenta, 1000);
 
 /* ---------- calendario ---------- */
 let calMes = MACT.mes;
+let DIA_SEL = null;              // día elegido en el calendario o en la línea de tiempo
 /* Un día puede concentrar varios hitos: el REUS quincenal cae siempre en el
    primer día de la ventana de validación, y el REUNE trimestral la abarca
    completa. Pintar un solo color escondía uno de los dos. El fondo lleva la
@@ -1273,8 +1362,19 @@ function hitosDia(s,m){
   return {bg:bg, puntos:ev.filter(e=>e!==bg && e!=="val")};
 }
 const ETIQ={val:"Periodo de validación",reus:"Reporte quincenal REUS",reune:"Informe trimestral REUNE"};
+function diaPorDefecto(){
+  const m=DATA.meses[calMes-1];
+  if(Number(HOY.slice(5,7))===calMes) return HOY;
+  return m.validacion.inicio;
+}
+function elegirDia(s){
+  DIA_SEL=s; pintarCal(); pintarTimeline();
+}
+
+/* ---------- calendario ---------- */
 function pintarCal(){
   const m=DATA.meses[calMes-1];
+  if(!DIA_SEL || Number(DIA_SEL.slice(5,7))!==calMes) DIA_SEL=diaPorDefecto();
   document.getElementById("calMes").textContent=MESES[calMes-1]+" "+anio;
   document.getElementById("calPrev").disabled = calMes===1;
   document.getElementById("calNext").disabled = calMes===12;
@@ -1283,8 +1383,9 @@ function pintarCal(){
   let html="",c=0,fila="";
   for(let i=0;i<primero;i++){fila+="<td></td>";c++;}
   for(let d=1;d<=n;d++){
-    const s=iso(anio,calMes,d), h=hitosDia(s,m), cls=[h.bg];
+    const s=iso(anio,calMes,d), h=hitosDia(s,m), cls=[h.bg,"dia"];
     if(s===HOY)cls.push("hoy"); if(esFinde(s)&&!INHAB.has(s))cls.push("wk");
+    if(s===DIA_SEL)cls.push("sel");
     const det=[];
     if(s>=m.validacion.inicio&&s<=m.validacion.fin) det.push(ETIQ.val);
     if(m.reus.indexOf(s)>=0) det.push(ETIQ.reus);
@@ -1292,7 +1393,8 @@ function pintarCal(){
     if(esInhabil(s)) det.push("Día inhábil");
     const mk = h.puntos.length
       ? '<span class="mk">'+h.puntos.map(p=>'<i class="k-'+p+'"></i>').join("")+'</span>' : "";
-    fila+='<td class="'+cls.filter(Boolean).join(" ")+'" title="'+fechaLarga(s)+
+    fila+='<td class="'+cls.filter(Boolean).join(" ")+'" data-d="'+s+'" tabindex="0" role="button" aria-pressed="'+
+          (s===DIA_SEL)+'" aria-label="'+fechaLarga(s)+(det.length?". "+det.join(". "):"")+'" title="'+fechaLarga(s)+
           (det.length?" · "+det.join(" · "):"")+'">'+d+mk+"</td>";
     if(++c%7===0){html+="<tr>"+fila+"</tr>";fila="";}
   }
@@ -1303,69 +1405,239 @@ function pintarCal(){
   const f=[["Ventana de validación",corta(m.validacion.inicio)+" al "+corta(m.validacion.fin)],
            ["Reporte quincenal REUS",corta(m.reus[0])+" y "+corta(m.reus[1])],
            ["Informe trimestral REUNE",m.reune?(corta(m.reune.inicio)+" al "+corta(m.reune.fin)):"No aplica este mes"],
-           ["Obligaciones a reportar",obl.length+" · desde "+obl.reduce((a,o)=>a+o.umas,0).toLocaleString("es-MX")+" UMAs"]];
+           ["Obligaciones del mes",obl.length+" · desde "+obl.reduce((a,o)=>a+o.umas,0).toLocaleString("es-MX")+" UMAs"]];
   document.getElementById("calResumen").innerHTML=
+    '<div class="eyebrow" style="margin-bottom:6px">Resumen de '+MESES[calMes-1]+'</div>'+
     f.map(x=>"<div><span>"+x[0]+"</span><b>"+x[1]+"</b></div>").join("");
+  pintarDia();
+}
+(function(){
+  const tb=document.querySelector("#cal tbody");
+  tb.addEventListener("click",function(e){ const td=e.target.closest("td[data-d]"); if(!td) return;
+    elegirDia(td.dataset.d);
+    const det=document.getElementById("diaDet");
+    if(innerWidth<980 && det && det.getBoundingClientRect().top>innerHeight*0.7)
+      det.scrollIntoView({block:"start",behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"});
+  });
+  tb.addEventListener("keydown",function(e){
+    const td=e.target.closest("td[data-d]"); if(!td) return;
+    if(e.key==="Enter"||e.key===" "){ e.preventDefault(); elegirDia(td.dataset.d);
+      const x=document.querySelector('#cal td[data-d="'+td.dataset.d+'"]'); if(x) x.focus(); return; }
+    const mov={ArrowLeft:-1,ArrowRight:1,ArrowUp:-7,ArrowDown:7}[e.key]; if(!mov) return;
+    e.preventDefault();
+    const t=new Date(parse(td.dataset.d).getTime()+mov*86400000).toISOString().slice(0,10);
+    const x=document.querySelector('#cal td[data-d="'+t+'"]'); if(x) x.focus();
+  });
+})();
+
+/* ---------- detalle del día ----------
+   Qué vence ese día, qué ventanas siguen abiertas y si corren plazos. */
+function pintarDia(){
+  const s=DIA_SEL, m=DATA.meses[calMes-1], box=document.getElementById("diaDet");
+  if(!box||!s) return;
+  const obl=obligacionesDe(m).filter(o=>o.inicio<=s && s<=o.cierre);
+  const vencen=obl.filter(o=>o.cierre===s), abiertas=obl.filter(o=>o.cierre!==s);
+  const chips=[];
+  if(s>=m.validacion.inicio&&s<=m.validacion.fin) chips.push(['val','Ventana de validación · cierra '+corta(m.validacion.fin)]);
+  if(m.reus.indexOf(s)>=0) chips.push(['reus','Reporte quincenal REUS']);
+  if(m.reune&&s>=m.reune.inicio&&s<=m.reune.fin) chips.push(['reune','Informe trimestral REUNE · cierra '+corta(m.reune.fin)]);
+  if(INHAB.has(s)) chips.push(['inh','Inhábil CONDUSEF: no corren plazos']);
+  else if(esFinde(s)) chips.push(['inh','Fin de semana']);
+  const dd=diffDias(HOY,s);
+  const rel = dd===0?"Hoy" : dd===1?"Mañana" : dd===-1?"Ayer" : dd>0?("En "+dd+" días"):("Hace "+(-dd)+" días");
+  const fila=function(o){ return '<li>'+badgeSis(o.sistema)+'<div><b>'+o.obligacion+'</b><span>'+o.art+
+      ' · desde '+money0(o.sancion)+'</span></div></li>'; };
+  let cuerpo="";
+  if(vencen.length) cuerpo+='<div class="dgrupo">'+(s<HOY?'Vencieron este día':'Vencen este día')+' · '+vencen.length+'</div><ul class="dlist">'+vencen.map(fila).join("")+'</ul>';
+  if(abiertas.length) cuerpo+='<div class="dgrupo">Ventana abierta · '+abiertas.length+'</div><ul class="dlist">'+abiertas.map(fila).join("")+'</ul>';
+  if(!obl.length){
+    const sig=EVENTOS.filter(e=>e.f>s)[0];
+    cuerpo='<p class="dvacio">Sin vencimientos ni ventanas abiertas este día.</p>'+
+      (sig?'<button type="button" class="btn btn-ghost btn-sm" id="diaSig">Ir al siguiente hito: '+sig.ti.replace(/ —.*/,"")+' · '+corta(sig.f)+'</button>':'');
+  }
+  box.innerHTML='<div class="eyebrow">Detalle del día · '+rel+'</div>'+
+    '<h3 class="dtit">'+cap(fechaLarga(s)).replace(/ de \d{4}$/,"")+'</h3>'+
+    (chips.length?'<div class="dchips">'+chips.map(c=>'<span class="dchip c-'+c[0]+'">'+c[1]+'</span>').join("")+'</div>':'')+
+    cuerpo;
+  const b=document.getElementById("diaSig");
+  if(b) b.onclick=function(){ const sig=EVENTOS.filter(e=>e.f>s)[0]; if(!sig) return;
+    const mm=Number(sig.f.slice(5,7)); if(mm!==calMes){ calMes=mm; DIA_SEL=sig.f; refrescarMes(); } else elegirDia(sig.f); };
 }
 
-/* ---------- timeline: sigue al mes seleccionado ---------- */
-function fila(e){
-  const d=parse(e.f), pas=e.f<HOY;
-  const tag=e.t==="val"?'<span class="tag tg-val">Validación</span>'
-           :e.t==="reus"?'<span class="tag tg-reus">REUS</span>'
-           :'<span class="tag tg-reune">REUNE</span>';
-  const dd=diffDias(HOY,e.f);
-  const cu = dd===0?"hoy" : dd===1?"mañana" : dd>0?("en "+dd+" días")
-           : (dd===-1?"ayer":("hace "+Math.abs(dd)+" días"));
-  return '<li class="'+(pas?"pas":"")+'"><div class="d"><b>'+d.getUTCDate()+'</b><span>'+
-    MESES[d.getUTCMonth()].slice(0,3)+'</span></div><div class="c"><b>'+e.ti+tag+'</b><span>'+
-    e.de+" · "+cu+"</span></div></li>";
+/* ---------- tooltip compartido de las gráficas ---------- */
+const VTIP=(function(){
+  const t=document.createElement("div"); t.className="vtip"; t.setAttribute("role","tooltip"); t.hidden=true;
+  document.body.appendChild(t);
+  return {
+    show:function(html,x,y){ t.innerHTML=html; t.hidden=false;
+      const w=t.offsetWidth, h=t.offsetHeight;
+      t.style.left=Math.max(8,Math.min(innerWidth-w-8,x-w/2))+"px";
+      t.style.top=Math.max(8,y-h-12)+"px"; },
+    hide:function(){ t.hidden=true; }
+  };
+})();
+window.addEventListener("scroll",function(){ VTIP.hide(); },{passive:true});
+function tipEn(el,html){
+  const r=el.getBoundingClientRect(); VTIP.show(html,r.left+r.width/2,r.top);
 }
+
+/* ---------- línea de tiempo horizontal ----------
+   El mes completo en una regla: bandas para las ventanas, un punto por hito,
+   la marca de hoy y el día elegido. Cada día es clicable y se sincroniza con
+   el calendario. */
+const TLCOL={val:"#D9558E",reus:"#B45309",reune:"#0891B2"};
+const TLNOM={val:"Validación",reus:"REUS",reune:"REUNE"};
 function pintarTimeline(){
-  const propio = calMes!==MACT.mes;
-  const lista = propio
-    ? EVENTOS.filter(e=>Number(e.f.slice(5,7))===calMes)
-    : PROXIMOS.slice(0,6);
-  document.getElementById("tlTitulo").textContent = propio
-    ? "Línea de tiempo · "+cap(MESES[calMes-1]) : "Línea de tiempo";
-  document.getElementById("tlHint").textContent = propio
-    ? "Hitos de "+MESES[calMes-1]+". Vuelve a "+MESES[MACT.mes-1]+" para ver los próximos."
-    : "Próximos hitos con la CONDUSEF.";
-  document.getElementById("timeline").innerHTML =
-    lista.map(fila).join("") || '<li><div class="c"><b>Sin hitos en este mes</b></div></li>';
+  const m=DATA.meses[calMes-1], n=new Date(Date.UTC(anio,calMes,0)).getUTCDate();
+  const cont=document.getElementById("tlScroll"), svg=document.getElementById("tlSvg");
+  if(!cont||!svg) return;
+  document.getElementById("tlTitulo").textContent="Línea de tiempo · "+cap(MESES[calMes-1]);
+  const evs=EVENTOS.filter(e=>Number(e.f.slice(5,7))===calMes);
+  const sig=evs.filter(e=>e.f>=HOY)[0];
+  document.getElementById("tlHint").textContent = sig
+    ? "Próximo hito: "+sig.ti.replace(/ —.*/,"")+" · "+corta(sig.f)+" ("+(diffDias(HOY,sig.f)===0?"hoy":"en "+diffDias(HOY,sig.f)+" días")+")"
+    : "Todos los hitos de "+MESES[calMes-1]+" ya pasaron. Toca un día para ver su detalle.";
+  const W=Math.max(cont.clientWidth,680), H=168, L=26, R=26, Y=112;
+  const x=d=>L+(d-1)*(W-L-R)/(n-1), dia=s=>Number(s.slice(8,10)), paso=(W-L-R)/(n-1);
+  let g="";
+  // columnas de días inhábiles y día elegido
+  for(let d=1;d<=n;d++){
+    const s=iso(anio,calMes,d);
+    if(esInhabil(s)) g+='<rect x="'+(x(d)-paso/2)+'" y="'+(Y-30)+'" width="'+paso+'" height="58" fill="#F1F4F9"/>';
+  }
+  if(DIA_SEL) g+='<rect x="'+(x(dia(DIA_SEL))-paso/2)+'" y="14" width="'+paso+'" height="'+(H-18)+'" rx="6" fill="#E8EEFF"/>';
+  // eje y bandas de ventanas
+  g+='<line x1="'+L+'" y1="'+Y+'" x2="'+(W-R)+'" y2="'+Y+'" stroke="#CBD5E1" stroke-width="2" stroke-linecap="round"/>';
+  g+='<rect x="'+(x(dia(m.validacion.inicio))-5)+'" y="'+(Y-5)+'" width="'+(x(dia(m.validacion.fin))-x(dia(m.validacion.inicio))+10)+
+     '" height="10" rx="5" fill="#FDE7F2" stroke="#F4B6D2"/>';
+  if(m.reune) g+='<rect x="'+(x(dia(m.reune.inicio))-5)+'" y="'+(Y+9)+'" width="'+(x(dia(m.reune.fin))-x(dia(m.reune.inicio))+10)+
+     '" height="6" rx="3" fill="#BDEAF5"/>';
+  // números de día
+  for(let d=1;d<=n;d++){
+    const s=iso(anio,calMes,d), inh=esInhabil(s), sel=s===DIA_SEL;
+    if(n>28 && d%2===0 && !sel && d!==dia(HOY)) continue;
+    g+='<text x="'+x(d)+'" y="'+(Y+36)+'" text-anchor="middle" font-size="11" font-weight="'+(sel?800:600)+
+       '" fill="'+(sel?"#0F172A":inh?"#9AA6B8":"#475569")+'">'+d+'</text>';
+  }
+  // marca de hoy
+  if(Number(HOY.slice(5,7))===calMes){
+    const xh=x(dia(HOY));
+    g+='<line x1="'+xh+'" y1="18" x2="'+xh+'" y2="'+(Y+20)+'" stroke="#1C46DC" stroke-width="1.5" stroke-dasharray="3 3"/>'+
+       '<rect x="'+(xh-20)+'" y="2" width="40" height="17" rx="8.5" fill="#1C46DC"/>'+
+       '<text x="'+xh+'" y="14.5" text-anchor="middle" font-size="10" font-weight="800" fill="#fff" letter-spacing=".06em">HOY</text>';
+  }
+  // hitos agrupados por día: puntos apilados y una etiqueta por grupo
+  const grupos={}; evs.forEach(e=>{ (grupos[e.f]=grupos[e.f]||[]).push(e); });
+  const NIV=[68,50,32], borde=[-1e9,-1e9,-1e9];
+  Object.keys(grupos).sort().forEach(f=>{
+    const es=grupos[f], xd=x(dia(f)), pas=f<HOY;
+    const etiqueta=es.map(e=>e.t==="reus"?"REUS":e.t==="reune"?"Cierra REUNE":e.ti.replace("el periodo de ","")).join(" · ");
+    const anc = xd<110 ? "start" : xd>W-110 ? "end" : "middle", tx = anc==="start" ? xd-8 : anc==="end" ? xd+8 : xd;
+    const ancho=etiqueta.length*6.9, x1 = anc==="start" ? tx : anc==="end" ? tx-ancho : tx-ancho/2;
+    let nv=borde.findIndex(b=>b<x1-10); if(nv<0) nv=borde.indexOf(Math.min.apply(null,borde));
+    borde[nv]=x1+ancho; const ly=NIV[nv];
+    g+='<line x1="'+xd+'" y1="'+(ly+4)+'" x2="'+xd+'" y2="'+(Y-10-(es.length-1)*14)+'" stroke="#CBD5E1" stroke-width="1"/>';
+    g+='<text x="'+tx+'" y="'+ly+'" text-anchor="'+anc+'" font-size="11.5" font-weight="700" fill="'+(pas?"#94A3B8":"#0F172A")+'">'+
+       etiqueta+'</text>';
+    es.forEach((e,k)=>{
+      g+='<circle class="tlp" data-f="'+f+'" data-k="'+k+'" cx="'+xd+'" cy="'+(Y-k*14)+'" r="6.5" fill="'+TLCOL[e.t]+
+         '" stroke="#fff" stroke-width="2" opacity="'+(pas?.45:1)+'"/>';
+    });
+  });
+  // zonas de toque por día (más grandes que la marca)
+  for(let d=1;d<=n;d++){
+    const s=iso(anio,calMes,d);
+    g+='<rect class="tlhit" data-d="'+s+'" x="'+(x(d)-paso/2)+'" y="0" width="'+paso+'" height="'+H+'" fill="transparent" '+
+       'tabindex="-1" aria-hidden="true"/>';
+  }
+  svg.setAttribute("viewBox","0 0 "+W+" "+H); svg.setAttribute("width",W); svg.setAttribute("height",H);
+  svg.innerHTML=g;
+  Array.prototype.forEach.call(svg.querySelectorAll(".tlhit"),function(r){
+    const s=r.dataset.d, es=grupos[s]||[];
+    r.addEventListener("click",function(){ VTIP.hide(); elegirDia(s); });
+    r.addEventListener("mouseenter",function(){
+      tipEn(r,'<b>'+cap(fechaLarga(s)).replace(/ de \d{4}$/,"")+'</b>'+
+        (es.length?es.map(e=>'<span><i style="background:'+TLCOL[e.t]+'"></i>'+e.ti+'</span>').join(""):'<span>Sin hitos</span>')+
+        (esInhabil(s)?'<span class="vt-m">Día inhábil</span>':'')); });
+    r.addEventListener("mouseleave",VTIP.hide);
+  });
+  // en celular, centrar el día elegido
+  if(DIA_SEL && cont.scrollWidth>cont.clientWidth) cont.scrollLeft=Math.max(0,x(dia(DIA_SEL))-cont.clientWidth/2);
 }
+let tlResize; window.addEventListener("resize",function(){ clearTimeout(tlResize); tlResize=setTimeout(pintarTimeline,150); });
 
-/* ---------- radar ---------- */
+/* ---------- radar de registros ----------
+   Cada registro es un punto: entre más cerca del centro, más pronto tienes que
+   atenderlo. El círculo central son las ventanas abiertas hoy. */
+function estadoRegistro(id){
+  const os=[]; DATA.meses.forEach(m=>obligacionesDe(m).forEach(o=>{ if(o.sistema===id) os.push(o); }));
+  if(!os.length) return {aplica:false};
+  const ab=os.filter(o=>HOY>=o.inicio&&HOY<=o.cierre).sort((a,b)=>a.cierre<b.cierre?-1:1);
+  const fu=os.filter(o=>o.inicio>HOY).sort((a,b)=>a.inicio<b.inicio?-1:1);
+  const pa=os.filter(o=>o.cierre<HOY).sort((a,b)=>a.cierre>b.cierre?-1:1);
+  if(ab.length){ const d=diffDias(HOY,ab[0].cierre), k=ab.length;
+    // Lo que sigue después de esta ventana: otra ventana abierta que cierra más tarde o la próxima que abre.
+    const tarde=ab.filter(o=>o.cierre>ab[0].cierre)[0];
+    const luego=tarde?tarde.cierre:(fu[0]&&diffDias(HOY,fu[0].inicio)<=31?fu[0].inicio:null);
+    return {aplica:true,abierto:true,dias:d,fecha:ab[0].cierre,
+      txt:"Abierto hasta "+corta(ab[0].cierre)+(luego?" · luego "+corta(luego):""),
+      sub:(k>1?k+" obligaciones · ":"")+(d===0?"cierra hoy":d===1?"cierra mañana":"en "+d+" días"),
+      ult:null}; }
+  if(fu.length){ const d=diffDias(HOY,fu[0].inicio), k=fu.filter(o=>o.inicio===fu[0].inicio).length;
+    return {aplica:true,abierto:false,dias:d,fecha:fu[0].inicio,
+      txt:"Abre "+corta(fu[0].inicio)+(pa[0]?" · cerró "+corta(pa[0].cierre):""),
+      sub:(k>1?k+" obligaciones · ":"")+(d===1?"mañana":"en "+d+" días"), ult:pa[0]?pa[0].cierre:null}; }
+  return {aplica:true,abierto:false,dias:999,txt:"Sin vencimientos pendientes en "+anio,sub:""};
+}
 function pintarRadar(){
-  const m=MACT, obl=obligacionesDe(m);
   document.getElementById("radarHint").textContent = SECTOR
-    ? "Registros aplicables a "+(DATA.sectores.find(s=>s.id===SECTOR)||{}).corto+" en "+MESES[m.mes-1]+"."
-    : "Estado de cada registro en el periodo en curso.";
-  document.getElementById("radar").innerHTML = DATA.sistemas.map(s=>{
-    const os=obl.filter(o=>o.sistema===s.id);
-    let pill='<span class="pill p-na">No aplica</span>', off=" off";
-    if(os.length){
-      off="";
-      /* Una etiqueta sin fecha no informa: cada registro dice cuándo cierra,
-         cuándo abre o cuándo cerró. */
-      const abiertas=os.filter(o=>HOY>=o.inicio&&HOY<=o.cierre)
-                       .sort((a,b)=>a.cierre<b.cierre?-1:1);
-      const futuras=os.filter(o=>o.inicio>HOY).sort((a,b)=>a.inicio<b.inicio?-1:1);
-      const pasadas=os.slice().sort((a,b)=>a.cierre>b.cierre?-1:1);
-      if(abiertas.length){
-        const d=diffDias(HOY,abiertas[0].cierre);
-        pill='<span class="pill p-open">● Abierto · cierra '+corta(abiertas[0].cierre)+
-             (d<=2?' <b>('+(d===0?"hoy":d===1?"mañana":"en "+d+" días")+')</b>':'')+'</span>';
-      } else if(futuras.length){
-        pill='<span class="pill p-soon">◔ Abre '+corta(futuras[0].inicio)+'</span>';
-      } else {
-        pill='<span class="pill p-idle">■ Cerró '+corta(pasadas[0].cierre)+'</span>';
-      }
-    }
-    return '<div class="sysrow'+off+'" '+estiloSis(s.id)+' title="'+s.detalle+'">'+
-           '<span class="sysdot">'+svgSis(s.id)+'</span><div class="nm"><b>'+s.nombre+
-           '</b><span>'+s.desc+'</span></div>'+pill+'</div>';
-  }).join("");
+    ? "Registros que aplican a "+(DATA.sectores.find(s=>s.id===SECTOR)||{}).corto+". Al centro, lo más urgente."
+    : "Entre más cerca del centro, más pronto lo tienes que atender.";
+  const svg=document.getElementById("radarSvg"); if(!svg) return;
+  const R0=48, RMAX=128, ring=[[7,"7 días"],[15,"15"],[30,"30"]];
+  const rad=d=> d<=0 ? 14 : R0+Math.min(d,45)/45*(RMAX-R0);
+  const sis=DATA.sistemas.map(s=>Object.assign({id:s.id,nombre:s.nombre,desc:s.desc},estadoRegistro(s.id)));
+  let g='<defs><radialGradient id="rgAb" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#DCFCE7"/><stop offset="1" stop-color="#ECFDF3"/></radialGradient>'+
+        '<linearGradient id="rgSw" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#1C46DC" stop-opacity="0"/><stop offset="1" stop-color="#1C46DC" stop-opacity=".16"/></linearGradient></defs>';
+  g+='<circle r="'+(RMAX+6)+'" fill="#F8FAFF" stroke="#E2E8F0"/>';
+  // Las etiquetas de los anillos van entre dos ejes para no tapar ningún punto.
+  const aL=-Math.PI/2+Math.PI/DATA.sistemas.length;
+  ring.slice().reverse().forEach(r=>{ const rr=rad(r[0]);
+    g+='<circle r="'+rr+'" fill="none" stroke="#E2E8F0" stroke-dasharray="3 4"/>'+
+    '<text x="'+(Math.cos(aL)*rr+3).toFixed(1)+'" y="'+(Math.sin(aL)*rr-3).toFixed(1)+'" font-size="9" fill="#7C8AA0">'+r[1]+'</text>'; });
+  g+='<circle r="'+R0+'" fill="url(#rgAb)" stroke="#BBE5CB"/>'+
+     '<text y="'+(R0+0)+'" dy="-5" text-anchor="middle" font-size="8.5" font-weight="700" letter-spacing=".08em" fill="#047857">ABIERTOS</text>';
+  g+='<g class="rsweep"><path d="M0 0 L'+(RMAX+6)+' 0 A'+(RMAX+6)+' '+(RMAX+6)+' 0 0 0 '+((RMAX+6)*Math.cos(-0.7)).toFixed(1)+' '+((RMAX+6)*Math.sin(-0.7)).toFixed(1)+' Z" fill="url(#rgSw)"/></g>';
+  const n=sis.length;
+  sis.forEach((s,i)=>{
+    const a=-Math.PI/2+i*2*Math.PI/n, ca=Math.cos(a), sa=Math.sin(a), c=(COL[s.id]||["#1C46DC"])[0];
+    g+='<line x1="0" y1="0" x2="'+(ca*(RMAX+6)).toFixed(1)+'" y2="'+(sa*(RMAX+6)).toFixed(1)+'" stroke="#E2E8F0"/>';
+    const lx=ca*(RMAX+22), ly=sa*(RMAX+22)+4, anc=Math.abs(ca)<.3?"middle":ca>0?"start":"end";
+    g+='<text x="'+lx.toFixed(1)+'" y="'+ly.toFixed(1)+'" text-anchor="'+anc+'" font-size="11.5" font-weight="800" letter-spacing=".03em" fill="'+
+       (s.aplica?"#0F172A":"#B6C0CE")+'">'+s.id+'</text>';
+    if(!s.aplica) return;
+    const r= s.dias>=999 ? RMAX+6 : s.abierto ? 24+Math.min(s.dias,10)*1.8 : rad(s.dias);
+    const bx=(ca*r).toFixed(1), by=(sa*r).toFixed(1);
+    if(s.abierto) g+='<circle class="rpulse" cx="'+bx+'" cy="'+by+'" r="6" fill="'+c+'" opacity=".3"/>';
+    g+='<circle class="rblip" data-i="'+i+'" tabindex="0" role="img" aria-label="'+s.id+': '+s.txt+(s.sub?", "+s.sub:"")+'" cx="'+bx+'" cy="'+by+
+       '" r="7" fill="'+(s.dias>=999?"#fff":c)+'" stroke="'+(s.dias>=999?c:"#fff")+'" stroke-width="2"/>';
+  });
+  svg.innerHTML=g;
+  Array.prototype.forEach.call(svg.querySelectorAll(".rblip"),function(b){
+    const s=sis[Number(b.dataset.i)];
+    const html='<b>'+s.id+' · '+s.nombre+'</b><span>'+s.txt+(s.sub?' ('+s.sub+')':'')+'</span>'+
+               (s.ult?'<span class="vt-m">Último cierre: '+corta(s.ult)+'</span>':'');
+    b.addEventListener("mouseenter",function(){ tipEn(b,html); });
+    b.addEventListener("focus",function(){ tipEn(b,html); });
+    b.addEventListener("mouseleave",VTIP.hide); b.addEventListener("blur",VTIP.hide);
+  });
+  // lista compacta, ordenada por urgencia: es también la vista en texto del radar
+  const orden=sis.slice().sort((a,b)=>(a.aplica?0:1)-(b.aplica?0:1) || (a.abierto?0:1)-(b.abierto?0:1) || a.dias-b.dias);
+  document.getElementById("radar").innerHTML=orden.map(s=>
+    '<li class="'+(s.aplica?'':'off')+'" '+estiloSis(s.id)+' title="'+escHtml(s.nombre)+'">'+
+      '<i class="rdot'+(s.abierto?' ab':'')+'"></i><b>'+s.id+'</b>'+
+      '<span class="rtxt">'+(s.aplica?s.txt:'No aplica a tu sector')+'</span>'+
+      (s.aplica&&s.sub?'<span class="rsub'+(s.abierto&&s.dias<=2?' urg':'')+'">'+s.sub+'</span>':'')+'</li>').join("");
 }
 
 /* ---------- tabla ---------- */
