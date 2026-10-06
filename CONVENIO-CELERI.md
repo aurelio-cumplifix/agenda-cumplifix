@@ -1,4 +1,4 @@
-﻿# Cumplimiento del Convenio de Transacción CELERI · CumpliFix S.C.
+# Cumplimiento del Convenio de Transacción CELERI · CumpliFix S.C.
 
 **Documento de control interno.** Registra qué ajustes exige el convenio, qué se ejecutó, dónde
 y cuándo. Sirve como evidencia de cumplimiento en plazo.
@@ -115,6 +115,7 @@ cualquier otro soporte físico o digital, sin excepción"*. Quedan por auditar:
 - Firmas de correo del equipo
 - Presentaciones comerciales y la agenda en PowerPoint
 - Materiales entregados a ASOFOM, ASOFICH y demás asociaciones
+- ~~Micrositio **pui.cumplifix.com**~~ — ajustado el 4 de octubre de 2026 (ver punto 5)
 - El sitio principal **www.cumplifix.com**, que el convenio menciona por nombre y cuya
   continuidad de uso queda condicionada al cumplimiento de las cláusulas segunda y tercera
 
@@ -138,6 +139,36 @@ regula el uso de la marca CUMPLIFIX y no alcanza a nombres distintos: *EvaluaFix
 **Punto que conviene confirmar con el abogado:** si CELERI considera que *EvaluaFix*,
 *SimulaFix*, *CumpliLex* y *EduFix* son variaciones confundibles de CUMPLIFIX. El convenio no
 los menciona, pero conviene dejar el criterio documentado antes de que alguien lo pregunte.
+
+---
+
+### 5. Micrositio pui.cumplifix.com — AJUSTADO (4 de octubre de 2026)
+
+El micrositio de la PUI no estaba en la lista de soportes revisados. La versión 1.1 (abril 2026)
+incumplía las dos cláusulas:
+
+| Hallazgo en la v1.1 | Cláusula |
+|---|---|
+| Denominación parcial "CumpliFix" en título, metadatos (`og:site_name`), pie y más de 30 menciones | Segunda |
+| "Coincidencias por API", endpoints, JSON, códigos HTTP, infraestructura y "guía técnica" | Tercera |
+| Bloque "Aliado tecnológico · SAEKO" con beneficios de plataforma ("actualizaciones incluidas", "sin infraestructura propia", "la ruta más rápida y validada") | Tercera (clase 42) |
+
+**Acción tomada:** se publicó la versión 2.0 el 4 de octubre de 2026, desde el repositorio
+`aurelio-cumplifix/pui-cumplifix` (Railway, proyecto *diplomatic-elegance*):
+
+- Denominación **CUMPLIFIX S.C.** completa y en un solo color, con el isologo autorizado, en
+  barra, pie, título, metadatos, copyright y texto de WhatsApp prellenado
+- Cero ocurrencias de "API" y eliminación de todo el contenido técnico
+- Declaración: *"CUMPLIFIX S.C. es una firma de consultoría en cumplimiento normativo y
+  regulatorio. No desarrolla software ni presta servicios de tecnología."*
+- SAEKO se menciona solo como proveedor independiente que la institución contrata directamente
+
+**Evidencia:** `Documentos/pui-cumplifix-v2/index.html` y `CAMBIOS_PUI_v2.md`; historial de
+commits del repositorio en GitHub; captura de la versión publicada del 4 de octubre de 2026.
+
+**Pendiente:** confirmar con el abogado que la mención de SAEKO como proveedor independiente no se
+considera promoción de servicios de clase 42, y rehacer la imagen para compartir (`og:image`) con
+la denominación completa.
 
 ---
 
