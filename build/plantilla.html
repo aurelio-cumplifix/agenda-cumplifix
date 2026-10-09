@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Agenda regulatoria CONDUSEF 2026 · CUMPLIFIX, S.C.</title>
 <meta name="description" content="Agenda gratuita de cumplimiento CONDUSEF 2026: ventanas de validación, fechas límite por registro, sanción mínima por obligación y semáforo anual, con vista por sector financiero.">
-<meta name="author" content="CumpliFix S.C.">
+<meta name="author" content="CUMPLIFIX, S.C.">
 <link rel="icon" href="__FAVICON__">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="CUMPLIFIX, S.C.">
@@ -716,6 +716,17 @@ h1,h2,h3{letter-spacing:-.025em}
   details[open]::details-content{height:auto}
 }
 @media(max-width:680px){.navbrand{font-size:13.5px}.navin{gap:12px}.hero{padding:40px 0 88px}}
+
+.masfirma{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:28px;align-items:center;padding:32px;margin-top:34px}
+.masfirma h2{font-size:28px;margin:8px 0 10px}
+.masfirma p{color:var(--muted);margin:0;max-width:46ch}
+.masfirma-links{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.masfirma-links a{display:block;padding:16px 18px;border-radius:16px;background:var(--bg);color:var(--ink);text-decoration:none;font:800 15px/1.25 var(--fd);transition:background .2s,transform .2s}
+.masfirma-links a span{display:block;margin-top:4px;font:500 13px/1.4 var(--fb);color:var(--muted)}
+.masfirma-links a:hover{background:#E8EDFC;transform:translateY(-2px)}
+.dolor .s a{color:inherit;text-decoration:none}
+.dolor .s a:hover{text-decoration:underline}
+@media(max-width:760px){.masfirma{grid-template-columns:1fr;padding:22px}.masfirma-links{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -745,7 +756,7 @@ h1,h2,h3{letter-spacing:-.025em}
       <div class="temporada" id="temporada" hidden></div>
       <h1>Agenda regulatoria CONDUSEF 2026</h1>
       <p class="lead">Cada día que entres te dice exactamente cuánto falta para la próxima ventana,
-        qué obligaciones vencen y cuánto cuesta no cumplirlas. Sin registro, sin costo.</p>
+        qué obligaciones vencen y qué rango de multa prevé la ley. Sin registro, sin costo.</p>
       <div class="herocta">
         <a class="btn btn-light" href="#diagnostico">Haz el diagnóstico en 3 minutos</a>
         <a class="btn btn-onblue" href="#descarga">Descargar agenda PDF</a>
@@ -753,7 +764,7 @@ h1,h2,h3{letter-spacing:-.025em}
       <div class="herostats">
         <div class="hs"><div class="n" id="hsObl">—</div><div class="l">obligaciones en el año</div></div>
         <div class="hs"><div class="n" id="hsSis">7</div><div class="l">registros CONDUSEF</div></div>
-        <div class="hs"><div class="n" id="hsExp">—</div><div class="l">exposición mínima anual</div></div>
+        <div class="hs"><div class="n">200 UMA</div><div class="l">multa mínima por obligación omitida</div></div>
       </div>
     </div>
     <div class="herofecha">Hoy en Ciudad de México<b id="hoyTxt">—</b></div>
@@ -828,7 +839,7 @@ h1,h2,h3{letter-spacing:-.025em}
       <option value="">Calendario general (todas las obligaciones)</option>
     </select>
     <span class="lock" id="lockBadge" style="display:none">🔒 Requiere registro</span>
-    <span class="hint" id="sectorHint">Elige tu sector para ver solo lo que te aplica y cuánto cambia tu exposición.</span>
+    <span class="hint" id="sectorHint">Elige tu sector para ver solo lo que te aplica y qué multas prevé la ley.</span>
   </section>
 
   <!-- CALENDARIO + DETALLE DEL DÍA -->
@@ -943,7 +954,7 @@ h1,h2,h3{letter-spacing:-.025em}
     <div class="anualfoot">
       <div class="t"><b id="anRiesgo">—</b>
         <span id="anRiesgoTxt">—</span></div>
-      <a class="btn btn-primary" href="#contacto" data-tema="Checkup CumpliFix S.C. — revisión de 5 años">
+      <a class="btn btn-primary" href="#contacto" data-tema="Checkup CUMPLIFIX, S.C. — revisión de 5 años">
         Quiero mi Checkup de 5 años</a>
     </div>
   </section>
@@ -951,7 +962,7 @@ h1,h2,h3{letter-spacing:-.025em}
   <!-- DESCARGA -->
   <section class="card dl" id="descarga">
     <div>
-      <div class="eyebrow" style="color:var(--sky)">Documento de consulta · CumpliFix S.C.</div>
+      <div class="eyebrow" style="color:var(--sky)">Documento de consulta · CUMPLIFIX, S.C.</div>
       <h2>Agenda de Cumplimiento CONDUSEF 2026</h2>
       <p>Calendario anual con días inhábiles, periodos de validación, fechas límite por obligación
          y la sanción aplicable. Formato imprimible para el expediente de la UNE.</p>
@@ -960,14 +971,14 @@ h1,h2,h3{letter-spacing:-.025em}
       </div>
     </div>
     <div class="subs">
-      <div class="eyebrow">Red CumpliFix S.C. · sin costo</div>
+      <div class="eyebrow">Red CUMPLIFIX, S.C. · sin costo</div>
       <h3>Efemérides del Cumplimiento</h3>
-      <p>Inteligencia regulatoria diaria: cambios normativos, plazos y criterios de supervisión,
+      <p>Novedades normativas y plazos, en formato breve: cambios normativos, plazos y criterios de supervisión,
          directo a tu correo. Te avisamos antes de que abra cada ventana.</p>
       <a class="btn btn-light" id="btnEfem" href="#" target="_blank" rel="noopener"
-         style="width:100%">Unirme a la red CumpliFix S.C.</a>
+         style="width:100%">Unirme a la red CUMPLIFIX, S.C.</a>
       <div class="priv">Al registrarte aceptas el tratamiento de tus datos conforme al
-        <a href="aviso-de-privacidad.html">Aviso de Privacidad</a>.</div>
+        <a href="https://cumplifix.com/aviso-de-privacidad.html">Aviso de Privacidad</a>.</div>
     </div>
   </section>
 
@@ -979,51 +990,18 @@ h1,h2,h3{letter-spacing:-.025em}
   </div>
   <section class="dolores" id="dolores"></section>
 
-  <!-- SERVICIOS -->
-  <div class="sec-h" id="servicios">
-    <h2>El ecosistema CumpliFix S.C.</h2>
-    <p>Desde prevención hasta defensa legal. Cada servicio ataca una etapa distinta del ciclo
-       de cumplimiento ante CONDUSEF, CNBV y Banco de México.</p>
-  </div>
-  <div class="objeto">
-    <b>CumpliFix S.C. es una firma de consultoría en cumplimiento normativo y regulatorio.</b>
-    No desarrolla software ni presta servicios de tecnología. Los servicios que se describen son
-    de asesoría, auditoría preventiva, capacitación y representación jurídica.
-  </div>
-  <section class="servs" id="servs"></section>
-
-  <!-- NOSOTROS -->
-  <section class="card nos" id="nosotros">
+  <!-- SERVICIOS: viven en cumplifix.com -->
+  <section class="card masfirma" id="servicios">
     <div>
-      <div class="eyebrow">Quiénes somos</div>
-      <h2>Transformamos el cumplimiento en una ventaja competitiva</h2>
-      <p>CumpliFix S.C. es una firma mexicana especializada en cumplimiento normativo y regulación
-         financiera, enfocada en fortalecer la operación, reputación y confianza de las
-         instituciones del sistema financiero ante la CONDUSEF, la CNBV y el Banco de México.</p>
-      <p>Integramos experiencia, análisis jurídico y control documental con un enfoque 100% preventivo.
-         Cumplir no es solo evitar multas: es elevar el estándar de confianza institucional.</p>
-      <div class="kpis">
-        <div class="kpi"><b>+20 años</b><span>de experiencia conjunta en el sector</span></div>
-        <div class="kpi"><b>+250</b><span>instituciones financieras atendidas</span></div>
-        <div class="kpi"><b>+160</b><span>obligaciones anuales monitoreadas</span></div>
-      </div>
-      <div class="eyebrow" style="margin-top:6px">Alianzas estratégicas</div>
-      <div class="ali"><span>ASOFOM</span><span>ANIFE</span><span>PROMEFIN México A.C.</span><span>AFICO</span></div>
-      <div style="margin-top:18px">
-      </div>
+      <div class="eyebrow">CUMPLIFIX, S.C.</div>
+      <h2>¿Necesitas ayuda con tu cumplimiento?</h2>
+      <p>Somos una firma de consultoría en cumplimiento normativo ante la CONDUSEF, la CNBV y el Banco de México. Conoce nuestros servicios en cumplifix.com.</p>
     </div>
-    <div>
-      <div class="eyebrow" style="margin-bottom:8px">Dirección</div>
-      <ul class="equipo">
-        <li><b>Aurelio Castro</b><span>Fundador y Director General. Ingeniero con más de 10 años
-          en el sistema financiero mexicano; ex Director General de TI en CONDUSEF.</span></li>
-        <li><b>Marco Medina</b><span>Socio fundador y Director de Administración y Finanzas.
-          Contador Público con maestría y más de 16 años en el sector financiero.</span></li>
-        <li><b>Dolores Castro</b><span>Directora de Cumplimiento. Responsable del cumplimiento
-          ante CONDUSEF y miembro de PROMEFIN México A.C.</span></li>
-        <li><b>María Marines</b><span>Directora de Operaciones. Maestría en Derecho
-          Internacional; lidera operaciones en CumpliFix S.C.</span></li>
-      </ul>
+    <div class="masfirma-links">
+      <a href="https://cumplifix.com/servicios/cumplifix-360/">CUMPLIFIX, S.C. 360 <span>Validación mensual y monitoreo de notificaciones</span></a>
+      <a href="https://cumplifix.com/servicios/checkup/">Checkup CUMPLIFIX, S.C. <span>Cinco años de obligaciones revisados</span></a>
+      <a href="https://cumplifix.com/servicios/simulafix/">SIMULAFIX <span>Simulacro de supervisión</span></a>
+      <a href="https://cumplifix.com/#servicios">Todos los servicios <span>De la constitución a la defensa</span></a>
     </div>
   </section>
 
@@ -1039,12 +1017,6 @@ h1,h2,h3{letter-spacing:-.025em}
         <li>📱 <b><a href="https://wa.me/525571462367" target="_blank" rel="noopener">55-7146-2367</a></b> · WhatsApp</li>
         <li>🌐 <b><a href="https://www.cumplifix.com" target="_blank" rel="noopener">www.cumplifix.com</a></b></li>
       </ul>
-      <div style="margin-top:18px;padding:14px 16px;background:#F8FAFC;border-radius:12px;
-                  font-size:12px;color:var(--muted);line-height:1.6">
-        <b style="color:var(--ink)">Confidencialidad.</b> Tratamos la información de nuestros clientes bajo
-        convenio de confidencialidad. Si tu institución lo requiere, firmamos NDA antes de cualquier
-        intercambio de información.
-      </div>
     </div>
     <form id="formContacto">
       <div class="row">
@@ -1060,8 +1032,9 @@ h1,h2,h3{letter-spacing:-.025em}
         <div class="f"><label for="c_tema">Tema</label><select id="c_tema" name="tema"></select></div>
       </div>
       <div class="f"><label for="c_msg">Mensaje</label><textarea id="c_msg" name="mensaje" required></textarea></div>
-      <label class="check"><input type="checkbox" name="aviso_privacidad" value="Aceptado" required><span>He leído y acepto el <a href="aviso-de-privacidad.html">Aviso de Privacidad</a> y autorizo el
-        tratamiento de mis datos personales para ser contactado por CumpliFix S.C.</span></label>
+      <label class="check"><input type="checkbox" name="no_publicidad" value="NO acepta publicidad (negativa)"><span><b>NO</b> acepto que mis datos se utilicen para el envío de publicidad, promociones o mercadotecnia (finalidad secundaria).</span></label>
+      <label class="check"><input type="checkbox" name="aviso_privacidad" value="Aceptado" required><span>He leído y acepto el <a href="https://cumplifix.com/aviso-de-privacidad.html">Aviso de Privacidad</a> y autorizo el
+        tratamiento de mis datos personales para ser contactado por CUMPLIFIX, S.C.</span></label>
       <button class="btn btn-primary" type="submit" style="width:100%">Hablar con un especialista</button>
       <p class="resp">Te respondemos en un día hábil.</p>
       <div class="msg" id="msgContacto"></div>
@@ -1096,7 +1069,7 @@ h1,h2,h3{letter-spacing:-.025em}
         a 2,000 UMAs o más, según la fracción aplicable— y la individualización de la sanción
         corresponde a la autoridad, que además puede duplicarla en caso de reincidencia.<br><br>
         La aplicabilidad por sector sigue el artículo 3 de la Disposición y el criterio técnico de
-        CumpliFix S.C. Su alcance en cada caso depende de la autorización y los productos de la
+        CUMPLIFIX, S.C. Su alcance en cada caso depende de la autorización y los productos de la
         institución.
         <span class="okbox">Validado contra fuente: los días inhábiles coinciden íntegramente con el
         <b>Acuerdo publicado en el DOF el 23 de diciembre de 2025</b>, por el que la CONDUSEF da a
@@ -1107,7 +1080,7 @@ h1,h2,h3{letter-spacing:-.025em}
     <div style="margin-top:16px;padding-top:14px;border-top:1px solid var(--line)">
       <b>Aviso.</b> Este micrositio es información de carácter general con fines preventivos. No
       sustituye la consulta directa de las disposiciones vigentes ni la asesoría profesional sobre el
-      caso concreto de cada institución. CumpliFix S.C. presta servicios de consultoría en cumplimiento normativo; no desarrolla software ni presta servicios de tecnología. No asume responsabilidad por decisiones
+      caso concreto de cada institución. CUMPLIFIX, S.C. presta servicios de consultoría en cumplimiento normativo; no desarrolla software ni presta servicios de tecnología. No asume responsabilidad por decisiones
       tomadas exclusivamente con base en este contenido.
     </div>
   </section>
@@ -1117,23 +1090,20 @@ h1,h2,h3{letter-spacing:-.025em}
   <div class="wrap">
     <div class="ft">
       <div>
-        <div class="lema">CumpliFix S.C.<span>Cumple tus metas, nosotros tu cumplimiento</span></div>
-        <div style="margin-top:14px;font-size:12.5px;opacity:.75;max-width:34ch">
-          Soluciones inteligentes para fortalecer el cumplimiento ante CONDUSEF, CNBV y Banco de México.</div>
+        <div class="lema">CUMPLIFIX, S.C.<span>Cumple tus metas, nosotros tu cumplimiento</span></div>
       </div>
       <div><h4>La agenda</h4>
         <a href="#hoy">Estado de hoy</a><a href="#anual">Semáforo anual</a>
         <a href="#obligaciones">Obligaciones del mes</a><a href="#descarga">Descargar la agenda</a></div>
-      <div><h4>Servicios</h4>
-        <a href="#servicios">CumpliFix S.C. 360</a><a href="#servicios">Checkup CumpliFix S.C.</a>
-        <a href="#servicios">SimulaFix</a><a href="#servicios">CumpliLex</a></div>
+      <div><h4>cumplifix.com</h4>
+        <a href="https://cumplifix.com/#servicios">Servicios</a><a href="https://cumplifix.com/recursos/multas-condusef/">Guía de multas</a>
+        <a href="https://cumplifix.com/#eventos">Eventos</a><a href="https://cumplifix.com/#academia">Academia</a></div>
       <div><h4>Contacto</h4>
         <a href="mailto:info@cumplifix.com">info@cumplifix.com</a>
-        <a href="https://wa.me/525571462367" target="_blank" rel="noopener">55-7146-2367</a>
-        <a href="https://www.cumplifix.com" target="_blank" rel="noopener">www.cumplifix.com</a>
-        <a href="aviso-de-privacidad.html">Aviso de Privacidad</a></div>
+        <a href="https://wa.me/525571462367" target="_blank" rel="noopener">55 7146 2367</a>
+        <a href="https://cumplifix.com/aviso-de-privacidad.html">Aviso de Privacidad</a></div>
     </div>
-    <div class="copy">© 2026 CumpliFix S.C. · Prevención de sanciones · Inteligencia diaria · Decisiones informadas</div>
+    <div class="copy">© 2026 CUMPLIFIX, S.C. · Firma de consultoría en cumplimiento normativo. No desarrolla software ni presta servicios de tecnología.</div>
   </div>
 </footer>
 
@@ -1152,7 +1122,7 @@ h1,h2,h3{letter-spacing:-.025em}
     <div class="benef"><b>Al registrarte obtienes:</b>
       <ul>
         <li>Solo las obligaciones que aplican a tu tipo de institución</li>
-        <li>Tu exposición real recalculada, sin obligaciones ajenas</li>
+        <li>Las multas que prevé la ley solo para tus obligaciones</li>
         <li>El archivo .ics de tu sector para el calendario del área</li>
       </ul>
     </div>
@@ -1166,8 +1136,8 @@ h1,h2,h3{letter-spacing:-.025em}
         <div class="f"><label for="s_cargo">Cargo</label><input id="s_cargo" name="cargo" placeholder="Titular de la UNE, Oficial de Cumplimiento…"></div>
       </div>
       <div class="f"><label for="s_sector">Sector</label><select id="s_sector" name="sector"></select></div>
-      <label class="check"><input type="checkbox" name="aviso_privacidad" value="Aceptado" required><span>Acepto el <a href="aviso-de-privacidad.html" target="_blank">Aviso de Privacidad</a> y que
-        CumpliFix S.C. me contacte con información de cumplimiento.</span></label>
+      <label class="check"><input type="checkbox" name="aviso_privacidad" value="Aceptado" required><span>He leído y acepto el <a href="https://cumplifix.com/aviso-de-privacidad.html" target="_blank" rel="noopener">Aviso de Privacidad</a>.</span></label>
+      <label class="check"><input type="checkbox" name="no_publicidad" value="NO acepta publicidad (negativa)"><span><b>NO</b> acepto que mis datos se utilicen para el envío de publicidad, promociones o mercadotecnia (finalidad secundaria).</span></label>
       <button class="btn btn-primary" type="submit" style="width:100%">Ver la agenda de mi sector</button>
       <div class="msg" id="msgSector"></div>
     </form>
@@ -1820,7 +1790,7 @@ function pintarAnual(){
     r.textContent="Vas al corriente en lo que llevas marcado";
     t.textContent="Aun así, lo que sostiene un cumplimiento no es la memoria: es el acuse. Un Checkup verifica que exista evidencia documental de cada una de las "+oblCerradas+" obligaciones ya vencidas de "+anio+".";
   } else {
-    r.textContent=pendientes+" obligaciones vencidas sin marcar · "+money0(expuesto)+" de exposición mínima";
+    r.textContent=pendientes+" obligaciones vencidas sin marcar · multas desde "+money0(expuesto)+" en conjunto (piso legal; la autoridad individualiza)";
     t.textContent="Son ventanas de "+anio+" que ya cerraron. No se pueden validar en tiempo: lo único que las sostiene ante un requerimiento es el acuse. Si no lo tienes localizado, conviene revisarlo antes de que la autoridad pregunte.";
   }
 }
@@ -1850,64 +1820,30 @@ function actualizarLock(){
   document.getElementById("lockBadge").style.display = REGISTRADO ? "none" : "inline-flex";
   document.getElementById("sectorHint").textContent = REGISTRADO
     ? "Vista sectorial activa. Cambia de sector cuando lo necesites."
-    : "Elige tu sector para ver solo lo que te aplica y cuánto cambia tu exposición.";
+    : "Elige tu sector para ver solo lo que te aplica y qué multas prevé la ley.";
 }
 function aplicarSector(v){
   SECTOR=v; Store.set("cf_sector",v); document.getElementById("selSector").value=v;
   MACT=mesActivo(); actualizarLock(); pintarTodo();
 }
 const DOLORES=[
-  {q:"Se te pasó una ventana de validación",a:"La ventana ya cerró y no hay forma de validar en tiempo. Lo que sigue es documentar la causa, dejar constancia del plan de regularización y blindar el expediente antes de un requerimiento.",s:"CumpliFix S.C. 360",t:"Se me pasó una ventana de validación"},
+  {q:"Se te pasó una ventana de validación",a:"La ventana ya cerró y no hay forma de validar en tiempo. Lo que sigue es documentar la causa, dejar constancia del plan de regularización y ordenar el expediente antes de un requerimiento.",s:"CUMPLIFIX, S.C. 360",t:"Se me pasó una ventana de validación"},
   {q:"No sabes dónde quedaron tus acuses",a:"Sin acuse no hay cumplimiento demostrable, aunque hayas reportado. Reconstruimos la evidencia documental y ordenamos el expediente por obligación y por periodo.",s:"Compliance Docs",t:"No tengo localizados mis acuses"},
-  {q:"Quieres revisar hasta cinco años atrás",a:"Revisión exhaustiva de las obligaciones de los últimos cinco ejercicios. Identifica incumplimientos históricos antes de que los identifique la autoridad.",s:"Checkup CumpliFix S.C.",t:"Checkup CumpliFix S.C. — revisión de 5 años"},
+  {q:"Quieres revisar hasta cinco años atrás",a:"Revisión exhaustiva de las obligaciones de los últimos cinco ejercicios. Identifica incumplimientos históricos antes de que los identifique la autoridad.",s:"Checkup CUMPLIFIX, S.C.",t:"Checkup CUMPLIFIX, S.C. — revisión de 5 años"},
   {q:"Te llegó un oficio o requerimiento",a:"Los plazos de respuesta corren desde la notificación. Preparamos la contestación, la evidencia de soporte y la estrategia de defensa.",s:"CumpliLex",t:"Recibí un oficio o requerimiento de la autoridad"},
-  {q:"No sabes cómo contestar una queja de REDECO o de la UNE",a:"Cada queja mal contestada es un antecedente. Estructuramos la respuesta, el soporte documental y el criterio que conviene sostener.",s:"CumpliFix S.C. 360",t:"Necesito ayuda para contestar una queja (UNE / REDECO)"},
-  {q:"Temes una visita de verificación",a:"Simulación completa de visita CONDUSEF, in situ o extra situ. Detecta y corrige los riesgos operativos antes de que lo haga la autoridad.",s:"SimulaFix",t:"Quiero una simulación de visita de verificación"},
-  {q:"Dudas si tu publicidad y contratos resisten una revisión",a:"Evaluación integral de contratos, anexos, estados de cuenta, comprobantes, publicidad y sitio web contra la normativa de transparencia y sanas prácticas.",s:"EvaluaFix",t:"Quiero una evaluación de mis contratos y publicidad"},
-  {q:"Quieres que nadie más dependa de una sola persona",a:"Doble validación mensual: nosotros revisamos en paralelo que cada obligación quedó presentada y con acuse, todos los meses.",s:"CumpliFix S.C. 360",t:"Quiero doble validación mensual de mis obligaciones"},
+  {q:"No sabes cómo contestar una queja de REDECO o de la UNE",a:"Cada queja mal contestada es un antecedente. Estructuramos la respuesta, el soporte documental y el criterio que conviene sostener.",s:"CUMPLIFIX, S.C. 360",t:"Necesito ayuda para contestar una queja (UNE / REDECO)"},
+  {q:"Temes una visita de verificación",a:"Simulación completa de visita CONDUSEF, in situ o extra situ. Detecta y corrige los riesgos operativos antes de que lo haga la autoridad.",s:"SIMULAFIX",t:"Quiero una simulación de visita de verificación"},
+  {q:"Dudas si tu publicidad y contratos resisten una revisión",a:"Evaluación integral de contratos, anexos, estados de cuenta, comprobantes, publicidad y sitio web contra la normativa de transparencia y sanas prácticas.",s:"EVALUAFIX",t:"Quiero una evaluación de mis contratos y publicidad"},
+  {q:"Quieres que nadie más dependa de una sola persona",a:"Doble validación mensual: nosotros revisamos en paralelo que cada obligación quedó presentada y con acuse, todos los meses.",s:"CUMPLIFIX, S.C. 360",t:"Quiero doble validación mensual de mis obligaciones"},
   {q:"Tu equipo no tiene claro qué se reporta al REUNE y al REDECO",a:"Formación normativa para el personal de la UNE: qué información corresponde a cada reporte, en qué periodo, con qué fundamento y cómo se documenta el acuse.",s:"Master UNE",t:"Capacitación normativa REUNE y REDECO"}
 ];
 
-/* Iconos del ecosistema CumpliFix S.C. Trazo de 1.7 sobre lienzo de 24, para que
-   pesen lo mismo que los de registros y lean bien a 22px. */
-const ISERV={
- "CumpliFix S.C. 360":'<path d="M12 3 4 6.2v5.4c0 4.6 3.3 8.4 8 9.4 4.7-1 8-4.8 8-9.4V6.2Z"/><path d="M12 8v4l2.6 1.6"/>',
- "Checkup CumpliFix S.C.":'<path d="M3 17.5 7.5 10l3.2 4.6L14 7.5l3 5.6 4-3"/><path d="M3 21h18"/><circle cx="17" cy="13.1" r="1.5"/>',
- "EvaluaFix":'<path d="M14.5 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7.5Z"/><path d="M14.5 3v4.5H19"/><path d="m8.5 13.5 2 2 4-4"/>',
- "SimulaFix":'<circle cx="11" cy="11" r="6.5"/><path d="m16 16 5 5"/><path d="M11 8.2v5.6M8.2 11h5.6"/>',
- "CumpliLex":'<path d="M12 3v18"/><path d="M5 7h14"/><path d="m5 7-2.5 6a3 3 0 0 0 5 0Z"/><path d="m19 7-2.5 6a3 3 0 0 0 5 0Z"/><path d="M8.5 21h7"/>',
- "Compliance Docs":'<path d="M8 3h8l4 4v12a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z"/><path d="M16 3v4h4"/><path d="M9.5 12h5M9.5 16h3"/>',
- "Master UNE":'<path d="M2 3h20"/><path d="M21 3v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V3"/><path d="m7 21 5-4 5 4"/>',
- "CumpliFix S.C. Incuba":'<path d="M12 21c3.9 0 6.5-2.8 6.5-6.6C18.5 9.4 12 3 12 3S5.5 9.4 5.5 14.4C5.5 18.2 8.1 21 12 21Z"/><path d="M12 17.5v-4"/><path d="M12 13.5c0-1.3 1-2.2 2.2-2.2"/>',
- "EduFix":'<path d="M12 4 2.5 8.7 12 13.4l9.5-4.7Z"/><path d="M6.5 11v4.6c0 1.5 2.5 2.7 5.5 2.7s5.5-1.2 5.5-2.7V11"/><path d="M21.5 8.7v5.1"/>',
- "PLD/FT":'<path d="M12 3 4.5 6v5.5c0 4.4 3.1 8.1 7.5 9.2 4.4-1.1 7.5-4.8 7.5-9.2V6Z"/><circle cx="12" cy="11" r="2.4"/><path d="m13.8 12.8 2 2"/>',
- "Talleres CumpliFix S.C.":'<path d="M4 20h16"/><path d="M7 20v-6.5a5 5 0 0 1 10 0V20"/><path d="M12 4v3"/><path d="M6.5 6.5 8 8M17.5 6.5 16 8"/>',
- "Efemérides del Cumplimiento":'<path d="M12 12v-8"/><path d="M12 12 17 15"/><circle cx="12" cy="12" r="9"/><path d="M12 3v1.5M21 12h-1.5M12 21v-1.5M3 12h1.5"/>'};
-function svgServ(n){return '<svg class="si" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" '+
- 'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+(ISERV[n]||ISERV["Compliance Docs"])+'</svg>';}
-
-const SERVICIOS=[
-  {n:"CumpliFix S.C. 360",c:"Tu blindaje regulatorio 24/7",p:"Monitoreo, validación y actualización continua de tus reportes ante CONDUSEF. Más de 160 obligaciones anuales y verificación del portal PUR los 365 días del año."},
-  {n:"Checkup CumpliFix S.C.",c:"Diagnóstico de 5 años",p:"Revisión exhaustiva de las obligaciones de los últimos cinco ejercicios. Identifica incumplimientos históricos y fortalece los controles preventivos."},
-  {n:"EvaluaFix",c:"Transparencia blindada",p:"Evaluación integral de contratos, anexos, estados de cuenta, comprobantes de operación, publicidad y páginas web frente a la normativa de transparencia."},
-  {n:"SimulaFix",c:"Anticípate a la autoridad",p:"Simulación completa de una visita de verificación CONDUSEF. Detecta y corrige riesgos operativos antes de una revisión real, in situ o extra situ."},
-  {n:"CumpliLex",c:"Defensa legal estratégica",p:"Representación jurídica ante CONDUSEF, CNBV o Banco de México. Desvirtuamos sanciones y protegemos la reputación institucional."},
-  {n:"Compliance Docs",c:"Documentación que resiste auditorías",p:"Manuales, políticas y contratos que cumplen la norma y soportan auditorías o procesos judiciales."},
-  {n:"Master UNE",c:"Capacitación normativa",p:"Formación para el personal de la Unidad Especializada sobre las obligaciones de reporte al REUNE y al REDECO: qué información se reporta, en qué periodo, con qué fundamento y cómo se acredita. Capacitación normativa; no comprende desarrollo ni implementación de sistemas."},
-  {n:"CumpliFix S.C. Incuba",c:"Nace fuerte, con bases sólidas",p:"Acompañamiento desde cero en la creación de nuevas instituciones financieras con fundamentos regulatorios impecables."},
-  {n:"EduFix",c:"Educación financiera certificada",p:"Programas alineados con CONDUSEF y OCDE, con impacto social medible y validación institucional."},
-  {n:"PLD/FT",c:"Auditoría y back office",p:"Auditoría externa anual, dictaminación de operaciones, actas del Comité de Comunicación y Control, y certificación de Oficiales de Cumplimiento ante CNBV."},
-  {n:"Talleres CumpliFix S.C.",c:"Capacitación especializada",p:"IFIT y Catálogo Nacional, contratos de adhesión, transparencia digital obligatoria, IDATU, sanciones y multas, y supervisión en publicidad."},
-  {n:"Efemérides del Cumplimiento",c:"Inteligencia regulatoria diaria",p:"Radar de cambios normativos, plazos y criterios de supervisión, en formato breve y accionable. Sin costo para la red CumpliFix S.C."}
-];
+const SERVICIOS=["CUMPLIFIX, S.C. 360","Checkup CUMPLIFIX, S.C.","EVALUAFIX","SIMULAFIX","CumpliLex","Compliance Docs","Master UNE","CUMPLIFIX, S.C. Incuba","EduFix","PLD/FT","Academia CUMPLIFIX, S.C.","Efemérides del Cumplimiento"].map(n=>({n:n}));
+const SERV_URL={"CUMPLIFIX, S.C. 360":"https://cumplifix.com/servicios/cumplifix-360/","Checkup CUMPLIFIX, S.C.":"https://cumplifix.com/servicios/checkup/","SIMULAFIX":"https://cumplifix.com/servicios/simulafix/"};
 function pintarCatalogos(){
   document.getElementById("dolores").innerHTML=DOLORES.map(d=>
     '<div class="dolor"><div class="q">'+d.q+'</div><div class="a">'+d.a+'</div>'+
-    '<div class="s">'+d.s+'</div><a class="go" href="#contacto" data-tema="'+d.t+'">Cuéntanos tu caso →</a></div>').join("");
-  document.getElementById("servs").innerHTML=SERVICIOS.map(s=>
-    '<div class="card serv"><div class="ic">'+svgServ(s.n)+'</div><div class="cl">'+s.c+'</div>'+
-    '<div class="n">'+s.n+'</div><p>'+s.p+'</p>'+
-    '<a class="btn btn-ghost btn-sm" href="#contacto" data-tema="'+s.n+'" style="align-self:flex-start">Solicitar información</a></div>').join("");
+    '<div class="s">'+(SERV_URL[d.s]?'<a href="'+SERV_URL[d.s]+'">'+d.s+' →</a>':d.s)+'</div><a class="go" href="#contacto" data-tema="'+d.t+'">Cuéntanos tu caso →</a></div>').join("");
   const temas=["Validación mensual ante CONDUSEF"].concat(SERVICIOS.map(s=>s.n))
     .concat(DOLORES.map(d=>d.t)).concat(["Otro"]);
   const sel=document.getElementById("c_tema");
@@ -1926,8 +1862,8 @@ function bajar(nombre,contenido,tipo){
   a.click(); document.body.removeChild(a); setTimeout(()=>URL.revokeObjectURL(u),1500);
 }
 function generarIcs(){
-  const nl="\r\n", L=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//CumpliFix S.C.//Agenda CONDUSEF "+anio+"//ES",
-    "CALSCALE:GREGORIAN","METHOD:PUBLISH","X-WR-CALNAME:Agenda CONDUSEF "+anio+" · CumpliFix S.C."];
+  const nl="\r\n", L=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//CUMPLIFIX, S.C.//Agenda CONDUSEF "+anio+"//ES",
+    "CALSCALE:GREGORIAN","METHOD:PUBLISH","X-WR-CALNAME:Agenda CONDUSEF "+anio+" · CUMPLIFIX, S.C."];
   let k=0;
   DATA.meses.forEach(m=>{
     const vistos={};
@@ -1945,7 +1881,7 @@ function generarIcs(){
       L.push("BEGIN:VEVENT","UID:cumplifix-"+(++k)+"-"+ini+"@agenda.cumplifix.com",
         "DTSTAMP:"+ini+"T090000Z","DTSTART;VALUE=DATE:"+ini,"DTEND;VALUE=DATE:"+finS,
         "SUMMARY:CONDUSEF "+o.sistema+" — "+(g.length>1?g.length+" obligaciones":o.obligacion),
-        "DESCRIPTION:"+det+"\\n\\nAgenda CumpliFix S.C. · "+CONFIG.sitio,
+        "DESCRIPTION:"+det+"\\n\\nAgenda CUMPLIFIX, S.C. · "+CONFIG.sitio,
         "CATEGORIES:CONDUSEF,"+o.sistema,"BEGIN:VALARM","TRIGGER:-P2D","ACTION:DISPLAY",
         "DESCRIPTION:Se acerca la ventana de "+o.sistema+" ante CONDUSEF","END:VALARM","END:VEVENT");
     });
@@ -1965,7 +1901,7 @@ function generarCsv(){
 }
 function compartirWa(){
   const E=calcularEstado();
-  const t="*Agenda Regulatoria CONDUSEF "+anio+" · CumpliFix S.C.*\n\n"+
+  const t="*Agenda Regulatoria CONDUSEF "+anio+" · CUMPLIFIX, S.C.*\n\n"+
     cap(fechaLarga(HOY))+"\n"+E.ti+"\n"+
     (E.num>0?("Faltan "+E.num+" "+E.lbl.toLowerCase()+" "+E.desc+"."):"")+
     "\n\nConsulta el estado de cualquier día y descarga la agenda:\n"+CONFIG.sitio;
@@ -1995,7 +1931,7 @@ function enviar(datos, box, okTxt, cb){
     if(cb) cb(); return;
   }
   const payload=Object.assign({access_key:CONFIG.formKey,subject:asunto,
-    from_name:"Agenda CumpliFix S.C."},datos);
+    from_name:"Agenda CUMPLIFIX, S.C."},datos);
   if(datos.correo) payload.replyto=datos.correo;   // responder va directo al interesado
   // Evidencia del consentimiento: qué aceptó, cuándo y desde dónde.
   payload.aviso_privacidad = datos.aviso_privacidad
@@ -2129,14 +2065,14 @@ const DIAG_Q=[
    f:"Art. 12 de la Disposición en Materia de Registros",
    br:"Validaciones mensuales fuera de plazo o sin acreditar",
    px:"Una validación fuera de la ventana ya no se subsana en tiempo; lo que queda es documentar la causa.",
-   s:"CumpliFix S.C. 360",
+   s:"CUMPLIFIX, S.C. 360",
    plan:"Descarga del PUR los acuses de los últimos tres periodos y documenta la causa de cualquier validación fuera de plazo."},
   {id:"ifit",b:"Registros y validaciones",w:2,
    q:"¿Validas las fichas técnicas en el IFIT cada periodo, aunque tus productos no hayan cambiado?",
    f:"Art. 143 de la Disposición",
    br:"Fichas técnicas del IFIT sin validar",
    px:"La validación procede aunque la información o los productos no hayan cambiado en el periodo.",
-   s:"CumpliFix S.C. 360",
+   s:"CUMPLIFIX, S.C. 360",
    plan:"Valida las fichas técnicas en la próxima ventana aunque no haya cambios y conserva el comprobante."},
   {id:"reune",b:"UNE y REDECO",w:3,
    q:"¿Presentas el informe trimestral del REUNE dentro de los primeros 10 días hábiles de enero, abril, julio y octubre?",
@@ -2150,28 +2086,28 @@ const DIAG_Q=[
    f:"Arts. 12 y 124 de la Disposición",
    br:"Reporte mensual al REDECO incompleto",
    px:"Cada periodo sin reporte queda como obligación pendiente ante la autoridad.",
-   s:"CumpliFix S.C. 360",
+   s:"CUMPLIFIX, S.C. 360",
    plan:"Verifica en el REDECO el reporte mensual de quejas por cobranza de los últimos meses, incluidos los meses sin quejas."},
   {id:"reus",b:"Publicidad y REUS",w:2,
    q:"¿Informas al REUS, cada quincena, a los clientes que no aceptaron que su información se use con fines mercadotécnicos?",
    f:"Art. 158 de la Disposición",
    br:"Reporte quincenal de no consentimiento sin enviar",
    px:"Se informa el día 16 y el día 1, o el hábil siguiente, según la quincena de inscripción.",
-   s:"CumpliFix S.C. 360",
+   s:"CUMPLIFIX, S.C. 360",
    plan:"Revisa que el reporte de no consentimiento se haya enviado los días 1 y 16 (o el hábil siguiente) de cada mes."},
   {id:"cruce",b:"Publicidad y REUS",w:3,
    q:"Antes de cada campaña, ¿cruzas tu base de contactos contra el REUS para no contactar a usuarios inscritos?",
    f:"Art. 162, fr. III de la Disposición",
    br:"Campañas sin cruce contra el REUS",
    px:"Hacer publicidad a usuarios inscritos en el REUS está prohibido.",
-   s:"EvaluaFix",
+   s:"EVALUAFIX",
    plan:"Antes de la próxima campaña, cruza la base de contactos contra el REUS y conserva la evidencia del cruce."},
   {id:"frec",b:"Publicidad y REUS",w:2,
    q:"¿Controlas que ningún usuario reciba más de dos mensajes publicitarios del mismo producto, por el mismo medio, en 30 días naturales?",
    f:"Art. 162, fr. II de la Disposición",
    br:"Sin control de frecuencia publicitaria",
    px:"Rebasar dos contactos del mismo producto, por el mismo medio, en 30 días naturales está prohibido.",
-   s:"EvaluaFix",
+   s:"EVALUAFIX",
    plan:"Establece un control por usuario, producto y medio para no rebasar dos contactos publicitarios en 30 días naturales."},
   {id:"acuses",b:"Evidencia y acuses",w:3,
    q:"¿Podrías localizar hoy el acuse de cada validación y reporte de los últimos 12 meses?",
@@ -2185,7 +2121,7 @@ const DIAG_Q=[
    f:CONTROL,
    br:"Ejercicios anteriores sin revisar",
    px:"Las omisiones de periodos anteriores no desaparecen con el cambio de ejercicio.",
-   s:"Checkup CumpliFix S.C.",
+   s:"Checkup CUMPLIFIX, S.C.",
    plan:"Identifica los ejercicios sin revisar y prioriza los periodos con validaciones o reportes faltantes."},
   {id:"req",b:"Evidencia y acuses",w:3,inv:true,
    q:"En los últimos 12 meses, ¿recibiste algún requerimiento u oficio de la CONDUSEF?",
@@ -2256,7 +2192,7 @@ function dCalcular(){
                        x:"Tus respuestas no muestran brechas graves. Lo que sigue es conservar la evidencia de cada periodo."}
            : pct<=55 ? {c:"a",l:"Ámbar",t:"Hay brechas que conviene atender este mes",
                        x:"Ninguna es irreparable, pero cada periodo que pasa sin atenderlas se vuelve más difícil de acreditar."}
-           : {c:"r",l:"Rojo",t:"Exposición alta ante una revisión",
+           : {c:"r",l:"Rojo",t:"Brechas que conviene atender antes del siguiente periodo",
                        x:"Varias obligaciones no podrían acreditarse hoy. Conviene priorizar antes del siguiente periodo de validación."};
   return {pct:pct,nivel:nv,brechas:br.map(function(b){return b.q;})};
 }
@@ -2268,7 +2204,7 @@ function dResultado(){
         '<span class="fu">'+q.f+'</span><span class="sv">Lo atendemos con: '+q.s+'</span></li>'; }).join("")+'</ul>'
     : '<p class="dfund" style="margin-top:14px">No detectamos brechas en tus respuestas.</p>';
   const resumen="Hola, hice el diagnóstico exprés en agenda.cumplifix.com. Resultado: "+R.nivel.l+" ("+R.pct+
-    " % de riesgo)."+(top.length?" Brechas: "+top.map(function(q){return q.br;}).join("; ")+".":"")+" Me gustaría platicarlo.";
+    " · orientativo)."+(top.length?" Brechas: "+top.map(function(q){return q.br;}).join("; ")+".":"")+" Me gustaría platicarlo.";
   dPintar('<div class="dtop"><div class="dsem '+R.nivel.c+'" role="img" aria-label="Semáforo '+R.nivel.l+'">'+
       R.pct+'%<small>'+R.nivel.l.toUpperCase()+'</small></div>'+
       '<div><h3>'+R.nivel.t+'</h3><p>'+R.nivel.x+'</p></div></div>'+
@@ -2281,7 +2217,7 @@ function dResultado(){
         '<div class="row"><div class="f"><label for="d_mail">Correo</label><input id="d_mail" type="email" name="correo" required autocomplete="email"></div>'+
         '<div class="f"><label for="d_tel">Teléfono (opcional)</label><input id="d_tel" name="telefono" autocomplete="tel"></div></div>'+
         '<label class="check"><input type="checkbox" name="aviso_privacidad" value="Aceptado" required>'+
-          '<span>He leído y acepto el <a href="aviso-de-privacidad.html">Aviso de Privacidad</a> y autorizo que CumpliFix S.C. '+
+          '<span>He leído y acepto el <a href="https://cumplifix.com/aviso-de-privacidad.html">Aviso de Privacidad</a> y autorizo que CUMPLIFIX, S.C. '+
           'use mis respuestas y mis datos para enviarme el resultado y contactarme.</span></label>'+
         '<button class="btn btn-primary" type="submit" style="width:100%;min-height:48px">Recibir mi informe</button>'+
         '<div class="msg" id="msgDiag"></div></form>'+
@@ -2295,7 +2231,7 @@ function dResultado(){
     d.sector=DIAG.sector&&DIAG.sector!=="otro"?DIAG.sector:"";
     d.tema="Diagnóstico exprés · "+R.nivel.l;
     d.origen="diagnostico";
-    d.resultado=R.nivel.l+" · "+R.pct+" % de riesgo";
+    d.resultado=R.nivel.l+" (orientativo)";
     d.brechas=R.brechas.map(function(q){return q.br;}).join("; ")||"Sin brechas";
     d.respuestas=DIAG.lista.map(function(q){return q.id+": "+RESP[DIAG.r[q.id]];}).join(" | ");
     enviar(d,document.getElementById("msgDiag"),
@@ -2317,8 +2253,8 @@ function dInforme(d){
   const urg=R.brechas.filter(function(q){return q.w>=3;}), sig=R.brechas.filter(function(q){return q.w<3;});
   const li=function(a){ return a.length?'<ul>'+a.map(function(q){return '<li>'+q.plan+'</li>';}).join("")+'</ul>'
                                        :'<p>Sin acciones en este tramo.</p>'; };
-  const html='<div class="ihd"><span class="imarca">CUMPLIFIX S.C.</span><span>Diagnóstico exprés de cumplimiento CONDUSEF</span></div>'+
-    '<h1>Resultado: '+R.nivel.l+' · '+R.pct+' % de riesgo</h1>'+
+  const html='<div class="ihd"><span class="imarca">CUMPLIFIX, S.C.</span><span>Diagnóstico exprés de cumplimiento CONDUSEF</span></div>'+
+    '<h1>Resultado: '+R.nivel.l+' (orientativo)</h1>'+
     '<p class="imeta">'+escHtml(d.institucion)+' · '+escHtml(dNomSector(DIAG.sector))+' · '+cap(fechaLarga(HOY))+
       '<br>Preparado para: '+escHtml(d.nombre)+'</p>'+
     '<p>'+R.nivel.x+'</p>'+
@@ -2335,7 +2271,7 @@ function dInforme(d){
     '<p class="ileg">Resultado orientativo; no constituye dictamen ni opinión legal. Se basa únicamente en las respuestas '+
       'proporcionadas y no sustituye la revisión de la documentación de la institución. Fundamentos: Disposición en Materia '+
       'de Registros ante la CONDUSEF (DOF 14-10-2022).</p>'+
-    '<p class="ipie">CumpliFix S.C. | Cumple tus metas, nosotros tu cumplimiento · info@cumplifix.com · 55 7146 2367</p>';
+    '<p class="ipie">CUMPLIFIX, S.C. | Cumple tus metas, nosotros tu cumplimiento · info@cumplifix.com · 55 7146 2367</p>';
   let el=document.getElementById("informe");
   if(!el){ el=document.createElement("div"); el.id="informe"; document.body.appendChild(el); }
   el.innerHTML=html;
@@ -2383,10 +2319,8 @@ document.getElementById("btnCsv").onclick=generarCsv;
 document.getElementById("btnWa").onclick=compartirWa;
 
 const TOTAL_OBL=DATA.meses.reduce((a,m)=>a+m.obligaciones.length,0);
-const TOTAL_EXP=DATA.meses.reduce((a,m)=>a+m.obligaciones.reduce((b,o)=>b+o.sancion,0),0);
 document.getElementById("hsObl").textContent=TOTAL_OBL;
 document.getElementById("hsSis").textContent=DATA.sistemas.length;
-document.getElementById("hsExp").textContent=money0(TOTAL_EXP);
 
 llenarSectores(); pintarCatalogos(); pintarTodo();
 </script>

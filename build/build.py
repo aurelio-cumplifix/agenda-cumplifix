@@ -29,6 +29,8 @@ fecha = "{} de {} de {}".format(hoy.day, MESES[hoy.month - 1], hoy.year)
 
 n1 = escribir("index.html", leer("plantilla.html")
               .replace("__DATA__", datos).replace("__LOGO__", logo).replace("__FAVICON__", favicon))
+# El aviso de privacidad vive en cumplifix.com (apartado XI); aviso-de-privacidad.html solo redirige.
+# Si se activa analyticsToken, hay que describir la medición en ese apartado antes de publicar.
 # El aviso de privacidad debe describir lo que el sitio realmente hace. El texto del
 # apartado de medición se genera a partir del token configurado en la plantilla, para
 # que nunca pueda afirmar algo distinto de lo que está publicado.
@@ -60,9 +62,7 @@ escribir("sitemap.xml",
          '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
          '  <url><loc>https://agenda.cumplifix.com/</loc>'
          '<lastmod>{}</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>\n'
-         '  <url><loc>https://agenda.cumplifix.com/aviso-de-privacidad.html</loc>'
-         '<lastmod>{}</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>\n'
-         '</urlset>\n'.format(hoy.isoformat(), hoy.isoformat()))
+         '</urlset>\n'.format(hoy.isoformat()))
 
 d = json.loads(datos)
 print("index.html                 {:>7,} bytes".format(n1))
