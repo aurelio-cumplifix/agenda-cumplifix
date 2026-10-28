@@ -43,23 +43,53 @@ NIVEL DE VERIFICACIÓN POR OBLIGACIÓN
   "literal"  → texto del artículo verificado literalmente.
   "inferido" → asignación razonada, pendiente de validación documental.
 """
-import json, datetime as dt
+import json, sys, datetime as dt
 
-ANIO = 2026
+# Uso: python3 gen_data.py [2026|2027]   (por omisión, 2026)
+ANIO = int(sys.argv[1]) if len(sys.argv) > 1 else 2026
 
-# Días inhábiles CONDUSEF 2026 (adicionales a sábados y domingos).
-# Fuente: diapositiva 1 del PPTX de la Agenda CumpliFix.
-# PENDIENTE DE VALIDACIÓN contra el acuerdo anual publicado por la CONDUSEF.
-INHABILES = [
-    (1, [1, 2]), (2, [2]), (3, [16]), (4, [2, 3]), (5, [1, 5]),
-    (7, [20, 21, 22, 23, 24, 27, 28, 29, 30, 31]),
-    (9, [16]), (11, [2, 16]),
-    (12, [17, 18, 21, 22, 23, 24, 25, 28, 29, 30, 31]),
-]
-INHAB = set()
-for m, days in INHABILES:
-    for d in days:
-        INHAB.add(dt.date(ANIO, m, d))
+# Días inhábiles CONDUSEF (adicionales a sábados y domingos), por año.
+INHABILES_POR_ANIO = {
+    # Acuerdo publicado en el DOF el 23 de diciembre de 2025 (verificado íntegro).
+    2026: [
+        (1, [1, 2]), (2, [2]), (3, [16]), (4, [2, 3]), (5, [1, 5]),
+        (7, [20, 21, 22, 23, 24, 27, 28, 29, 30, 31]),
+        (9, [16]), (11, [2, 16]),
+        (12, [17, 18, 21, 22, 23, 24, 25, 28, 29, 30, 31]),
+    ],
+}
+
+# PRONÓSTICO 2027 de CUMPLIFIX, S.C. — NO es el acuerdo oficial.
+# La CONDUSEF publica su acuerdo en diciembre (DOF 21-dic-2022, 26-dic-2024,
+# 23-dic-2025). Se construye con:
+#   "ley"     → LFPA art. 28 y calendario oficial (lunes conmemorativos).
+#   "patron"  → la CONDUSEF lo ha incluido en todos los acuerdos revisados
+#               (2023, 2025 y 2026) cuando cae entre semana.
+#   "estimado"→ periodos vacacionales: la fecha exacta la fija cada acuerdo.
+# Cuando se publique el acuerdo oficial, se sustituye esta lista y se quita
+# "preliminar" del meta.
+PRONOSTICO_2027 = [
+    ("2027-01-01", "Año Nuevo", "ley"),
+    ("2027-02-01", "Primer lunes de febrero, en conmemoración del 5 de febrero", "ley"),
+    ("2027-03-15", "Tercer lunes de marzo, en conmemoración del 21 de marzo", "ley"),
+    ("2027-03-25", "Jueves Santo", "patron"),
+    ("2027-03-26", "Viernes Santo", "patron"),
+    ("2027-05-05", "5 de mayo (el 1 de mayo cae en sábado)", "ley"),
+] + [("2027-07-%02d" % d, "Primer periodo vacacional (estimado)", "estimado")
+     for d in (19, 20, 21, 22, 23, 26, 27, 28, 29, 30)] + [
+    ("2027-09-16", "Día de la Independencia", "ley"),
+    ("2027-11-02", "Día de Muertos", "patron"),
+    ("2027-11-15", "Tercer lunes de noviembre, en conmemoración del 20 de noviembre", "ley"),
+] + [("2027-12-%02d" % d, "Segundo periodo vacacional (estimado)", "estimado")
+     for d in (17, 20, 21, 22, 23, 24, 27, 28, 29, 30, 31)]
+
+if ANIO == 2027:
+    INHAB = {dt.date.fromisoformat(f) for f, _, _ in PRONOSTICO_2027}
+else:
+    INHAB = set()
+    for m, days in INHABILES_POR_ANIO[ANIO]:
+        for d in days:
+            INHAB.add(dt.date(ANIO, m, d))
 
 # Valor diario de la UMA. Se actualiza el 1 de febrero de cada año.
 UMA = {2025: 113.14, 2026: 117.31}
@@ -239,10 +269,10 @@ SISTEMAS = [
 ]
 
 TRIMESTRE = {
-    1: "octubre, noviembre y diciembre de 2025",
-    4: "enero, febrero y marzo de 2026",
-    7: "abril, mayo y junio de 2026",
-    10: "julio, agosto y septiembre de 2026",
+    1: "octubre, noviembre y diciembre de {}".format(ANIO - 1),
+    4: "enero, febrero y marzo de {}".format(ANIO),
+    7: "abril, mayo y junio de {}".format(ANIO),
+    10: "julio, agosto y septiembre de {}".format(ANIO),
 }
 
 
@@ -266,7 +296,9 @@ def siguiente_habil(d):
 
 
 def uma_de(mes):
-    return UMA[2025] if mes == 1 else UMA[2026]
+    # La UMA cambia el 1 de febrero. Si la del año aún no se publica (2027),
+    # se usa la vigente como referencia.
+    return UMA[ANIO - 1] if mes == 1 else UMA.get(ANIO, UMA[ANIO - 1])
 
 
 def fmt(d):
@@ -280,11 +312,11 @@ def texto_fecha(d):
 data = {
     "meta": {
         "anio": ANIO,
-        "uma": UMA,
+        "uma": {k: v for k, v in UMA.items() if k >= ANIO - 1},
         "norma": "Disposición en Materia de Registros ante la CONDUSEF (DOF 14-oct-2022, reforma DOF 28-sep-2023)",
         "regla_plazo": "Art. 12: primeros 5 días hábiles de cada mes, información del mes inmediato anterior. Informe trimestral REUNE: primeros 10 días hábiles de enero, abril, julio y octubre.",
         "zona_horaria": "America/Mexico_City",
-        "pdf": "assets/agenda-cumplifix-condusef-2026.pdf",
+        "pdf": "assets/agenda-cumplifix-condusef-{}.pdf".format(ANIO),
     },
     "sectores": SECTORES,
     "sistemas": SISTEMAS,
@@ -347,7 +379,13 @@ for mes in range(1, 13):
         "obligaciones": obligaciones,
     })
 
-with open("agenda-2026.json", "w", encoding="utf-8") as f:
+if ANIO == 2027:
+    data["meta"]["preliminar"] = True
+    data["meta"]["pdf"] = ""
+    data["meta"]["inhabiles_detalle"] = [
+        {"fecha": f, "motivo": mo, "base": b} for f, mo, b in PRONOSTICO_2027]
+
+with open("agenda-{}.json".format(ANIO), "w", encoding="utf-8") as f:
     json.dump(data, f, ensure_ascii=False, separators=(",", ":"))
 
 print("OK · {} meses · {} obligaciones/año".format(

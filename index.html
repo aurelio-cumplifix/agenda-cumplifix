@@ -727,6 +727,35 @@ h1,h2,h3{letter-spacing:-.025em}
 .dolor .s a{color:inherit;text-decoration:none}
 .dolor .s a:hover{text-decoration:underline}
 @media(max-width:760px){.masfirma{grid-template-columns:1fr;padding:22px}.masfirma-links{grid-template-columns:1fr}}
+/* Pronóstico del año siguiente */
+.link2027{display:inline-flex;align-items:center;gap:10px;margin-top:16px;color:#fff;font-weight:700;
+  font-size:14px;text-decoration:none;padding:8px 14px 8px 8px;border-radius:999px;
+  background:rgba(255,255,255,.1);box-shadow:inset 0 0 0 1px rgba(255,255,255,.28)}
+.link2027 b{font-size:10.5px;letter-spacing:.06em;background:#FFE8B3;color:#7C4A03;padding:3px 8px;border-radius:999px}
+.link2027:hover{background:rgba(255,255,255,.18)}
+.pronbar{background:#FFF4DB;color:#7C4A03;border-bottom:1px solid #F3D9A0;font-size:13.5px;
+  text-align:center;padding:10px 16px;line-height:1.45}
+.pronbar a{color:#7C4A03;font-weight:700}
+.pron{padding:28px;margin-top:22px}
+.pron h2{font-size:21px;margin:3px 0 8px}
+.pron .lead2{color:var(--muted);font-size:14.5px;max-width:760px;line-height:1.55}
+.pron-claves{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:18px 0}
+.pron-clave{border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.pron-clave .k{font-size:11.5px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.pron-clave .v{font-size:18px;font-weight:800;margin-top:4px}
+.pron-clave .u{font-size:12.5px;color:var(--muted);margin-top:2px}
+.pron-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:22px;margin-top:8px}
+.pron h3{font-size:15px;margin:0 0 10px}
+.pron-lista{list-style:none;margin:0;padding:0}
+.pron-lista li{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-top:1px solid var(--line);font-size:13.5px}
+.pron-lista li span{color:var(--muted)}
+.base{flex:none;font-size:10.5px;font-weight:800;letter-spacing:.04em;padding:3px 8px;border-radius:999px;height:fit-content}
+.base-ley{background:#DCFCE7;color:#14532D}.base-patron{background:#EEF2FF;color:#1E3A8A}.base-estimado{background:#FFF4DB;color:#7C4A03}
+.pron table{width:100%;border-collapse:collapse;font-size:13px}
+.pron th,.pron td{text-align:left;padding:7px 6px;border-top:1px solid var(--line)}
+.pron th{font-size:11.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.pron .nota{font-size:12.5px;color:var(--muted);margin-top:14px;line-height:1.55}
+@media(max-width:760px){.pron-claves,.pron-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -761,6 +790,7 @@ h1,h2,h3{letter-spacing:-.025em}
         <a class="btn btn-light" href="#diagnostico">Haz el diagnóstico en 3 minutos</a>
         <a class="btn btn-onblue" href="#descarga">Descargar agenda PDF</a>
       </div>
+      <a class="link2027" href="pronostico-2027.html"><b>NUEVO</b>Ver posible calendario 2027 →</a>
       <div class="herostats">
         <div class="hs"><div class="n" id="hsObl">—</div><div class="l">obligaciones en el año</div></div>
         <div class="hs"><div class="n" id="hsSis">7</div><div class="l">registros CONDUSEF</div></div>
@@ -807,6 +837,7 @@ h1,h2,h3{letter-spacing:-.025em}
       <div class="lbl" id="ringDesc">—</div>
     </div>
   </section>
+
 
   <!-- DIAGNÓSTICO EXPRÉS (oferta principal) -->
   <section class="card diag" id="diagnostico" aria-labelledby="diagTitulo">
@@ -1191,6 +1222,7 @@ function partesMX(d){
 }
 const HOY = (window.__FECHA_SIMULADA || partesMX().fecha);
 const INHAB = new Set(DATA.inhabiles);
+const INHAB_MOT = {}; (DATA.meta.inhabiles_detalle||[]).forEach(x=>INHAB_MOT[x.fecha]=x.motivo);
 const MESES = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
 const DIAS = ["domingo","lunes","martes","miércoles","jueves","viernes","sábado"];
 
@@ -1314,8 +1346,8 @@ function calcularEstado(){
     r.acc=s.obligacion; r.accSub="Vence el "+corta(s.cierre); r.hasta=s.cierre;
   } else {
     const s=PROXIMOS[0];
-    r.cls="st-close"; r.ic="■"; r.sem="Ciclo 2026 cerrado";
-    r.ti="Cerró la última ventana de validación de 2026";
+    r.cls="st-close"; r.ic="■"; r.sem="Ciclo "+anio+" cerrado";
+    r.ti="Cerró la última ventana de validación de "+anio;
     r.tx="Documenta los acuses obtenidos y, si quedó algo pendiente, deja constancia de la causa y del plan de regularización. Prepara el expediente del ejercicio y la agenda del siguiente año.";
     r.num=s?diffDias(HOY,s.f):0; r.lbl="DÍAS"; r.desc=s?("para: "+s.ti):"sin hitos pendientes";
     r.pct=1; r.acc=s?s.ti:"Cerrar el expediente anual"; r.accSub=s?corta(s.f):"—"; r.hasta=s?s.f:null;
@@ -1485,7 +1517,7 @@ function pintarDia(){
   if(s>=m.validacion.inicio&&s<=m.validacion.fin) chips.push(['val','Ventana de validación · cierra '+corta(m.validacion.fin)]);
   if(m.reus.indexOf(s)>=0) chips.push(['reus','Reporte quincenal REUS']);
   if(m.reune&&s>=m.reune.inicio&&s<=m.reune.fin) chips.push(['reune','Informe trimestral REUNE · cierra '+corta(m.reune.fin)]);
-  if(INHAB.has(s)) chips.push(['inh','Inhábil CONDUSEF: no corren plazos']);
+  if(INHAB.has(s)) chips.push(['inh',INHAB_MOT[s]?('Posible inhábil: '+INHAB_MOT[s]):'Inhábil CONDUSEF: no corren plazos']);
   else if(esFinde(s)) chips.push(['inh','Fin de semana']);
   const dd=diffDias(HOY,s);
   const rel = dd===0?"Hoy" : dd===1?"Mañana" : dd===-1?"Ayer" : dd>0?("En "+dd+" días"):("Hace "+(-dd)+" días");
@@ -1982,7 +2014,7 @@ document.getElementById("modalSector").addEventListener("click",e=>{
 /* ---------- Temporada ----------
    Un acento por mes que no decora por decorar: cada uno señala el hecho
    regulatorio propio del periodo. Se elige por el mes de la Ciudad de México. */
-const TEMPORADAS = {
+const TEMPORADAS = DATA.meta.preliminar ? {} : {
   9:  {clase:"patria", eyebrow:"Mes patrio",
        texto:"El <b>16 de septiembre</b> es inhábil para la CONDUSEF. Ténlo presente al contar los plazos de este mes."},
   10: {clase:"trim", eyebrow:"Cierra el tercer trimestre",
